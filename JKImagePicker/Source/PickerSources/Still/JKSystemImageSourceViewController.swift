@@ -22,7 +22,7 @@ public class JKSystemImageSourceViewController: JKImagePickerSourceViewControlle
 	}
 
 	public override var availableControls: [JKCameraControlItem] { get {
-		return [.camera,.gallery,.pad,.pad,.pad,.pad,.close]
+		return [.camera,.gallery,.free,.free,.free,.free,.close]
 		}}
 	
 	public override func viewDidLayoutSubviews() {

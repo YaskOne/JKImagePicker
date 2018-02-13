@@ -101,7 +101,7 @@ public class JKImagePickerSourceViewController : JKOrientatedViewController, JKP
 		
 		for i in 0...6 {
 			let control = availableControls[i]
-			if control == .pad && featureIndex < featureControls.count {
+			if control == .free && featureIndex < featureControls.count {
 				ctrls.append(featureControls[featureIndex])
 				featureIndex += 1
 			}
@@ -114,7 +114,7 @@ public class JKImagePickerSourceViewController : JKOrientatedViewController, JKP
 	}}
 	
 	public var availableControls: [JKCameraControlItem] { get {
-		return [.pad,.pad,.pad,.pad,.pad,.pad,.close]
+		return [.free,.free,.free,.free,.free,.free,.close]
 		}}
 	
 	public var featureControls:  [JKCameraControlItem]?

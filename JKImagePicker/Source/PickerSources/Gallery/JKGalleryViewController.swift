@@ -11,7 +11,7 @@ import UIKit
 public class JKGalleryViewController: JKImagePickerSourceViewController {
 
 	override public var availableControls: [JKCameraControlItem] { get {
-			return [.camera,.pad,.pad,.pad,.pad,.pad,.close]
+			return [.camera,.free,.free,.free,.free,.free,.close]
 			}}
 	
 	public let photoLoader = JKGalleryDataLoader()

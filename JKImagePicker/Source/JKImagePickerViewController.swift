@@ -26,9 +26,23 @@ public enum PickerFeature {
 }
 
 public class JKImagePickerViewController: JKOrientatedViewController {
-    
+	
     public var delegate: JKImagePickerDelegate? = nil
 	
+	public var _settings: JKPickerSettings?
+	
+	public lazy var formatHelper = { return JKImageFormatHelper(formats: self.settings.formatRatios, format: nil) }()
+	
+	public var settings: JKPickerSettings { get {
+			return _settings ?? JKPickerSettings.default
+		}
+		set {
+			_settings = newValue
+			if let _ = self.view {
+				updateInterfaceAfterSettingsChange()
+			}
+		}
+	}
 	
 	public func instantiatePicker(identifier: String) -> JKImagePickerSourceViewController {
 		print("Instantiate view controller '\(identifier)")
@@ -87,6 +101,8 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	//MARK: - Format
 	
 	public var imageFormat: JKImageFormat = JKImageFormat(ratio: JKImageFormatRatio.fullScreen, orientation: JKImageFormatOrientation.portrait)
+	
+	public var availableRatios = [JKImageFormatRatio.fullScreen]
 	
 	public var image: JKImage?
 
@@ -191,6 +207,23 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		updateInterface()
 	}
 	
+	public func updateInterfaceAfterSettingsChange() {
+		formatButton.isHidden = settings.formatRatios.count < 2
+		if settings.orientationLock {
+			self.orientation = .portrait
+		}
+		imageFormat = JKImageFormat(ratio: settings.formatRatios[0], orientation: orientation.isPortrait ? .portrait : .landscape)
+		if let t = transform {
+			updateOrientation(transform: t)
+		}
+	}
+	
+	public override func orientationChanged(notif: Notification) {
+		if !settings.orientationLock {
+			super.orientationChanged(notif: notif)
+		}
+	}
+	
 	public func updateInterface() {
 		currentPickerController?.featureControls = featureControls
 		pickerControls?.reload()
@@ -251,13 +284,13 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 		switch command {
 		case JKCameraControlItem.close.rawValue:
 			delegate?.imagePickerCancel()
-			//dismiss(animated: true)
 			
 		case JKCameraControlItem.camera.rawValue:
 			setPicker(.camera)
 			
 		case JKCameraControlItem.gallery.rawValue:
 			setPicker(.gallery)
+			
 		default:
 			featureVC?.commandButtonTapped(command: command)
 			pickerControls?.reload()
@@ -285,12 +318,14 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 	
 	
 	@IBAction func formatButtonTapped() {
-		JKImageFormatHelper.shared.nextFormat()
+		formatHelper.nextFormat()
 		updateFormat()
 	}
 	
 	
 }
+
+//MARK: - Picker Actions
 
 extension JKImagePickerViewController: PickerActionsDelegate {
 	
@@ -324,7 +359,13 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 			//TODO: Embed Settings in composition
 			
 			switch currentPicker {
-				case .camera:
+			case .camera:
+				// Should not happen, since mode gets back to still just after an image has been selected in Camera
+				break
+			case .gallery:
+				// Should not happen, since mode gets back to still just after an image has been selected in Gallery
+				break
+			case .still:
 				if let feature = featureVC as? JKSplitViewController {
 					if let jkImage1 = feature.jkImage1,
 						let jkImage2 = feature.jkImage2,
@@ -334,17 +375,12 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 						splitComposition.image2 = jkImage2
 						delegate?.imagePickerSuccess(image: splitComposition)
 					}
-					//dismiss(animated: true)
 					return
 				}
-			case .gallery:
-				// Should not happen, since mode gets back to still just after an image has been selected in Gallery
-				break
-			case .still:
+
 				if let jkImage = self.image {
 						delegate?.imagePickerSuccess(image: jkImage)
 				}
-				//dismiss(animated: true)
 			}
 		}
 		

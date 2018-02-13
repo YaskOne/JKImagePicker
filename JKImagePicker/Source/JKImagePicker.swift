@@ -12,16 +12,20 @@ public struct JKImagePicker {
 	public static let bundle = Bundle(identifier: "Jack-World.JKImagePicker")
 	public static let storyboard = UIStoryboard(name: "JKImagePicker", bundle: JKImagePicker.bundle)
 	
-	public static func open(over viewController: UIViewController, delegate: JKImagePickerDelegate) -> JKImagePickerViewController? {
-		guard let picker = JKImagePicker.storyboard.instantiateViewController(withIdentifier: "imagePicker") as? JKImagePickerViewController else {
-			return nil
+	public static func open(over viewController: UIViewController?, delegate: JKImagePickerDelegate, settings: JKPickerSettings? = nil) -> JKImagePickerViewController? {
+		guard let nav = JKImagePicker.storyboard.instantiateInitialViewController() as? UINavigationController,
+			let picker = nav.topViewController as? JKImagePickerViewController else {
+				return nil
 		}
-
 		DispatchQueue.main.async {
 			picker.delegate = delegate
-			viewController.present(picker, animated: true, completion: nil)
+			if let settings = settings {
+				picker.settings = settings
+			}
+			nav.isNavigationBarHidden = true
+			viewController?.present(nav, animated: true, completion: nil)
 		}
-		
 		return picker
 	}
+	
 }

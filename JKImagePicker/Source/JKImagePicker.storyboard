@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W4e-kY-rmT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,16 +19,16 @@
         <!--Delegate-->
         <scene sceneID="Cgh-Vz-I6U">
             <objects>
-                <viewController storyboardIdentifier="Split" id="Twz-Xj-Mdn" customClass="JKSplitViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Split" id="Twz-Xj-Mdn" customClass="JKSplitViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hfc-Ch-LkP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-Oz-6Dp" customClass="JKSplitView" customModule="JackCamera" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-Oz-6Dp" customClass="JKSplitView" customModule="JKImagePicker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWP-GB-7qK" customClass="JKCenterAngleControlView" customModule="JackCamera" customModuleProvider="target">
+                            <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWP-GB-7qK" customClass="JKCenterAngleControlView" customModule="JKImagePicker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -55,12 +55,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPV-Lb-aTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1679.2" y="-144.3778110944528"/>
+            <point key="canvasLocation" x="-1735" y="212"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="SKg-gE-hSu">
+            <objects>
+                <navigationController id="W4e-kY-rmT" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QU5-O4-xgS">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="SxK-ob-J0Z" kind="relationship" relationship="rootViewController" id="uvD-oo-ws9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eZ5-ph-BSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-778" y="-151"/>
         </scene>
         <!--Image Picker View Controller-->
         <scene sceneID="xYW-eh-BdP">
             <objects>
-                <viewController storyboardIdentifier="imagePicker" id="SxK-ob-J0Z" customClass="JKImagePickerViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="imagePicker" id="SxK-ob-J0Z" customClass="JKImagePickerViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EjT-Sk-qg6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,7 +86,7 @@
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QzJ-NY-YAs">
-                                <rect key="frame" x="16" y="20" width="343" height="56"/>
+                                <rect key="frame" x="16" y="64" width="343" height="56"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QzJ-NY-YAs" secondAttribute="height" multiplier="7:1" constant="-49" id="3dG-fi-DIs"/>
@@ -89,7 +105,7 @@
                                     <segue destination="akI-YH-AsC" kind="embed" identifier="pickerActionsSegue" id="2W3-1f-y5v"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uza-8r-exW" customClass="JKShadowButton" customModule="JackCamera" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uza-8r-exW" customClass="JKShadowButton" customModule="JKImagePicker" customModuleProvider="target">
                                 <rect key="frame" x="156" y="551" width="63" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Full Frame">
@@ -117,18 +133,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="El1-bA-CzZ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3bX-8L-AZA"/>
                     <connections>
                         <outlet property="formatButton" destination="Uza-8r-exW" id="nbr-qA-V39"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dfz-3X-FCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-815.20000000000005" y="-144.3778110944528"/>
+            <point key="canvasLocation" x="-63" y="-151"/>
         </scene>
         <!--Picker Buttons View Controller-->
         <scene sceneID="xdT-oo-3wa">
             <objects>
-                <viewController storyboardIdentifier="pickerControls" id="y87-ES-1nW" customClass="JKPickerButtonsViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pickerControls" id="y87-ES-1nW" customClass="JKPickerButtonsViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gCz-h6-oeA">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,12 +173,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xb0-2u-QoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189.59999999999999" y="-382.75862068965517"/>
+            <point key="canvasLocation" x="942" y="-390"/>
         </scene>
         <!--Still Image Source View Controller-->
         <scene sceneID="eWu-vx-Ub2">
             <objects>
-                <viewController storyboardIdentifier="Preview" id="V2v-Gf-etM" customClass="JKStillImageSourceViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Preview" id="V2v-Gf-etM" customClass="JKStillImageSourceViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="76N-1D-kKP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,7 +207,7 @@
         <!--Camera View Controller-->
         <scene sceneID="ziN-zS-acu">
             <objects>
-                <viewController storyboardIdentifier="Camera" modalPresentationStyle="currentContext" id="afA-TR-d91" customClass="JKCameraViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Camera" modalPresentationStyle="currentContext" id="afA-TR-d91" customClass="JKCameraViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lC5-Ee-9M4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,7 +251,7 @@
         <!--Gallery View Controller-->
         <scene sceneID="GG1-46-kaw">
             <objects>
-                <viewController storyboardIdentifier="Gallery" id="B4M-38-vNE" customClass="JKGalleryViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Gallery" id="B4M-38-vNE" customClass="JKGalleryViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rD9-jv-XYH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,7 +280,7 @@
         <!--Gallery Collection View Controller-->
         <scene sceneID="Dit-Pi-yYv">
             <objects>
-                <collectionViewController id="rf4-Sp-hwd" customClass="JKGalleryCollectionViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="rf4-Sp-hwd" customClass="JKGalleryCollectionViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="nyc-NE-XV7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -275,7 +292,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="GalleryItemCell" id="VxR-Oi-sxp" customClass="JKGalleryPhotoCollectionViewCell" customModule="JackCamera" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="GalleryItemCell" id="VxR-Oi-sxp" customClass="JKGalleryPhotoCollectionViewCell" customModule="JKImagePicker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="130" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -312,7 +329,7 @@
         <!--Picker Actions View Controller-->
         <scene sceneID="Mfj-fI-dsH">
             <objects>
-                <viewController id="akI-YH-AsC" customClass="JKPickerActionsViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="akI-YH-AsC" customClass="JKPickerActionsViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="phz-Es-aIG">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -322,7 +339,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHB-65-HaY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="158" y="19"/>
+            <point key="canvasLocation" x="910" y="13"/>
         </scene>
     </scenes>
 </document>

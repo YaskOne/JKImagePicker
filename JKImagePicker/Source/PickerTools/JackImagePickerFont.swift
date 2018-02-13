@@ -1,32 +1,91 @@
-//
-//  JKCameraFont.swift
-//  JKCamera
-//
-//  Created by Arthur Ngo Van on 15/01/2018.
-//  Copyright © 2018 Aurélien GIRARDEAU. All rights reserved.
-//
-import Foundation
+
+/*
+
+Table         :  jack_jackfont
+78 Glyphs
+
+*/
 
 
-public struct JackImagePickerFont {
-    
-    public static let icon_cross = "\u{e933}"
-    public static let icon_back = "\u{e911}"
-    public static let icon_split_horizontal = "\u{e940}"
-    public static let icon_split_vertical = "\u{e941}"
-    public static let icon_switch = "\u{e942}"
-    public static let icon_front_camera = "\u{e943}"
-    public static let icon_flash_off = "\u{e944}"
-    public static let icon_flash_on = "\u{e945}"
-    public static let icon_flash_auto = "\u{e946}"
-    public static let icon_library = "\u{e947}"
-    public static let icon_options = "\u{e948}"
-    public static let icon_heart = "\u{e949}"
-    public static let icon_light = "\u{e950}"
-    public static let icon_split_diagonal_right = "\u{e951}"
-    public static let icon_split_diagonal_left = "\u{e952}"
-	public static let icon_split_swap = ""
+
+struct JackImagePickerFont {
+	public static let icon_split_horizontal = "\u{e940}"
+	public static let icon_pencil = "\u{eb05}"
+	public static let icon_marker = "\u{eb04}"
+	public static let icon_user = "\u{eb03}"
+	public static let icon_jackfont = "\u{ea02}"
+	public static let icon_camera = "\u{e908}"
+	public static let icon_chat = "\u{e909}"
+	public static let icon_photo = "\u{ea01}"
+	public static let icon_notification = "\u{e907}"
+	public static let icon_settings = "\u{e905}"
+	public static let icon_add = "\u{e900}"
+	public static let icon_unmark_close_friend = "\u{ea06}"
+	public static let icon_mark_close_friend = "\u{ea07}"
+	public static let icon_locked = "\u{e912}"
+	public static let icon_unlocked = "\u{e913}"
+	public static let icon_add_friend = "\u{ea05}"
+	public static let icon_group = "\u{ea03}"
+	public static let icon_block = "\u{ea08}"
+	public static let icon_unblock = "\u{ea09}"
+	public static let icon_jack = "\u{ec00}"
+	public static let icon_network_error = "\u{eb00}"
+	public static let icon_unfriend = "\u{ea10}"
+	public static let icon_follow = "\u{e915}"
+	public static let icon_unfollow = "\u{e916}"
+	public static let icon_delete = "\u{e918}"
+	public static let icon_list_view = "\u{ea12}"
+	public static let icon_share = "\u{ea16}"
+	public static let icon_save = "\u{ea14}"
+	public static let icon_saved = "\u{ea15}"
+	public static let icon_map_view = "\u{ea11}"
+	public static let icon_previous = "\u{e903}"
+	public static let icon_next = "\u{e904}"
+	public static let icon_chevron_up = "\u{e919}"
+	public static let icon_chevron_down = "\u{e920}"
+	public static let icon_view = "\u{ea17}"
+	public static let icon_party = "\u{ea18}"
+	public static let icon_chill = "\u{ea19}"
+	public static let icon_sport = "\u{ea20}"
+	public static let icon_direction = "\u{e921}"
+	public static let icon_mystery = "\u{e914}"
+	public static let icon_down = "\u{e922}"
+	public static let icon_up = "\u{e923}"
+	public static let icon_rating = "\u{e925}"
+	public static let icon_jack_logo = "\u{ec01}"
+	public static let icon_login = "\u{e926}"
+	public static let icon_info = "\u{e927}"
+	public static let icon_error = "\u{e928}"
+	public static let icon_checkmark_circle = "\u{e929}"
+	public static let icon_valid = "\u{e930}"
+	public static let icon_warning = "\u{e931}"
+	public static let icon_filter_ios = "\u{e932}"
+	public static let icon_push = "\u{e934}"
+	public static let icon_public = "\u{e935}"
+	public static let icon_private = "\u{e936}"
+	public static let icon_friend = "\u{ea04}"
+	public static let icon_home = "\u{ea13}"
+	public static let icon_audience = "\u{e938}"
+	public static let icon_mode = "\u{e939}"
+	public static let icon_comment = "\u{e924}"
+	public static let icon_back = "\u{e911}"
+	public static let icon_split_vertical = "\u{e941}"
+	public static let icon_switch = "\u{e942}"
+	public static let icon_front_camera = "\u{e943}"
+	public static let icon_flash_off = "\u{e944}"
+	public static let icon_flash_on = "\u{e945}"
+	public static let icon_flash_auto = "\u{e946}"
+	public static let icon_library = "\u{e947}"
+	public static let icon_logout = "\u{e910}"
+	public static let icon_options = "\u{e948}"
+	public static let icon_compass = "\u{eb02}"
+	public static let icon_user_location = "\u{eb01}"
+	public static let icon_search = "\u{e906}"
+	public static let icon_heart = "\u{e949}"
+	public static let icon_light = "\u{e950}"
+	public static let icon_split_diagonal_right = "\u{e951}"
+	public static let icon_split_diagonal_left = "\u{e952}"
 	public static let icon_checkmark = "\u{e901}"
-	
-    public static let icon_camera = "\u{e908}"
+	public static let icon_cross = "\u{e933}"
 }
+

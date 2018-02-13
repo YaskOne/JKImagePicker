@@ -8,7 +8,8 @@
 
 import UIKit
 
-
+import iOSCommons
+import JackFoundation
 
 struct JKSplitSettings {
 	var angle: CGFloat = 0

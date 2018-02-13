@@ -9,6 +9,8 @@
 import Foundation
 import CoreGraphics
 import UIKit
+import JackFoundation
+import iOSCommons
 
 //TODO: - Use swift as it most !
 protocol JKImageRepresentable {

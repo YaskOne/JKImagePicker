@@ -8,6 +8,9 @@
 
 import UIKit
 
+import JackFoundation
+import iOSCommons
+
 @objc protocol JKCenterAngleControlViewDelegate {
 	func centerDidChange(_ center:CGPoint)
 	func angleDidChange(_ angle:CGFloat)

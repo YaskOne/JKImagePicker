@@ -17,7 +17,6 @@
 		BC2CBED02032ED96005E62D5 /* JKShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA62032ED96005E62D5 /* JKShadowButton.swift */; };
 		BC2CBED12032ED96005E62D5 /* JKImagePickerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA72032ED96005E62D5 /* JKImagePickerUtils.swift */; };
 		BC2CBED32032ED96005E62D5 /* JKImageFormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA92032ED96005E62D5 /* JKImageFormatHelper.swift */; };
-		BC2CBED42032ED96005E62D5 /* JKSplitFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEAB2032ED96005E62D5 /* JKSplitFeatureViewController.swift */; };
 		BC2CBED52032ED96005E62D5 /* JKHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEAD2032ED96005E62D5 /* JKHandleView.swift */; };
 		BC2CBED62032ED96005E62D5 /* JKSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEAE2032ED96005E62D5 /* JKSplitViewController.swift */; };
 		BC2CBED72032ED96005E62D5 /* JKSplitMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEAF2032ED96005E62D5 /* JKSplitMode.swift */; };
@@ -75,7 +74,6 @@
 		BC2CBEA72032ED96005E62D5 /* JKImagePickerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKImagePickerUtils.swift; sourceTree = "<group>"; };
 		BC2CBEA82032ED96005E62D5 /* JackImagePickerFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JackImagePickerFont.swift; sourceTree = "<group>"; };
 		BC2CBEA92032ED96005E62D5 /* JKImageFormatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKImageFormatHelper.swift; sourceTree = "<group>"; };
-		BC2CBEAB2032ED96005E62D5 /* JKSplitFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKSplitFeatureViewController.swift; sourceTree = "<group>"; };
 		BC2CBEAD2032ED96005E62D5 /* JKHandleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHandleView.swift; sourceTree = "<group>"; };
 		BC2CBEAE2032ED96005E62D5 /* JKSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKSplitViewController.swift; sourceTree = "<group>"; };
 		BC2CBEAF2032ED96005E62D5 /* JKSplitMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKSplitMode.swift; sourceTree = "<group>"; };
@@ -105,6 +103,7 @@
 		BC2CBEF12032EEA2005E62D5 /* iOSCommons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSCommons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2CBEF32032EF0A005E62D5 /* JackFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JackFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC4D9CCB203306180029E9E1 /* JKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKImagePicker.swift; sourceTree = "<group>"; };
+		BC4D9CCF203308500029E9E1 /* JKSplitFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKSplitFeatureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,9 +208,9 @@
 		BC2CBEAA2032ED96005E62D5 /* PickerFeatures */ = {
 			isa = PBXGroup;
 			children = (
-				BC2CBEAB2032ED96005E62D5 /* JKSplitFeatureViewController.swift */,
-				BC2CBEAC2032ED96005E62D5 /* JKSplit */,
 				BC2CBEB32032ED96005E62D5 /* JKFeatureViewController.swift */,
+				BC4D9CCF203308500029E9E1 /* JKSplitFeatureViewController.swift */,
+				BC2CBEAC2032ED96005E62D5 /* JKSplit */,
 			);
 			path = PickerFeatures;
 			sourceTree = "<group>";
@@ -430,7 +429,6 @@
 				BC2CBED52032ED96005E62D5 /* JKHandleView.swift in Sources */,
 				BC2CBED32032ED96005E62D5 /* JKImageFormatHelper.swift in Sources */,
 				BC2CBEE92032ED96005E62D5 /* JKImagePickerSourceViewController.swift in Sources */,
-				BC2CBED42032ED96005E62D5 /* JKSplitFeatureViewController.swift in Sources */,
 				BC2CBEE32032ED96005E62D5 /* JKGalleryDataLoader.swift in Sources */,
 				BC2CBED02032ED96005E62D5 /* JKShadowButton.swift in Sources */,
 				BC2CBEDD2032ED96005E62D5 /* JKCameraPreview.swift in Sources */,

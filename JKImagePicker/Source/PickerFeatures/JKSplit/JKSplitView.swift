@@ -35,17 +35,16 @@ public class JKSplitView: UIView {
 	//MARK: - Images
 	public var image1:UIImage?
 	public var image2:UIImage?
-	public var swapped: Bool = false
 	
 	public var getFirstImage: UIImage? {
 		get {
-			return swapped ? image2 : image1
+			return image1
 		}
 	}
 	
 	public var getSecondImage: UIImage? {
 		get {
-			return swapped ? image1 : image2
+			return image2
 		}
 	}
 	
@@ -56,6 +55,8 @@ public class JKSplitView: UIView {
 	public var overlayVisibility:(Bool,Bool) = (false,false)
 	public var overlayColors:(UIColor,UIColor) = (UIColor.green, UIColor.red)
 	public var overlayAlpha:(CGFloat,CGFloat) = (0.4,0.4)
+	
+	public var overlayOpacity: CGFloat = 0.8
 	
 	//MARK: - Line
 	
@@ -91,8 +92,8 @@ public class JKSplitView: UIView {
 	}
 	
 	public func drawImages(context: CGContext) {
-		drawImage(getFirstImage?.cgImage, clipPath: clipPath(), overlayIfNil: !gotOneImage && !swapped, context: context)
-		drawImage(getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage && swapped, context: context)
+		drawImage(getFirstImage?.cgImage, clipPath: clipPath(), overlayIfNil: false, context: context)
+		drawImage(getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage , context: context)
 	}
 	
 	public func drawImage(_ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext) {
@@ -111,7 +112,7 @@ public class JKSplitView: UIView {
 			
 		}
 		else if overlayIfNil {
-			context.setFillColor(UIColor.black.withAlphaComponent(0.5).cgColor)
+			context.setFillColor(UIColor.black.withAlphaComponent(overlayOpacity).cgColor)
 			context.fill(bounds)
 		}
 		
@@ -145,6 +146,7 @@ public class JKSplitView: UIView {
 		
 		context.restoreGState()
 	}
+
 
 }
 

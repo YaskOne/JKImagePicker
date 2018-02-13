@@ -18,9 +18,7 @@ public class JKSplitViewController: JKFeatureViewController {
 	public var modeButton: UIButton?
 	
 	public var mode: JKSplitMode = JKSplitMode.horizontal { didSet {
-			splitView?.settings = mode.settings
-			modeButton?.setTitle(mode.label, for: .normal)
-			splitView.setNeedsDisplay()
+		updateSplit()
 		}}
 	
 	public var modes: [JKSplitMode] = [.vertical,.diagonalLeft,.horizontal,.diagonalRight]
@@ -28,6 +26,8 @@ public class JKSplitViewController: JKFeatureViewController {
 	public var modeIndex = 0 { didSet {
 		mode = modes[modeIndex]
 		}}
+	
+	public var swapped: Bool = false
 	
 	public var image: UIImage? { didSet {
 		if image1 == nil {
@@ -47,16 +47,18 @@ public class JKSplitViewController: JKFeatureViewController {
 		splitView.image2 = image2
 		splitView.setNeedsDisplay()
 		}}
-
-	public var swapped = false { didSet {
-		splitView.swapped = swapped
+	
+	public func updateSplit() {
+		var settings = mode.settings
+		settings.angle += swapped ? CGFloat.pi : 0
+		splitView?.settings = settings
+		modeButton?.setTitle(mode.label, for: .normal)
 		splitView.setNeedsDisplay()
-		}}
+	}
 	
 	public override func viewDidLoad() {
 		super.viewDidLoad()
-		swapped = false
-		modeIndex = JKSplitMode.vertical.rawValue
+		modeIndex = (modes.index{$0 == .vertical}) ?? 0
 		self.view.clipsToBounds = true
 	}
 
@@ -84,23 +86,19 @@ public class JKSplitViewController: JKFeatureViewController {
 	}
 	
 	public override func viewDidLayoutSubviews() {
-		self.splitView?.frame = view.bounds
+		splitView?.frame = view.bounds
 	}
 }
 
 public extension JKSplitViewController {
 	
 	@IBAction func nextModeTapped() {
-		var idx = modeIndex + 1
-		if idx >= modes.count {
-			swapped = !swapped
-			idx = 0
-		}
-		modeIndex = idx
+		modeIndex = (modeIndex + 1) % modes.count
 	}
 	
 	@IBAction func swapTapped() {
 		swapped = !swapped
+		updateSplit()
 	}
 	
 }

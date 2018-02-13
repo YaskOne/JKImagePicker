@@ -17,7 +17,7 @@ public protocol JKImagePickerDelegate {
 public enum PickerType {
     case camera
     case gallery
-    case preview
+    case still
 }
 
 public enum PickerFeature {
@@ -45,7 +45,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 			return cameraVC
 		case .gallery:
 			return galleryVC
-		case .preview:
+		case .still:
 			return previewVC
 		}
 	}
@@ -174,7 +174,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 				self.pickerActions?.needsConfirm = false
 				featureVC?.view.isHidden = false
 			
-		case .preview:
+		case .still:
 				formatButton?.isHidden = false
 				pickerActions?.view.isHidden = false
 				self.pickerActions?.needsConfirm = true
@@ -234,14 +234,14 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 			
 			if split.image2 != nil {
 				split.jkImage2 = self.image
-				setPicker(.preview)
+				setPicker(.still)
 			} else {
 				split.jkImage1 = self.image
 				setPicker(.camera)
 			}
 		}
 		else {
-			setPicker(.preview)
+			setPicker(.still)
 		}
 	}
 	
@@ -309,30 +309,38 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 					cameraVC.capturePhoto()
 					return
 				}
+/*
 				if currentPickerController == previewVC, let image = self.image  {
-					//pictureAvailable(image)
+					pictureAvailable(image)
 					return
 				}
+*/
 			}
 			
 		case .confirm:
 			//TODO: Do a clean FeatureViewController that holds the composition object
 			//TODO: Embed Settings in composition
-			if let feature = featureVC as? JKSplitViewController {
-				if let jkImage1 = feature.jkImage1,
-				let jkImage2 = feature.jkImage2,
-				let settings = feature.splitView?.settings {
-					let splitComposition = JKSplitComposition(angle: settings.angle, center: settings.center)
-					splitComposition.image1 = jkImage1
-					splitComposition.image2 = jkImage2
-					delegate?.imagePickerSuccess(image: splitComposition)
+			
+			switch currentPicker {
+				case .camera:
+				if let feature = featureVC as? JKSplitViewController {
+					if let jkImage1 = feature.jkImage1,
+						let jkImage2 = feature.jkImage2,
+						let settings = feature.splitView?.settings {
+						let splitComposition = JKSplitComposition(angle: settings.angle, center: settings.center)
+						splitComposition.image1 = jkImage1
+						splitComposition.image2 = jkImage2
+						delegate?.imagePickerSuccess(image: splitComposition)
+					}
+					dismiss(animated: true)
+					return
 				}
-				dismiss(animated: true)
-				return
-			}
-			if var image = previewVC.image {
+			case .gallery:
+				// Should not happen, since mode gets back to still just after an image has been selected in Gallery
+				break
+			case .still:
 				if let jkImage = self.image {
-					delegate?.imagePickerSuccess(image: jkImage)
+						delegate?.imagePickerSuccess(image: jkImage)
 				}
 				dismiss(animated: true)
 			}

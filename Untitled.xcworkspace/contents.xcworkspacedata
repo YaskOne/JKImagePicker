@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../JackFoundation/JackFoundation.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../iOSCommons/iOSCommons.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:JKImagePicker.xcodeproj">
+   </FileRef>
+</Workspace>

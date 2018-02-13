@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="jackfont.ttf">
+            <string>jackfont</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Delegate-->
+        <scene sceneID="Cgh-Vz-I6U">
+            <objects>
+                <viewController storyboardIdentifier="Split" id="Twz-Xj-Mdn" customClass="JKSplitViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hfc-Ch-LkP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-Oz-6Dp" customClass="JKSplitView" customModule="JackCamera" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWP-GB-7qK" customClass="JKCenterAngleControlView" customModule="JackCamera" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Twz-Xj-Mdn" id="yBB-E4-A8n"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UWP-GB-7qK" firstAttribute="trailing" secondItem="b91-z0-MjQ" secondAttribute="trailing" id="4Cj-7Q-V5M"/>
+                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="top" secondItem="hfc-Ch-LkP" secondAttribute="top" id="B50-Eb-LBt"/>
+                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="leading" secondItem="b91-z0-MjQ" secondAttribute="leading" id="Q6Y-fa-Ypk"/>
+                            <constraint firstItem="UWP-GB-7qK" firstAttribute="top" secondItem="hfc-Ch-LkP" secondAttribute="top" id="QC0-xR-oPB"/>
+                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="trailing" secondItem="b91-z0-MjQ" secondAttribute="trailing" id="ZIj-pC-UGS"/>
+                            <constraint firstItem="UWP-GB-7qK" firstAttribute="leading" secondItem="b91-z0-MjQ" secondAttribute="leading" id="dC4-Td-TY6"/>
+                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="bottom" secondItem="b91-z0-MjQ" secondAttribute="bottom" id="gH0-Tf-dSs"/>
+                            <constraint firstItem="UWP-GB-7qK" firstAttribute="bottom" secondItem="b91-z0-MjQ" secondAttribute="bottom" id="or3-9T-c8l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="b91-z0-MjQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="splitView" destination="e4y-Oz-6Dp" id="ndz-yN-QdM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xPV-Lb-aTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1679.2" y="-144.3778110944528"/>
+        </scene>
+        <!--Image Picker View Controller-->
+        <scene sceneID="xYW-eh-BdP">
+            <objects>
+                <viewController storyboardIdentifier="imagePicker" id="SxK-ob-J0Z" customClass="JKImagePickerViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EjT-Sk-qg6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZwL-0O-ubg" userLabel="Picker Container">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QzJ-NY-YAs">
+                                <rect key="frame" x="16" y="20" width="343" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QzJ-NY-YAs" secondAttribute="height" multiplier="7:1" constant="-49" id="3dG-fi-DIs"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="y87-ES-1nW" kind="embed" identifier="pickerControlsSegue" id="b4d-Hd-hO9"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ig8-HO-SOw">
+                                <rect key="frame" x="16" y="582" width="343" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="hJT-aC-gwN"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="akI-YH-AsC" kind="embed" identifier="pickerActionsSegue" id="2W3-1f-y5v"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uza-8r-exW" customClass="JKShadowButton" customModule="JackCamera" customModuleProvider="target">
+                                <rect key="frame" x="156" y="551" width="63" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Full Frame">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="formatButtonTapped" destination="SxK-ob-J0Z" eventType="touchUpInside" id="k7F-rJ-vwp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ig8-HO-SOw" firstAttribute="bottom" secondItem="El1-bA-CzZ" secondAttribute="bottom" constant="-25" id="0wW-Dh-Ksg"/>
+                            <constraint firstItem="Uza-8r-exW" firstAttribute="centerX" secondItem="EjT-Sk-qg6" secondAttribute="centerX" id="3nR-Ks-I0i"/>
+                            <constraint firstItem="ig8-HO-SOw" firstAttribute="top" secondItem="Uza-8r-exW" secondAttribute="bottom" constant="3" id="Bd6-xC-97Q"/>
+                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="top" secondItem="El1-bA-CzZ" secondAttribute="top" id="FaA-6t-stg"/>
+                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="top" secondItem="EjT-Sk-qg6" secondAttribute="top" id="IHe-AY-dFB"/>
+                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" constant="-16" id="RTZ-u7-qK3"/>
+                            <constraint firstItem="ig8-HO-SOw" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" constant="16" id="VRc-12-LqP"/>
+                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="bottom" secondItem="El1-bA-CzZ" secondAttribute="bottom" id="ebE-Zo-utP"/>
+                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" id="gUZ-rl-pJS"/>
+                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" constant="16" id="ixx-nv-jxp"/>
+                            <constraint firstItem="ig8-HO-SOw" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" constant="-16" id="mK7-bB-1rs"/>
+                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" id="n4t-da-Cbo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="El1-bA-CzZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="formatButton" destination="Uza-8r-exW" id="nbr-qA-V39"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dfz-3X-FCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-815.20000000000005" y="-144.3778110944528"/>
+        </scene>
+        <!--Picker Buttons View Controller-->
+        <scene sceneID="xdT-oo-3wa">
+            <objects>
+                <viewController storyboardIdentifier="pickerControls" id="y87-ES-1nW" customClass="JKPickerButtonsViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gCz-h6-oeA">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7B6-TH-hpY">
+                                <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="250" constant="53" id="hZs-3j-qUd"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mH7-KV-Rmy" firstAttribute="trailing" secondItem="7B6-TH-hpY" secondAttribute="trailing" priority="600" id="4Vc-ZL-LEE"/>
+                            <constraint firstItem="7B6-TH-hpY" firstAttribute="leading" secondItem="mH7-KV-Rmy" secondAttribute="leading" id="Mub-Vo-9Cn"/>
+                            <constraint firstItem="mH7-KV-Rmy" firstAttribute="bottom" secondItem="7B6-TH-hpY" secondAttribute="bottom" id="b3E-pe-mXv"/>
+                            <constraint firstItem="7B6-TH-hpY" firstAttribute="top" secondItem="gCz-h6-oeA" secondAttribute="top" id="rKv-AU-m4G"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mH7-KV-Rmy"/>
+                    </view>
+                    <connections>
+                        <outlet property="stackView" destination="7B6-TH-hpY" id="6fN-Qv-0Wu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xb0-2u-QoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="189.59999999999999" y="-382.75862068965517"/>
+        </scene>
+        <!--Still Image Source View Controller-->
+        <scene sceneID="eWu-vx-Ub2">
+            <objects>
+                <viewController storyboardIdentifier="Preview" id="V2v-Gf-etM" customClass="JKStillImageSourceViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="76N-1D-kKP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bu2-mw-aNc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0621499036" green="0.0621499036" blue="0.0621499036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bu2-mw-aNc" firstAttribute="top" secondItem="76N-1D-kKP" secondAttribute="top" id="AjF-2s-Hst"/>
+                            <constraint firstItem="bu2-mw-aNc" firstAttribute="leading" secondItem="48c-Q4-eoL" secondAttribute="leading" id="GmD-xU-6XX"/>
+                            <constraint firstItem="bu2-mw-aNc" firstAttribute="trailing" secondItem="48c-Q4-eoL" secondAttribute="trailing" id="QTz-X3-Yys"/>
+                            <constraint firstItem="bu2-mw-aNc" firstAttribute="bottom" secondItem="48c-Q4-eoL" secondAttribute="bottom" id="Rvz-lB-K83"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="48c-Q4-eoL"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="bu2-mw-aNc" id="eGl-ix-15V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wc2-dq-emf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-705" y="573"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="ziN-zS-acu">
+            <objects>
+                <viewController storyboardIdentifier="Camera" modalPresentationStyle="currentContext" id="afA-TR-d91" customClass="JKCameraViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lC5-Ee-9M4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ff4-mX-Goq">
+                                <rect key="frame" x="169" y="98" width="37" height="24"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqg-b2-VCP">
+                                        <rect key="frame" x="10.5" y="3" width="17" height="17"/>
+                                        <fontDescription key="fontDescription" name="jackfont" family="jackfont" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="9HW-8J-9H8"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="DDa-vS-0kO"/>
+                                    <constraint firstAttribute="height" constant="24" id="Meo-vY-KKs"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="37" id="Yfj-il-SyP"/>
+                                    <constraint firstItem="sqg-b2-VCP" firstAttribute="centerY" secondItem="Ff4-mX-Goq" secondAttribute="centerY" id="gCm-pE-jg2"/>
+                                    <constraint firstItem="sqg-b2-VCP" firstAttribute="centerX" secondItem="Ff4-mX-Goq" secondAttribute="centerX" id="rh0-KE-EaV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ff4-mX-Goq" firstAttribute="top" secondItem="ATA-Qs-tEc" secondAttribute="top" constant="78" id="RmX-Ku-XhR"/>
+                            <constraint firstItem="Ff4-mX-Goq" firstAttribute="centerX" secondItem="lC5-Ee-9M4" secondAttribute="centerX" id="lia-eW-ite"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ATA-Qs-tEc"/>
+                    </view>
+                    <connections>
+                        <outlet property="flashIndicator" destination="Ff4-mX-Goq" id="GcF-Km-rRK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Wo-up-ABO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="159" y="573"/>
+        </scene>
+        <!--Gallery View Controller-->
+        <scene sceneID="GG1-46-kaw">
+            <objects>
+                <viewController storyboardIdentifier="Gallery" id="B4M-38-vNE" customClass="JKGalleryViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rD9-jv-XYH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSK-WG-cor">
+                                <rect key="frame" x="0.0" y="57" width="375" height="610"/>
+                                <connections>
+                                    <segue destination="rf4-Sp-hwd" kind="embed" identifier="EmbedCollection" id="eeS-rR-iMu"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tSK-WG-cor" firstAttribute="leading" secondItem="2YK-32-tLF" secondAttribute="leading" id="J75-ui-MJq"/>
+                            <constraint firstItem="tSK-WG-cor" firstAttribute="bottom" secondItem="2YK-32-tLF" secondAttribute="bottom" id="PHN-Sr-UnO"/>
+                            <constraint firstItem="tSK-WG-cor" firstAttribute="trailing" secondItem="2YK-32-tLF" secondAttribute="trailing" id="hwl-mK-aFT"/>
+                            <constraint firstItem="tSK-WG-cor" firstAttribute="top" secondItem="rD9-jv-XYH" secondAttribute="top" constant="57" id="v7H-GJ-MM4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2YK-32-tLF"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gjO-5U-G7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1096.8" y="468.21589205397305"/>
+        </scene>
+        <!--Gallery Collection View Controller-->
+        <scene sceneID="Dit-Pi-yYv">
+            <objects>
+                <collectionViewController id="rf4-Sp-hwd" customClass="JKGalleryCollectionViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="nyc-NE-XV7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HtJ-Jj-KEV">
+                            <size key="itemSize" width="130" height="160"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="GalleryItemCell" id="VxR-Oi-sxp" customClass="JKGalleryPhotoCollectionViewCell" customModule="JackCamera" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="130" height="160"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjN-I7-61n">
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="160"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fjN-I7-61n" secondAttribute="trailing" id="1hN-cj-Naq"/>
+                                    <constraint firstItem="fjN-I7-61n" firstAttribute="top" secondItem="VxR-Oi-sxp" secondAttribute="top" id="2hf-OS-1jr"/>
+                                    <constraint firstAttribute="bottom" secondItem="fjN-I7-61n" secondAttribute="bottom" id="TV4-Wv-apl"/>
+                                    <constraint firstItem="fjN-I7-61n" firstAttribute="leading" secondItem="VxR-Oi-sxp" secondAttribute="leading" id="z4d-fM-PFJ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="fjN-I7-61n" id="75b-DO-qoY"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="rf4-Sp-hwd" id="DD9-Ir-rha"/>
+                            <outlet property="delegate" destination="rf4-Sp-hwd" id="une-0a-7C5"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0OL-Tm-XRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2084" y="466.86656671664173"/>
+        </scene>
+        <!--Picker Actions View Controller-->
+        <scene sceneID="Mfj-fI-dsH">
+            <objects>
+                <viewController id="akI-YH-AsC" customClass="JKPickerActionsViewController" customModule="JackCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="phz-Es-aIG">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.98413125866362905" blue="0.9995820368229591" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Roc-4I-jcH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vHB-65-HaY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="158" y="19"/>
+        </scene>
+    </scenes>
+</document>

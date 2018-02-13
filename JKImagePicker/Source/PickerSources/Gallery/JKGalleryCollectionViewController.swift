@@ -74,7 +74,6 @@ class JKGalleryCollectionViewController: UICollectionViewController {
 
 extension JKGalleryCollectionViewController : UICollectionViewDelegateFlowLayout {
 	
-	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
 		return cellsSpacing
 	}
@@ -88,9 +87,4 @@ extension JKGalleryCollectionViewController : UICollectionViewDelegateFlowLayout
 		return cellsSpacing
 	}
 	
-/*
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-		return CGSize(width: itemsHeaderSize, height: self.view.frame.size.height)
-	}
-*/
 }

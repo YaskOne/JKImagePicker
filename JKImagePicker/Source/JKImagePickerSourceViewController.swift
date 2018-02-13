@@ -40,7 +40,7 @@ public protocol JKImagePickerSourceDelegate {
 
 }
 
-public class JKImagePickerSourceViewController : UIViewController, JKPickerButtonsDelegate {
+public class JKImagePickerSourceViewController : JKOrientatedViewController, JKPickerButtonsDelegate {
 	
 	
 	public var delegate: JKImagePickerSourceDelegate?
@@ -48,19 +48,12 @@ public class JKImagePickerSourceViewController : UIViewController, JKPickerButto
 	public var isEnabled: Bool = true { didSet {
 		delegate?.enabledStateChanged(isEnabled)
 		}}
-    
-   public  var orientation: UIDeviceOrientation = UIDevice.current.orientation
 	
 	//MARK: - State change
 	
 	public func stateChanged() {
 		delegate?.stateChanged()
 	}
-    
-    public override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
-    }
 	
 	public var ratio: CGFloat = 1 { didSet {
 		guard let sv = view.superview else { return }
@@ -91,15 +84,9 @@ public class JKImagePickerSourceViewController : UIViewController, JKPickerButto
         return false
         }}
 
-    @objc public  func orientationChanged(notif: Notification) {
-        let orientation = UIDevice.current.orientation
-        switch orientation {
-        case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
-            self.orientation = orientation
-        default:
-            break
-        }
-    }
+    @objc override public  func orientationChanged(notif: Notification) {
+		super.orientationChanged(notif: notif)
+	}
 
 	//MARK: JKPickerButtonsDelegate
 	

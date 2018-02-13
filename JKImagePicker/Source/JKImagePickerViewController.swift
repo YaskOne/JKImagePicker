@@ -94,6 +94,8 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	
 	@IBOutlet public var formatButton: UIButton!
 	
+	//MARK: - Lifecycle
+	
     override public func viewDidLoad() {
         super.viewDidLoad()
 		setPicker(.camera)
@@ -121,7 +123,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 			featureVC?.view.frame = vc.view.frame
 		}
 		
-		self.formatButton.setTitle(format.label, for: .normal)
+		formatButton.setTitle(format.label, for: .normal)
 
 	}
 	

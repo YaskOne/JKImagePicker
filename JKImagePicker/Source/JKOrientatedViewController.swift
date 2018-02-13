@@ -17,6 +17,7 @@ public class JKOrientatedViewController: UIViewController {
 		}}
 
 	public override func viewDidLoad() {
+		super.viewDidLoad()
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 		UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 	}

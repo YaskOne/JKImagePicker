@@ -93,7 +93,12 @@ public class JKSplitViewController: JKFeatureViewController {
 public extension JKSplitViewController {
 	
 	@IBAction func nextModeTapped() {
-		modeIndex = (modeIndex + 1) % modes.count
+		var idx = modeIndex + 1
+		if idx >= modes.count {
+			idx = 0
+			swapped = !swapped
+		}
+		modeIndex = idx
 	}
 	
 	@IBAction func swapTapped() {

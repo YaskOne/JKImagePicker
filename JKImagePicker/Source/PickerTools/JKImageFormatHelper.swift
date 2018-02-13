@@ -8,11 +8,11 @@
 
 import UIKit
 
-enum JKImageFormatOrientation {
+public enum JKImageFormatOrientation {
 	case portrait
 	case landscape
 	
-	var label: String { get {
+	public var label: String { get {
 		switch self {
 		case .portrait:
 			return "Portrait"
@@ -22,7 +22,7 @@ enum JKImageFormatOrientation {
 		}}
 }
 
-enum JKImageFormatRatio {
+public enum JKImageFormatRatio {
 	case fullFrame		// depends on camera capabilities
 	case fullScreen		// depends on screen capabilities
 	case standard
@@ -31,11 +31,11 @@ enum JKImageFormatRatio {
 	case cinemascope	// 2.35 : 1
 	case golden 		// (1 + √5) / 2 = 1.618
 	
-	static var all: [JKImageFormatRatio] { get {
+	public static var all: [JKImageFormatRatio] { get {
 		return [.fullFrame, .fullScreen, .standard, .square, ._16_9, .cinemascope, .golden]
 		}}
 	
-	var label: String { get {
+	public var label: String { get {
 		switch self {
 		case .fullFrame:
 			return "Full Frame"
@@ -54,7 +54,7 @@ enum JKImageFormatRatio {
 		}
 		}}
 	
-	var ratio: CGFloat { get {
+	public var ratio: CGFloat { get {
 		switch self {
 		case .fullFrame:
 			return JKImageFormatRatio.cameraFrame.size.width / JKImageFormatRatio.cameraFrame.size.height
@@ -73,36 +73,36 @@ enum JKImageFormatRatio {
 		}
 		}}
 	
-	static var cameraFrame: CGRect = CGRect(x:0, y:0, width: 320, height: 640)
-	static var screenFrame: CGRect = CGRect(x:0, y:0, width: 320, height: 640)
+	public static var cameraFrame: CGRect = CGRect(x:0, y:0, width: 320, height: 640)
+	public static var screenFrame: CGRect = CGRect(x:0, y:0, width: 320, height: 640)
 	
 }
 
-struct JKImageFormat {
-	var ratio: JKImageFormatRatio
-	var orientation: JKImageFormatOrientation
+public struct JKImageFormat {
+	public var ratio: JKImageFormatRatio
+	public var orientation: JKImageFormatOrientation
 	
-	var label:String { get { return "\(ratio.label) - \(orientation.label)"}}
+	public var label:String { get { return "\(ratio.label) - \(orientation.label)"}}
 }
 
-class JKImageFormatHelper {
+public class JKImageFormatHelper {
 	
-	static let shared = JKImageFormatHelper()
+	public static let shared = JKImageFormatHelper()
 	
-	static let changed = Notification.Name("imageFormatChanged")
+	public static let changed = Notification.Name("imageFormatChanged")
 
-	static let key = "format"
+	public static let key = "format"
 
-	var formats = { return JKImageFormatRatio.all }() {
+	public var formats = { return JKImageFormatRatio.all }() {
 		didSet {
 			format = formats[0]
 		}
 	}
-	var format: JKImageFormatRatio = JKImageFormatRatio.fullFrame { didSet {
+	public var format: JKImageFormatRatio = JKImageFormatRatio.fullFrame { didSet {
 		NotificationCenter.default.post(name: JKImageFormatHelper.changed, object: nil, userInfo: [JKImageFormatHelper.key : format])
 		}}
 	
-	init(formats: [JKImageFormatRatio] = JKImageFormatRatio.all, format: JKImageFormatRatio? = nil) {
+	public init(formats: [JKImageFormatRatio] = JKImageFormatRatio.all, format: JKImageFormatRatio? = nil) {
 		self.formats = formats
 		if let _ = (formats.index{$0==format}) {
 			self.format = format!
@@ -112,7 +112,7 @@ class JKImageFormatHelper {
 		}
 	}
 	
-	func nextFormat() {
+	public func nextFormat() {
 		var index = formats.index{$0==format} ?? 0
 		index = (index + 1) % formats.count
 		format = formats[index]

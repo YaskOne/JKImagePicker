@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol JKHandleDelegate {
+public protocol JKHandleDelegate {
 	func handleActivated(handle: JKHandleView)
 	func handleDeactivated(handle: JKHandleView)
 	
@@ -18,23 +18,23 @@ protocol JKHandleDelegate {
 	func handleUnlocked(handle: JKHandleView)
 }
 
-class JKHandleView : UIView {
+public class JKHandleView : UIView {
 	
-	var delegate: JKHandleDelegate?
+	public var delegate: JKHandleDelegate?
 	
-	var name: String = "Unnamed"
+	public var name: String = "Unnamed"
 	
-	var point: CGPoint = CGPoint.zero { didSet {
+	public var point: CGPoint = CGPoint.zero { didSet {
 		frame = frameForPoint(point: point)
 		}}
 	
-	func frameForPoint(point: CGPoint) -> CGRect {
+	public func frameForPoint(point: CGPoint) -> CGRect {
 		let s = scale * size / 2
 		let p = point
 		return CGRect(x: p.x - s, y: p.y - s, width: 2 * s, height: 2 * s)
 	}
 	
-	var locked: Bool = false { didSet {
+	public var locked: Bool = false { didSet {
 		if !locked {
 			lockTimer?.invalidate()
 			lockTimer = nil
@@ -47,30 +47,30 @@ class JKHandleView : UIView {
 		stroke = locked ? (active ? 3 : 2) : 1
 		}}
 	
-	var active: Bool = false { didSet {
+	public var active: Bool = false { didSet {
 		locked = false
 		filled = locked && active
 		stroke = locked ? (active ? 3 : 2) : 1
 		}}
 	
-	var filled: Bool = false { didSet {
+	public var filled: Bool = false { didSet {
 		setNeedsLayout()
 		setNeedsDisplay()
 		}}
-	var stroke: CGFloat = 1 { didSet {
+	public var stroke: CGFloat = 1 { didSet {
 		setNeedsLayout()
 		setNeedsDisplay()
 		}}
 	
-	var size: CGFloat = 60 { didSet {
+	public var size: CGFloat = 60 { didSet {
 		self.frame = frameForPoint(point: point)
 		}}
 	
-	var scale: CGFloat = 1.0 { didSet {
+	public var scale: CGFloat = 1.0 { didSet {
 		self.frame = frameForPoint(point: point)
 		}}
 	
-	override func layoutSubviews() {
+	public override func layoutSubviews() {
 		layer.borderColor = UIColor.white.cgColor
 		layer.borderWidth = stroke
 		layer.backgroundColor = filled ? UIColor.white.withAlphaComponent(0.3).cgColor : UIColor.clear.cgColor
@@ -79,10 +79,10 @@ class JKHandleView : UIView {
 	
 	//MARK: - Activation
 	
-	var activateTimer:Timer?
-	var activateAnimationTimer: Timer?
+	public var activateTimer:Timer?
+	public var activateAnimationTimer: Timer?
 	
-	func moveTo(_ point: CGPoint) {
+	public func moveTo(_ point: CGPoint) {
 		self.point = point
 		self.locked = false
 		if active {

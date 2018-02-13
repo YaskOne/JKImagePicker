@@ -9,46 +9,46 @@
 import UIKit
 
 
-@IBDesignable class JKCameraControlView: UIView, JKMotionDetectorDelegate {
+@IBDesignable public class JKCameraControlView: UIView, JKMotionDetectorDelegate {
 	
-    @IBInspectable var focusViewSize: CGFloat = 100
-    @IBInspectable var friction: Float = 0.00005
+    @IBInspectable public var focusViewSize: CGFloat = 100
+    @IBInspectable public var friction: Float = 0.00005
 	
-    var camera: CameraPreviewProtocol?
+    public var camera: CameraPreviewProtocol?
 
-	var motion: JKMotionDetector?
+	public var motion: JKMotionDetector?
 
-	var orientation: UIDeviceOrientation = UIDevice.current.orientation { didSet {
+	public var orientation: UIDeviceOrientation = UIDevice.current.orientation { didSet {
 			updateOrientation()
 		}}
 	
 	// Focus
 	
-	var focusView : JKCamFocusView?
+	public var focusView : JKCamFocusView?
 	
-	var focusPoint : CGPoint? { didSet {
+	public var focusPoint : CGPoint? { didSet {
 			focusView?.frame = focusViewFrame
 		}}
 	
-	var focusViewFrame : CGRect { get {
+	public var focusViewFrame : CGRect { get {
 		// if focus point not set, set it to center
 		let fp = focusPoint ?? CGPoint(x: bounds.width / 2, y: bounds.height / 2)
 		return CGRect(x: fp.x - focusViewSize / 2, y: fp.y - focusViewSize / 2, width: focusViewSize, height: focusViewSize)
 		}}
 
-	var hideFocusTask: DispatchWorkItem? = nil
+	public var hideFocusTask: DispatchWorkItem? = nil
 
 	// Zoom
 	
-	var zoomActionInitialZoom : CGFloat = 1
+	public var zoomActionInitialZoom : CGFloat = 1
 
 	// Exposure
 	
-	var exposureActionIso : Float = 0.5
+	public var exposureActionIso : Float = 0.5
 
 	//MARK: -  Lifecycle
 	
-    func setup() {
+    public func setup() {
 		motion = JKMotionDetector(delegate: self)
 
 		focusPoint = CGPoint(x: bounds.width/2, y: bounds.height/2)
@@ -79,7 +79,7 @@ import UIKit
 	
 	//MARK: - Focus view management
 	
-    func showFocus(position: CGPoint?) {
+    public func showFocus(position: CGPoint?) {
         guard let focus = focusView else { return }
 		
 		UIView.animate(withDuration: 0.3, animations: {
@@ -91,20 +91,20 @@ import UIKit
         hideFocusAfterDelay()
     }
     
-    func hideFocus() {
+    public func hideFocus() {
 		guard let focus = focusView else { return }
 		motion?.start()
 		UIView.animate(withDuration: 0.3) { focus.alpha = 0 }
     }
     
-    func hideFocusAfterDelay() {
+    public func hideFocusAfterDelay() {
 		hideFocusTask?.cancel()
         let newHideFocusTask = DispatchWorkItem { self.hideFocus() }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: newHideFocusTask)
 		hideFocusTask = newHideFocusTask
     }
 	
-	func motionDetected() {
+	public func motionDetected() {
 		motion?.stop()
 		DispatchQueue.main.async {
 			self.showFocus(position: nil)
@@ -112,7 +112,7 @@ import UIKit
 		}
 	}
 	
-    @objc func pinchHandler(_ gestureRecognizer: UIPinchGestureRecognizer) {
+    @objc public func pinchHandler(_ gestureRecognizer: UIPinchGestureRecognizer) {
 		switch gestureRecognizer.state {
 		case .began:
 			zoomActionInitialZoom = camera?.zoom ?? 1
@@ -122,7 +122,7 @@ import UIKit
 			break
 		}}
     
-    @objc func panHandler(_ pan : UIPanGestureRecognizer) {
+    @objc public func panHandler(_ pan : UIPanGestureRecognizer) {
 		guard var cam = camera else { return }
 		
 		if focusPoint == nil {
@@ -160,7 +160,7 @@ import UIKit
 		}
     }
     
-    @objc func tapHandler(_ sender: UITapGestureRecognizer) {
+    @objc public func tapHandler(_ sender: UITapGestureRecognizer) {
 		let touchLocation: CGPoint = sender.location(in: sender.view)
 		showFocus(position: touchLocation)
 		camera?.focusPoint = touchLocation
@@ -168,7 +168,7 @@ import UIKit
 	
 	//MARK: - Camera Notifications
 	
-	@objc func isoChanged() {
+	@objc public func isoChanged() {
 		UIView.animate(withDuration: 0.4) {
 			self.focusView?.exposure = Float(self.camera?.iso ?? 0.5)
 		}
@@ -176,7 +176,7 @@ import UIKit
 
 	//MARK: - orientation
 	
-	func updateOrientation() {
+	public func updateOrientation() {
 		guard let t = JKImagePickerUtils.orientationToTransform(orientation) else { return }
 		UIView.animate(withDuration: 0.3) {
 			self.focusView?.transform = t

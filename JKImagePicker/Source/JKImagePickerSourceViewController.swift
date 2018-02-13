@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol JKImagePickerSourceDelegate {
+public protocol JKImagePickerSourceDelegate {
 	
 	/// picturaAvailable
 	///
@@ -40,29 +40,29 @@ protocol JKImagePickerSourceDelegate {
 
 }
 
-class JKImagePickerSourceViewController : UIViewController, JKPickerButtonsDelegate {
+public class JKImagePickerSourceViewController : UIViewController, JKPickerButtonsDelegate {
 	
 	
-	var delegate: JKImagePickerSourceDelegate?
+	public var delegate: JKImagePickerSourceDelegate?
 
-	var isEnabled: Bool = true { didSet {
+	public var isEnabled: Bool = true { didSet {
 		delegate?.enabledStateChanged(isEnabled)
 		}}
     
-    var orientation: UIDeviceOrientation = UIDevice.current.orientation
+   public  var orientation: UIDeviceOrientation = UIDevice.current.orientation
 	
 	//MARK: - State change
 	
-	func stateChanged() {
+	public func stateChanged() {
 		delegate?.stateChanged()
 	}
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
     }
 	
-	var ratio: CGFloat = 1 { didSet {
+	public var ratio: CGFloat = 1 { didSet {
 		guard let sv = view.superview else { return }
 		var height = sv.bounds.width / ratio
 		var width = sv.bounds.width
@@ -83,15 +83,15 @@ class JKImagePickerSourceViewController : UIViewController, JKPickerButtonsDeleg
 
     //MARK: - Orientation
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.all
     }
     
-    override var shouldAutorotate: Bool { get {
+    public override var shouldAutorotate: Bool { get {
         return false
         }}
 
-    @objc func orientationChanged(notif: Notification) {
+    @objc public  func orientationChanged(notif: Notification) {
         let orientation = UIDevice.current.orientation
         switch orientation {
         case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
@@ -103,7 +103,7 @@ class JKImagePickerSourceViewController : UIViewController, JKPickerButtonsDeleg
 
 	//MARK: JKPickerButtonsDelegate
 	
-	var controls : [JKCameraControlItem] { get {
+	public var controls : [JKCameraControlItem] { get {
 		guard let featureControls = self.featureControls, !featureControls.isEmpty else {
 			return availableControls
 		}
@@ -126,13 +126,13 @@ class JKImagePickerSourceViewController : UIViewController, JKPickerButtonsDeleg
 		return ctrls
 	}}
 	
-	var availableControls: [JKCameraControlItem] { get {
+	public var availableControls: [JKCameraControlItem] { get {
 		return [.pad,.pad,.pad,.pad,.pad,.pad,.close]
 		}}
 	
-	var featureControls:  [JKCameraControlItem]?
+	public var featureControls:  [JKCameraControlItem]?
 	
-	func commandButtonTapped(command: JKCameraCommand) {
+	public func commandButtonTapped(command: JKCameraCommand) {
 		switch command {
 		default:
 			delegate?.commandButtonTapped(command: command)
@@ -140,7 +140,7 @@ class JKImagePickerSourceViewController : UIViewController, JKPickerButtonsDeleg
 		}
 	}
 
-	func iconForControlItem(_ item:JKCameraControlItem) -> String {
+	public func iconForControlItem(_ item:JKCameraControlItem) -> String {
 		if let icon = delegate?.iconForControlItem(item) {
 			return icon
 		}

@@ -10,40 +10,40 @@ import UIKit
 import Photos
 import CoreLocation
 
-class JKPhotoAsset {
+public class JKPhotoAsset {
 	
-	var asset: PHAsset
-	var location: CLLocation? { get { return asset.location } }
-	var thumbnail: UIImage? = nil
-	var fullSize: UIImage? = nil
+	public var asset: PHAsset
+	public var location: CLLocation? { get { return asset.location } }
+	public var thumbnail: UIImage? = nil
+	public var fullSize: UIImage? = nil
 	
-	init(asset: PHAsset) {
+	public init(asset: PHAsset) {
 		self.asset = asset
 	}
 }
 
 
-class JKAlbumAsset {
-	var name:String { get { return collection.localizedTitle ?? "Untitled"}}
-	var count:Int { get { return collection.estimatedAssetCount} }
+public class JKAlbumAsset {
+	public var name:String { get { return collection.localizedTitle ?? "Untitled"}}
+	public var count:Int { get { return collection.estimatedAssetCount} }
 	
-	let collection:PHAssetCollection
+	public let collection:PHAssetCollection
 	
-	var photoAssets = [JKPhotoAsset]()
+	public var photoAssets = [JKPhotoAsset]()
 	
-	init(collection:PHAssetCollection) {
+	public init(collection:PHAssetCollection) {
 		self.collection = collection
 	}
 }
 
-class JKGalleryDataLoader {
+public class JKGalleryDataLoader {
     
-    var albums = [JKAlbumAsset]()
+    public var albums = [JKAlbumAsset]()
 	
-	var photos = [JKPhotoAsset]()
+	public var photos = [JKPhotoAsset]()
 	
 	
-    func fetchAllPhotos() {
+    public func fetchAllPhotos() {
         fetchAlbums()
         
         for album in albums {
@@ -54,7 +54,7 @@ class JKGalleryDataLoader {
     
     // MARK: - UIImagePickerControllerDelegate Methods
         
-    func fetchAlbums() {
+    public func fetchAlbums() {
         let options = PHFetchOptions()
         let userAlbums = PHAssetCollection.fetchAssetCollections(with: PHAssetCollectionType.smartAlbum, subtype: PHAssetCollectionSubtype.any, options: options)
 
@@ -71,7 +71,7 @@ class JKGalleryDataLoader {
         }
     }
     
-    func fetchPhotoAssets(in album: JKAlbumAsset) {
+    public func fetchPhotoAssets(in album: JKAlbumAsset) {
 		
         let photoAssets = PHAsset.fetchAssets(in: album.collection, options: nil)
 
@@ -87,7 +87,7 @@ class JKGalleryDataLoader {
         }
     }
 	
-	static func loadImageForAsset(asset: JKPhotoAsset) {
+	public static func loadImageForAsset(asset: JKPhotoAsset) {
 		let imageManager = PHImageManager.default()
 		
 		/* For faster performance, and maybe degraded image */
@@ -111,7 +111,7 @@ class JKGalleryDataLoader {
 		})
 	}
 	
-	static func loadThumbnailForAsset(asset: JKPhotoAsset, imageSize: CGSize) {
+	public static func loadThumbnailForAsset(asset: JKPhotoAsset, imageSize: CGSize) {
 		let imageManager = PHImageManager.default()
 		
 		/* For faster performance, and maybe degraded image */
@@ -134,7 +134,7 @@ class JKGalleryDataLoader {
 
 }
 
-extension PHAsset {
+public extension PHAsset {
     func isPortrait() -> Bool {
         return self.pixelWidth < self.pixelHeight
     }

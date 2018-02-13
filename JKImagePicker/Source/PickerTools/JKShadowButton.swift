@@ -8,21 +8,21 @@
 
 import UIKit
 
-class JKShadowButton: UIButton {
+public class JKShadowButton: UIButton {
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         setup()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+   public  required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setup()
     }
     
-    func setup() {
+    public func setup() {
         self.titleLabel?.layer.shadowOffset = CGSize(width: 0, height: 0.6)
         self.titleLabel?.layer.shadowOpacity = 0.7
         self.titleLabel?.layer.shadowRadius = 0.5

@@ -8,42 +8,42 @@
 
 import UIKit
 
-protocol JKFeatureViewControllerDelegate {
+public protocol JKFeatureViewControllerDelegate {
 	func featureDidLoad(_ featureVC: JKFeatureViewController)
 	func featureDidUnload(_ featureVC: JKFeatureViewController)
 }
 
-protocol JKFeatureViewControllerProtocol {
+public protocol JKFeatureViewControllerProtocol {
 	var controlItems:[JKCameraControlItem]? { get }
 }
 
-class JKFeatureViewController: UIViewController {
+public class JKFeatureViewController: UIViewController {
 
-	var delegate: JKFeatureViewControllerDelegate?
+	public var delegate: JKFeatureViewControllerDelegate?
 	
 	// A feature has at least one image
-	var jkImage1: JKImage?
+	public var jkImage1: JKImage?
 
 
-	override func viewDidLoad() {
+	public override func viewDidLoad() {
 		super.viewDidLoad()
 		delegate?.featureDidLoad(self)
 	}
 	
-	override func didMove(toParentViewController parent: UIViewController?) {
+	public override func didMove(toParentViewController parent: UIViewController?) {
 		if parent == nil {
 			delegate?.featureDidUnload(self)
 		}
 	}
 
-	var controlItems: [JKCameraControlItem]? {
+	public var controlItems: [JKCameraControlItem]? {
 		return nil
 	}
 	
-	func commandButtonTapped(command: JKCameraCommand) {
+	public func commandButtonTapped(command: JKCameraCommand) {
 	}
 
-	func iconForControlItem(_ item:JKCameraControlItem) -> String? {
+	public func iconForControlItem(_ item:JKCameraControlItem) -> String? {
 		return item.defaultIcon
 	}
 	

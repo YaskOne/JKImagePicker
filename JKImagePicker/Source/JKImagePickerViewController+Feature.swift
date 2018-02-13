@@ -10,7 +10,7 @@ import UIKit
 
 extension JKImagePickerViewController : JKFeatureViewControllerDelegate {
 	
-	func loadFeature(named name: String, animated: Bool = false) {
+	public func loadFeature(named name: String, animated: Bool = false) {
 
 		if let vc = self.storyboard?.instantiateViewController(withIdentifier: name) as? JKFeatureViewController {
 			vc.delegate = self
@@ -31,7 +31,7 @@ extension JKImagePickerViewController : JKFeatureViewControllerDelegate {
 
 	}
 	
-	func removeFeature(animated: Bool = false) {
+	public func removeFeature(animated: Bool = false) {
 		if let vc = featureVC {
 			if animated {
 				UIView.animate(withDuration: 0.5, animations:{
@@ -48,7 +48,7 @@ extension JKImagePickerViewController : JKFeatureViewControllerDelegate {
 		}
 	}
 	
-	func featureDidLoad(_ featureVC: JKFeatureViewController) {
+	public func featureDidLoad(_ featureVC: JKFeatureViewController) {
 		self.featureVC = featureVC
 		if  let vc = currentPickerController {
 			featureVC.view.frame = vc.view.frame
@@ -56,7 +56,7 @@ extension JKImagePickerViewController : JKFeatureViewControllerDelegate {
 		featureVC.jkImage1 = image
 	}
 	
-	func featureDidUnload(_ featureVC: JKFeatureViewController) {
+	public func featureDidUnload(_ featureVC: JKFeatureViewController) {
 		self.featureVC = nil
 	}
 }

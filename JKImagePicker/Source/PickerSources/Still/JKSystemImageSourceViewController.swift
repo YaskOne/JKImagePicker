@@ -8,11 +8,11 @@
 
 import UIKit
 
-class JKSystemImageSourceViewController: JKImagePickerSourceViewController {
+public class JKSystemImageSourceViewController: JKImagePickerSourceViewController {
 
-	@IBOutlet var imageView: UIImageView?
+	@IBOutlet public var imageView: UIImageView?
 
-	var image: UIImage? {
+	public var image: UIImage? {
 		set {
             imageView?.image = newValue
 		}
@@ -21,11 +21,11 @@ class JKSystemImageSourceViewController: JKImagePickerSourceViewController {
 		}
 	}
 
-	override var availableControls: [JKCameraControlItem] { get {
+	public override var availableControls: [JKCameraControlItem] { get {
 		return [.camera,.gallery,.pad,.pad,.pad,.pad,.close]
 		}}
 	
-	override func viewDidLayoutSubviews() {
+	public override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		imageView?.frame = view.bounds
 	}

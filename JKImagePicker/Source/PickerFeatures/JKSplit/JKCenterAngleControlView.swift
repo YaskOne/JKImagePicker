@@ -11,12 +11,12 @@ import UIKit
 import JackFoundation
 import iOSCommons
 
-@objc protocol JKCenterAngleControlViewDelegate {
+@objc public  protocol JKCenterAngleControlViewDelegate {
 	func centerDidChange(_ center:CGPoint)
 	func angleDidChange(_ angle:CGFloat)
 }
 
-enum JKCenterAngleControlTouchMode : String {
+public enum JKCenterAngleControlTouchMode : String {
 	case none
 	case center
 	case handle
@@ -24,25 +24,25 @@ enum JKCenterAngleControlTouchMode : String {
 	case handles
 }
 
-class JKCenterTouchView : JKHandleView {
+public class JKCenterTouchView : JKHandleView {
 	
-	override func layoutSubviews() {
+	public override func layoutSubviews() {
 		super.layoutSubviews()
 	}
 }
 
-class JKHandleTouchView : JKHandleView {
-	override func layoutSubviews() {
+public class JKHandleTouchView : JKHandleView {
+	public override func layoutSubviews() {
 		layer.cornerRadius = layer.bounds.width / 2
 		super.layoutSubviews()
 	}
 }
 
-class JKCenterAngleControlView: UIView {
+public class JKCenterAngleControlView: UIView {
 
-	@IBOutlet var delegate: JKCenterAngleControlViewDelegate?
+	@IBOutlet public var delegate: JKCenterAngleControlViewDelegate?
 	
-	var touchMode : JKCenterAngleControlTouchMode = .none { didSet {
+	public var touchMode : JKCenterAngleControlTouchMode = .none { didSet {
 		if touchMode == .none {
 			lineVisible = false
 		}
@@ -51,17 +51,17 @@ class JKCenterAngleControlView: UIView {
 		}
 		}}
 	
-	var centerTouch: UITouch?
-	var handleTouch: UITouch?
-	var handleTouch2: UITouch?
+	public var centerTouch: UITouch?
+	public var handleTouch: UITouch?
+	public var handleTouch2: UITouch?
 	
-	var lineVisible: Bool = false { didSet {
+	public var lineVisible: Bool = false { didSet {
 		setNeedsDisplay()
 		}}
 	
-	var anchor = CGPoint.zero
+	public var anchor = CGPoint.zero
 	
-	var angle: CGFloat = 0 {
+	public var angle: CGFloat = 0 {
 		didSet {
 			if centerView.active {
 				delegate?.angleDidChange(angle)
@@ -69,7 +69,7 @@ class JKCenterAngleControlView: UIView {
 		}
 	}
 	
-	var centerViewSize: CGFloat = 60
+	public var centerViewSize: CGFloat = 60
 	
 	lazy var centerView: JKCenterTouchView = {
 		let view = JKCenterTouchView(frame:CGRect.zero)
@@ -94,7 +94,7 @@ class JKCenterAngleControlView: UIView {
 		return view
 	}()
 		
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+	public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if touches.count == 1 {
 			switch touchMode {
 			case .none:
@@ -152,7 +152,7 @@ class JKCenterAngleControlView: UIView {
 		return CGPoint(x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2)
 	}
 	
-	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+	public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		switch touchMode {
 		case .none:
 			break
@@ -216,11 +216,11 @@ class JKCenterAngleControlView: UIView {
 
 	}
 	
-	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+	public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
 
 	}
 	
-	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+	public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if let centerTouch = self.centerTouch, touches.contains(centerTouch) {
 			centerView.moveTo(centerTouch.location(in: self))
 		}
@@ -237,16 +237,16 @@ class JKCenterAngleControlView: UIView {
 		return angleBetweenPoints(v1.point,v2.point)
 	}
 	
-	override func draw(_ rect: CGRect) {
+	public override func draw(_ rect: CGRect) {
 		super.draw(rect)
 		if lineVisible {
 			drawLine()
 		}
 	}
 	
-	var phase: CGFloat = 0
+	public var phase: CGFloat = 0
 	
-	func drawLine() {
+	public func drawLine() {
 		let r = sqrt(bounds.width * bounds.width + bounds.height * bounds.height)
 		let o = anchor
 		let c = cos(angle)
@@ -268,16 +268,16 @@ class JKCenterAngleControlView: UIView {
 		ctx?.restoreGState()
 	}
 	
-	func hideHandleView(_ view: JKHandleView, handler: @escaping ()->Void) {
+	public func hideHandleView(_ view: JKHandleView, handler: @escaping ()->Void) {
 		view.deactivate(handler: handler)
 	}
 	
-	func showHandleView(_ view: JKHandleView) {
+	public func showHandleView(_ view: JKHandleView) {
 		addSubview(view)
 		view.activate()
 	}
 	
-	func moveAnchorTo(_ point:CGPoint) {
+	public func moveAnchorTo(_ point:CGPoint) {
 		anchor = point
 		delegate?.centerDidChange(anchor)
 		setNeedsDisplay()
@@ -288,7 +288,7 @@ class JKCenterAngleControlView: UIView {
 
 extension JKCenterAngleControlView : JKHandleDelegate {
 	
-	func handleActivated(handle: JKHandleView) {
+	public func handleActivated(handle: JKHandleView) {
 		print("Handle Activated : \(handle.name) - mode : \(touchMode)")
 
 		if handle == centerView {
@@ -300,12 +300,12 @@ extension JKCenterAngleControlView : JKHandleDelegate {
 		}
 	}
 	
-	func handleDeactivated(handle: JKHandleView) {
+	public func handleDeactivated(handle: JKHandleView) {
 		print("Handle Deactivated : \(handle.name) - mode : \(touchMode)")
 		
 	}
 	
-	func handleMoved(handle: JKHandleView) {
+	public func handleMoved(handle: JKHandleView) {
 		print("Handle Moved : \(handle.name) - mode : \(touchMode)")
 		if handle == centerView {
 			moveAnchorTo(handle.point)
@@ -320,7 +320,7 @@ extension JKCenterAngleControlView : JKHandleDelegate {
 		}
 	}
 	
-	func handleLocked(handle: JKHandleView) {
+	public func handleLocked(handle: JKHandleView) {
 		print("Handle Locked : \(handle.name) - mode : \(touchMode)")
 
 		if handle == centerView {
@@ -338,7 +338,7 @@ extension JKCenterAngleControlView : JKHandleDelegate {
 
 	}
 	
-	func handleUnlocked(handle: JKHandleView) {
+	public func handleUnlocked(handle: JKHandleView) {
 		print("Handle Unlocked : \(handle.name) - mode : \(touchMode)")
 	}
 }

@@ -13,14 +13,14 @@ import JackFoundation
 import iOSCommons
 
 //TODO: - Use swift as it most !
-protocol JKImageRepresentable {
+public protocol JKImageRepresentable {
 	var image : UIImage? { get }
 	var format: JKImageFormat? { get set }
 }
 
-class JKImage: JKImageRepresentable {
-	var sourceImage : CGImage
-	var frame: CGRect { get {
+public class JKImage: JKImageRepresentable {
+	public var sourceImage : CGImage
+	public var frame: CGRect { get {
 		if let format = self.format {
 			let rect = sourceImage.frame
 			let cropRect = CGRect(x: 0, y: 0, width: rect.width, height: rect.width / format.ratio.ratio)//.fitting(rect: image.frame)
@@ -29,21 +29,21 @@ class JKImage: JKImageRepresentable {
 			return sourceImage.frame
 		}
 		}}
-	var center: CGPoint = CGPoint(x: 0.5, y: 0.5)
-	var scale: CGFloat = 1.0
+	public var center: CGPoint = CGPoint(x: 0.5, y: 0.5)
+	public var scale: CGFloat = 1.0
 
-	var format: JKImageFormat?
+	public var format: JKImageFormat?
 	
 	init(_ image: CGImage, format: JKImageFormat) {
 		self.sourceImage = image
 		self.format = format
 	}
 	
-	var originalImage: UIImage {
+	public var originalImage: UIImage {
 		return UIImage(cgImage: sourceImage, scale: scale, orientation: UIImageOrientation.up)
 	}
 	
-	var image : UIImage? {
+	public var image : UIImage? {
 		//if let format = self.format {
 			let ow = CGFloat(sourceImage.width)
 			let oh = CGFloat(sourceImage.height)

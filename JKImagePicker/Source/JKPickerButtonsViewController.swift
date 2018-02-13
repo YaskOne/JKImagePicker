@@ -8,9 +8,9 @@
 
 import UIKit
 
-typealias JKCameraCommand = Int
+public typealias JKCameraCommand = Int
 
-protocol JKPickerButtonsDelegate {
+public protocol JKPickerButtonsDelegate {
 	
 	var controls: [JKCameraControlItem] { get }
 
@@ -21,7 +21,7 @@ protocol JKPickerButtonsDelegate {
 	func iconForControlItem(_ item:JKCameraControlItem) -> String
 }
 
-enum JKCameraControlItem: Int {
+public enum JKCameraControlItem: Int {
 	case pad
 	case flash
 	case gallery
@@ -32,7 +32,7 @@ enum JKCameraControlItem: Int {
 	case split
 	case swap
 
-	var defaultIcon: String {
+	public var defaultIcon: String {
 		switch self {
 		case .pad:
 			return ""
@@ -55,20 +55,20 @@ enum JKCameraControlItem: Int {
 	
 }
 
-class JKPickerButtonsViewController: JKOrientatedViewController {
+public class JKPickerButtonsViewController: JKOrientatedViewController {
     
-	var delegate: JKPickerButtonsDelegate? { didSet {
+	public var delegate: JKPickerButtonsDelegate? { didSet {
 		reload()
 		}}
 	
-	@IBOutlet weak var stackView: UIStackView!
+	@IBOutlet public weak var stackView: UIStackView!
 		
-	@objc func buttonTapped(sender: UIButton) {
+	@objc public func buttonTapped(sender: UIButton) {
 		let command = sender.tag
 		delegate?.commandButtonTapped(command: command)
 	}
 	
-	func reload() {
+	public func reload() {
 		for view in stackView.subviews {
 			view.removeFromSuperview()
 		}
@@ -79,7 +79,7 @@ class JKPickerButtonsViewController: JKOrientatedViewController {
 		}
 	}
 	
-	func makeButton(for item:JKCameraControlItem) -> UIButton {
+	public func makeButton(for item:JKCameraControlItem) -> UIButton {
 		let button = JKShadowButton(frame: frameForItem)
 		
 		if let font = UIFont(name: "jackfont", size: 30) {
@@ -96,11 +96,11 @@ class JKPickerButtonsViewController: JKOrientatedViewController {
 		return button
 	}
 	
-	var frameForItem: CGRect {
+	public var frameForItem: CGRect {
 		return CGRect(x: 0, y: 0, width: view.bounds.height, height: view.bounds.height)
 	}
 
-	override func updateOrientation(transform t: CGAffineTransform) {
+	public override func updateOrientation(transform t: CGAffineTransform) {
 		guard let views = self.stackView?.arrangedSubviews else { return }
 		UIView.animate(withDuration: 0.3) {
 			for view in views {

@@ -8,23 +8,23 @@
 
 import UIKit
 
-class JKImageFilter {
-    func processImage(_ image: UIImage) -> UIImage {
+public class JKImageFilter {
+    public func processImage(_ image: UIImage) -> UIImage {
         return image
     }
 }
 
 
 
-class JKRatioCropper : JKImageFilter {
+public class JKRatioCropper : JKImageFilter {
 	
-    var ratio:CGFloat = 16/9
+    public var ratio:CGFloat = 16/9
     
-    init(ratio: CGFloat) {
+    public init(ratio: CGFloat) {
         self.ratio = ratio
     }
 	
-    override func processImage(_ image: UIImage) -> UIImage {
+    public override func processImage(_ image: UIImage) -> UIImage {
         return image.cropToRatio(ratio)
     }
 }

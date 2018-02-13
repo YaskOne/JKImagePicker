@@ -9,29 +9,29 @@
 import UIKit
 import CoreGraphics
 
-class JKComposition: JKImageRepresentable {
+public class JKComposition: JKImageRepresentable {
 	
-	var image: UIImage? { get {
+	public var image: UIImage? { get {
 		return nil
 		}}
 
-	var _format: JKImageFormat?
+	public var _format: JKImageFormat?
 	
-	var format: JKImageFormat? { get {
+	public var format: JKImageFormat? { get {
 		return _format ?? image1?.format
 		} set {
 			_format = format
 		}}
 
-	var image1: JKImage?
-	var image2: JKImage?
+	public var image1: JKImage?
+	public var image2: JKImage?
 }
 
-class JKSplitComposition : JKComposition {
-	var angle: CGFloat = 0
-	var center: CGPoint = CGPoint(x: 0.5, y: 0.5)
+public class JKSplitComposition : JKComposition {
+	public var angle: CGFloat = 0
+	public var center: CGPoint = CGPoint(x: 0.5, y: 0.5)
 
-	override var image: UIImage? { get {
+	public override var image: UIImage? { get {
 		guard let image1 = self.image1 else { return nil }
 		let splitView = JKSplitView(frame: image1.frame)
 		splitView.settings = JKSplitSettings.init(angle: angle,center: center)

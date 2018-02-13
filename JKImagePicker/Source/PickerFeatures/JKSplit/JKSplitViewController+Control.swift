@@ -9,14 +9,14 @@
 import UIKit
 
 extension JKSplitViewController : JKCenterAngleControlViewDelegate {
-	func centerDidChange(_ center: CGPoint) {
+	public func centerDidChange(_ center: CGPoint) {
 		JKSplitMode.freeSettings.center = CGPoint(x: center.x / splitView.frame.width, y: center.y / splitView.frame.height)
 		self.mode = .free
 		splitView.setNeedsDisplay()
 
 	}
 	
-	func angleDidChange(_ angle: CGFloat) {
+	public func angleDidChange(_ angle: CGFloat) {
 		JKSplitMode.freeSettings.angle = angle
 		self.mode = .free
 		splitView.setNeedsDisplay()

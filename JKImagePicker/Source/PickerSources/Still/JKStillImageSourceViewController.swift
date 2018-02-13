@@ -8,9 +8,9 @@
 
 import UIKit
 
-class JKStillImageSourceViewController : JKSystemImageSourceViewController {
+public class JKStillImageSourceViewController : JKSystemImageSourceViewController {
 	
-	var jkImage: JKImageRepresentable? { didSet {
+	public var jkImage: JKImageRepresentable? { didSet {
 			super.image = jkImage?.image
 		}}
 		

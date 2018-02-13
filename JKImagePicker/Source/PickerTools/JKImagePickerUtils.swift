@@ -8,9 +8,9 @@
 
 import UIKit
 
-class JKImagePickerUtils {
+public class JKImagePickerUtils {
 	
-	static func orientationToAngle(_ orientation: UIDeviceOrientation) -> Double? {
+	public static func orientationToAngle(_ orientation: UIDeviceOrientation) -> Double? {
 		switch orientation {
 		case .portrait:
 			return 0
@@ -25,7 +25,7 @@ class JKImagePickerUtils {
 		}
 	}
 	
-	static func orientationToTransform(_ orientation: UIDeviceOrientation) -> CGAffineTransform? {
+	public static func orientationToTransform(_ orientation: UIDeviceOrientation) -> CGAffineTransform? {
 		if let angle = JKImagePickerUtils.orientationToAngle(orientation) {
 			return CGAffineTransform(rotationAngle: CGFloat(angle))
 		}

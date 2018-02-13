@@ -10,42 +10,42 @@ import UIKit
 import AVFoundation
 
 
-class JKCameraPreview: UIView {
-	static let didLockNotification = Notification.Name("cameraDidLock")
-	static let didUnlockNotification = Notification.Name("cameraDidUnlock")
-	static let isoChangedNotification = Notification.Name("isoChanged")
-	static let flashActiveChangedNotification = Notification.Name("flashActive")
-	static let flashReadyChangedNotification = Notification.Name("flashReady")
+public class JKCameraPreview: UIView {
+	public static let didLockNotification = Notification.Name("cameraDidLock")
+	public static let didUnlockNotification = Notification.Name("cameraDidUnlock")
+	public static let isoChangedNotification = Notification.Name("isoChanged")
+	public static let flashActiveChangedNotification = Notification.Name("flashActive")
+	public static let flashReadyChangedNotification = Notification.Name("flashReady")
 
-	var cameraPosition: AVCaptureDevice.Position = .back
+	public var cameraPosition: AVCaptureDevice.Position = .back
     
-	var preview: AVCaptureVideoPreviewLayer {
+	public var preview: AVCaptureVideoPreviewLayer {
 		return self.layer as! AVCaptureVideoPreviewLayer
 	}
 	
-	override class var layerClass: AnyClass {
+	public override class var layerClass: AnyClass {
 		return AVCaptureVideoPreviewLayer.self
 	}
 	
-	var session: AVCaptureSession? {
+	public var session: AVCaptureSession? {
 		get { return preview.session }
 		set { preview.session = newValue }
 	}
 
-    var currentDevice: AVCaptureDevice? = nil
+    public var currentDevice: AVCaptureDevice? = nil
     
     /// helps us to transfer data between one or more device inputs like camera or microphone
-    var captureSession: AVCaptureSession?
+    public var captureSession: AVCaptureSession?
     
     // Instance proprerty on this view controller class
-    var isCaptureSessionConfigured = false
+    public var isCaptureSessionConfigured = false
     
     /// helps us to snap a photo from our capture session
-    var capturePhotoOutput: AVCapturePhotoOutput?
+    public var capturePhotoOutput: AVCapturePhotoOutput?
 	
-    var exposureDelay: DispatchWorkItem? = nil
-	var _zoom: CGFloat = 1
-	var _focusPoint: CGPoint?
+    public var exposureDelay: DispatchWorkItem? = nil
+	public var _zoom: CGFloat = 1
+	public var _focusPoint: CGPoint?
 	
     private static let orientationMap: [UIDeviceOrientation : AVCaptureVideoOrientation] = [
         .portrait           : .portrait,
@@ -55,7 +55,7 @@ class JKCameraPreview: UIView {
         ]
     
     
-    func startCamera() {
+    public func startCamera() {
 		backgroundColor = UIColor.red
 		self.configureCaptureSession({ success, avCapturePhotoOutput in
 			guard let session = self.captureSession, success else { return }
@@ -79,7 +79,7 @@ class JKCameraPreview: UIView {
 		})
     }
 	
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if keyPath == "adjustingFocus" {
 			NotificationCenter.default.post(name: JKCameraPreview.isoChangedNotification, object: self, userInfo: change)
 		}
@@ -95,7 +95,7 @@ class JKCameraPreview: UIView {
 		stopCamera()
 	}
 	
-    func stopCamera() {
+    public func stopCamera() {
 		if let device = currentDevice {
 			device.removeObserver(self, forKeyPath: "adjustingFocus")
 			self.capturePhotoOutput?.removeObserver(self, forKeyPath: "isFlashScene")
@@ -107,9 +107,9 @@ class JKCameraPreview: UIView {
     }
 }
 
-extension JKCameraPreview {
+public extension JKCameraPreview {
     
-    func defaultDevice() -> AVCaptureDevice {
+    public func defaultDevice() -> AVCaptureDevice {
         if let device = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                 for: AVMediaType.video,
                                                 position: cameraPosition) {
@@ -119,7 +119,7 @@ extension JKCameraPreview {
         }
     }
     
-	func configureCaptureSession(_ completionHandler: ((_ success: Bool, _ captureOutput: AVCapturePhotoOutput) -> Void)) {
+	public func configureCaptureSession(_ completionHandler: ((_ success: Bool, _ captureOutput: AVCapturePhotoOutput) -> Void)) {
         var success = false
 		let capturePhotoOutput = AVCapturePhotoOutput()
 
@@ -160,11 +160,11 @@ extension JKCameraPreview {
         success = true
     }
 	
-	func motionDetected() {
+	public func motionDetected() {
 		switchToAuto()
 	}
 	
-    func switchToAuto() {
+    public func switchToAuto() {
 		configure() { device in
 		
 			if device.isFocusModeSupported(.autoFocus) {
@@ -183,13 +183,13 @@ extension JKCameraPreview {
 		}
     }
 	
-	func switchCamera() {
+	public func switchCamera() {
 		stopCamera()
 		cameraPosition =  cameraPosition == .front ? .back : .front
 		startCamera()
 	}
 	
-	func configure(autoUnlock: Bool = true, handler: @escaping (AVCaptureDevice)->Void) {
+	public func configure(autoUnlock: Bool = true, handler: @escaping (AVCaptureDevice)->Void) {
 		guard let device = currentDevice else { return }
 		do {
 			try device.lockForConfiguration()
@@ -206,7 +206,7 @@ extension JKCameraPreview {
 		}
 	}
 	
-	func endConfigure(device: AVCaptureDevice) {
+	public func endConfigure(device: AVCaptureDevice) {
 		device.unlockForConfiguration()
 		NotificationCenter.default.post(name: JKCameraPreview.didUnlockNotification, object: self)
 	}
@@ -214,7 +214,7 @@ extension JKCameraPreview {
 }
 
 
-protocol CameraPreviewProtocol {
+public protocol CameraPreviewProtocol {
 	var zoom : CGFloat { get set }
 	var iso: Float { get set }
 	var focusPoint: CGPoint? { get set }
@@ -222,7 +222,7 @@ protocol CameraPreviewProtocol {
 
 extension JKCameraPreview: CameraPreviewProtocol {
 
-	var zoom : CGFloat { get {
+	public var zoom : CGFloat { get {
         return _zoom
 		}
 		set {
@@ -232,7 +232,7 @@ extension JKCameraPreview: CameraPreviewProtocol {
 				}
 		}}
 	
-	var iso: Float { get {
+	public var iso: Float { get {
 		guard let device = currentDevice else { return 0 }
 		return (device.iso - device.activeFormat.minISO)  / (device.activeFormat.maxISO - device.activeFormat.minISO)
 		}
@@ -248,7 +248,7 @@ extension JKCameraPreview: CameraPreviewProtocol {
 			}
 		}}
 	
-	var focusPoint: CGPoint? { get {
+	public var focusPoint: CGPoint? { get {
 		return _focusPoint ?? CGPoint(x: bounds.width / 2, y: bounds.height / 2)
 		}
 	

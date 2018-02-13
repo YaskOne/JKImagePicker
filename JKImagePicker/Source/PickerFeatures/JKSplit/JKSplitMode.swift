@@ -8,18 +8,18 @@
 
 import UIKit
 
-enum JKSplitMode: Int {
+public enum JKSplitMode: Int {
 	case free
 	case vertical
 	case horizontal
 	case diagonalLeft
 	case diagonalRight
 	
-	static var freeSettings = JKSplitMode.vertical.settings
+	public static var freeSettings = JKSplitMode.vertical.settings
 	
-	static var all:[JKSplitMode] = [.free, .vertical, .horizontal, .diagonalLeft, .diagonalRight]
+	public static var all:[JKSplitMode] = [.free, .vertical, .horizontal, .diagonalLeft, .diagonalRight]
 	
-	var label: String { get {
+	public var label: String { get {
 		switch self {
 		case .free:
 			return "Free"
@@ -34,7 +34,7 @@ enum JKSplitMode: Int {
 		}
 		}}
 	
-	var icon: String { get {
+	public var icon: String { get {
 		switch self {
 		case .free:
 			return "?"
@@ -49,7 +49,7 @@ enum JKSplitMode: Int {
 		}
 		}}
 
-	var settings: JKSplitSettings { get {
+	public var settings: JKSplitSettings { get {
 		switch self {
 		case .free:
 			return JKSplitMode.freeSettings

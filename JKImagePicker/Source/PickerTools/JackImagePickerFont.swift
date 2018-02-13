@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct JackImagePickerFont {
+public struct JackImagePickerFont {
     
     public static let icon_cross = "\u{e933}"
     public static let icon_back = "\u{e911}"

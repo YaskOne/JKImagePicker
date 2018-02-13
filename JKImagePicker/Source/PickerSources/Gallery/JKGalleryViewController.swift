@@ -8,15 +8,15 @@
 
 import UIKit
 
-class JKGalleryViewController: JKImagePickerSourceViewController {
+public class JKGalleryViewController: JKImagePickerSourceViewController {
 
-	override var availableControls: [JKCameraControlItem] { get {
+	override public var availableControls: [JKCameraControlItem] { get {
 			return [.camera,.pad,.pad,.pad,.pad,.pad,.close]
 			}}
 	
-	let photoLoader = JKGalleryDataLoader()
+	public let photoLoader = JKGalleryDataLoader()
 	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+	public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "EmbedCollection" {
 			if let vc = segue.destination as? JKGalleryCollectionViewController {
 				photoLoader.fetchAllPhotos()
@@ -30,7 +30,7 @@ class JKGalleryViewController: JKImagePickerSourceViewController {
 
 extension JKGalleryViewController : JKGalleryViewControllerDelegate {
 	
-	func photoAssetSelected(_ asset: JKPhotoAsset) {
+	public func photoAssetSelected(_ asset: JKPhotoAsset) {
 		
 		if asset.fullSize == nil {
 			JKGalleryDataLoader.loadImageForAsset(asset: asset)

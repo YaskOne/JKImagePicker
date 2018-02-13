@@ -10,9 +10,9 @@ import UIKit
 
 //TODO: - To Make this class generic and IBDesignable, one must pass the thumb image from controller, and add minValue and maxValue properties
 
-class JKVerticalSlider: UIView {
+public class JKVerticalSlider: UIView {
     
-    var value: Double = 0.5 {
+    public var value: Double = 0.5 {
         didSet {
             if self.value >= 1 {
                 self.value = 1
@@ -24,58 +24,58 @@ class JKVerticalSlider: UIView {
         }
     }
 	
-	var maxTrack: UIView? = nil
-	var minTrack: UIView? = nil
-	var thumb: UIImageView? = nil
+	public var maxTrack: UIView? = nil
+	public var minTrack: UIView? = nil
+	public var thumb: UIImageView? = nil
 
     /// thumbExtent
 	/// the margin around thumbnail
-  	var thumbExtent: CGFloat = 2
-    var thumbHeight: CGFloat = 23
-    var trackWidth: CGFloat = 2
+  	public var thumbExtent: CGFloat = 2
+    public var thumbHeight: CGFloat = 23
+    public var trackWidth: CGFloat = 2
 	
-	var trackHeight: CGFloat { get {
+	public var trackHeight: CGFloat { get {
 			return bounds.height - ( thumbHeight + thumbExtent )
 		}}
 	
 	//MARK: - Layout accessors
 	
-	var maxTrackFrame: CGRect { get {
+	public var maxTrackFrame: CGRect { get {
 		return CGRect(x: trackMargin, y: 0, width: trackWidth, height: thumbFrameWithExtent.origin.y)
 		}}
 	
-	var minTrackFrame: CGRect { get {
+	public var minTrackFrame: CGRect { get {
 		let origin = thumbFrameWithExtent.origin.y + thumbFrameWithExtent.height
 		return CGRect(x: trackMargin, y: origin, width: trackWidth, height: bounds.height - origin)
 		}}
 
-	var thumbFrame: CGRect { get {
+	public var thumbFrame: CGRect { get {
 		return CGRect(x: bounds.width / 2 - thumbHeight / 2, y: pixelsValue, width: thumbHeight, height: thumbHeight)
 		}}
 	
-	var thumbFrameWithExtent: CGRect { get {
+	public var thumbFrameWithExtent: CGRect { get {
 		return thumbFrame.insetBy(dx: -thumbExtent, dy: -thumbExtent)
 		}}
 	
 	/// trackMargin
 	/// the space between view and track sides
-	var trackMargin: CGFloat { get {
+	public var trackMargin: CGFloat { get {
 		return (bounds.width - trackWidth) / 2
 		}}
 
 	//MARK: - Lifecycle
 	
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
     }
     
-    required init(coder: NSCoder) {
+    public required init(coder: NSCoder) {
         super.init(coder: coder)!
         self.setup()
     }
 
-    func setup() {
+    public func setup() {
 		maxTrack = UIView(frame: maxTrackFrame)
 		minTrack = UIView(frame: minTrackFrame)
 		thumb = UIImageView(frame: thumbFrame)
@@ -94,20 +94,20 @@ class JKVerticalSlider: UIView {
 		}
 	}
 	
-    func update() {
+    public func update() {
 		self.minTrack?.frame = self.minTrackFrame
 		self.maxTrack?.frame = self.maxTrackFrame
 		self.thumb?.frame = self.thumbFrame
     }
 	
-	func pixelsFromValue(_ value: Double) -> CGFloat {
+	public func pixelsFromValue(_ value: Double) -> CGFloat {
 		return trackHeight * ( 1 - CGFloat(value) )
 	}
 	
 	/// Pixels to Value conversion
 	/// pixelsValue
 	/// The value in pixels
-	var pixelsValue: CGFloat { get {
+	public var pixelsValue: CGFloat { get {
 		return pixelsFromValue(value)
 		}}
 

@@ -9,39 +9,39 @@
 import UIKit
 import AVFoundation
 
-protocol JKImagePickerDelegate {
+public protocol JKImagePickerDelegate {
     func imagePickerSuccess(image: JKImageRepresentable)
     func imagePickerCancel()
 }
 
-enum PickerType {
+public enum PickerType {
     case camera
     case gallery
     case preview
 }
 
-enum PickerFeature {
+public enum PickerFeature {
 	case normal
 	case split
 }
 
-class JKImagePickerViewController: JKOrientatedViewController {
+public class JKImagePickerViewController: JKOrientatedViewController {
     
-    var delegate: JKImagePickerDelegate? = nil
+    public var delegate: JKImagePickerDelegate? = nil
 	
 	// Sources
-	static let pickerStoryboard: UIStoryboard = { return UIStoryboard.init(name: "JKImagePicker", bundle: nil)}()
+	public static let pickerStoryboard: UIStoryboard = { return UIStoryboard.init(name: "JKImagePicker", bundle: nil)}()
 	
-	func instantiatePicker(identifier: String) -> JKImagePickerSourceViewController {
+	public func instantiatePicker(identifier: String) -> JKImagePickerSourceViewController {
 		print("Instantiate view controller '\(identifier)")
 		return JKImagePickerViewController.pickerStoryboard.instantiateViewController(withIdentifier: identifier) as! JKImagePickerSourceViewController
 	}
 	
-	lazy var cameraVC: JKCameraViewController = { return instantiatePicker(identifier: "Camera") as! JKCameraViewController }()
-	lazy var previewVC: JKStillImageSourceViewController = { return instantiatePicker(identifier: "Preview") as! JKStillImageSourceViewController }()
-	lazy var galleryVC: JKGalleryViewController = { return instantiatePicker(identifier: "Gallery") as! JKGalleryViewController }()
+	public lazy var cameraVC: JKCameraViewController = { return instantiatePicker(identifier: "Camera") as! JKCameraViewController }()
+	public lazy var previewVC: JKStillImageSourceViewController = { return instantiatePicker(identifier: "Preview") as! JKStillImageSourceViewController }()
+	public lazy var galleryVC: JKGalleryViewController = { return instantiatePicker(identifier: "Gallery") as! JKGalleryViewController }()
 
-	func pickerViewController(with type:PickerType) -> JKImagePickerSourceViewController {
+	public func pickerViewController(with type:PickerType) -> JKImagePickerSourceViewController {
 		switch type {
 		case .camera:
 			return cameraVC
@@ -52,28 +52,28 @@ class JKImagePickerViewController: JKOrientatedViewController {
 		}
 	}
 	
-	var currentPickerController: JKImagePickerSourceViewController? { didSet {
+	public var currentPickerController: JKImagePickerSourceViewController? { didSet {
 		updateInterface()
 		}}
 	
-    var pickerControls: JKPickerButtonsViewController?
-    var pickerActions: JKPickerActionsViewController?
+    public var pickerControls: JKPickerButtonsViewController?
+    public var pickerActions: JKPickerActionsViewController?
 	
 	//MARK: - Features
 	
-	var featureVC : JKFeatureViewController?  { didSet {
+	public var featureVC : JKFeatureViewController?  { didSet {
 		updateInterface()
 		}}
 
-	var featureControls: [JKCameraControlItem]? {
+	public var featureControls: [JKCameraControlItem]? {
 		get {
 			return featureVC?.controlItems
 		}
 	}
 	
-	var currentPicker: PickerType = .camera
+	public var currentPicker: PickerType = .camera
 	
-	var currentFeature: PickerFeature = .normal {
+	public var currentFeature: PickerFeature = .normal {
 		didSet {
 			switch currentFeature {
 			case .normal:
@@ -88,27 +88,27 @@ class JKImagePickerViewController: JKOrientatedViewController {
 	
 	//MARK: - Format
 	
-	var imageFormat: JKImageFormat = JKImageFormat(ratio: JKImageFormatRatio.fullScreen, orientation: JKImageFormatOrientation.portrait)
+	public var imageFormat: JKImageFormat = JKImageFormat(ratio: JKImageFormatRatio.fullScreen, orientation: JKImageFormatOrientation.portrait)
 	
-	var image: JKImage?
+	public var image: JKImage?
 
-	var composition: JKComposition?
+	public var composition: JKComposition?
 	
-	@IBOutlet var formatButton: UIButton!
+	@IBOutlet public var formatButton: UIButton!
 	
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 		setPicker(.camera)
 		NotificationCenter.default.addObserver(self, selector: #selector(formatChanged(notif:)), name: JKImageFormatHelper.changed, object: nil)
 	}
 	
-	@objc func formatChanged(notif: Notification) {
+	@objc public func formatChanged(notif: Notification) {
 		if let formatRatio = notif.userInfo?[JKImageFormatHelper.key] as? JKImageFormatRatio {
 			imageFormat.ratio = formatRatio
 		}
 	}
 	
-	func updateFormat() {
+	public func updateFormat() {
 		let format = JKImageFormatHelper.shared.format
 		var ratio = format.ratio
 		
@@ -127,7 +127,7 @@ class JKImagePickerViewController: JKOrientatedViewController {
 
 	}
 	
-	func setPicker(_ type: PickerType, animated: Bool = true) {
+	public func setPicker(_ type: PickerType, animated: Bool = true) {
 		if type == .camera {
 			cameraVC.cameraPreview?.startCamera()
 		}
@@ -155,12 +155,12 @@ class JKImagePickerViewController: JKOrientatedViewController {
 	}
 	
 	
-	func pickerView(for pickerType: PickerType) -> UIView {
+	public func pickerView(for pickerType: PickerType) -> UIView {
 		let vc = pickerViewController(with: pickerType)
 		return vc.view
 	}
 	
-	func setupPicker(_ pickerViewController: JKImagePickerSourceViewController) {
+	public func setupPicker(_ pickerViewController: JKImagePickerSourceViewController) {
 		pickerViewController.delegate = self
 		if pickerViewController.parent == nil {
 			addChildViewController(pickerViewController)
@@ -168,7 +168,7 @@ class JKImagePickerViewController: JKOrientatedViewController {
 		pickerControls?.delegate = pickerViewController
 	}
 	
-	func updateControls(for pickerType: PickerType) {
+	public func updateControls(for pickerType: PickerType) {
 		switch pickerType {
 		case .camera:
 				formatButton?.isHidden = false
@@ -191,13 +191,13 @@ class JKImagePickerViewController: JKOrientatedViewController {
 		updateInterface()
 	}
 	
-	func updateInterface() {
+	public func updateInterface() {
 		currentPickerController?.featureControls = featureControls
 		pickerControls?.reload()
 		currentPickerController?.ratio = imageFormat.ratio.ratio
 	}
 	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+	public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pickerControlsSegue" {
             if let pickerControls = segue.destination as? JKPickerButtonsViewController {
                 let _ = pickerControls.view        // load view
@@ -213,7 +213,7 @@ class JKImagePickerViewController: JKOrientatedViewController {
         }
     }
 
-	override func updateOrientation(transform t: CGAffineTransform) {
+	public override func updateOrientation(transform t: CGAffineTransform) {
 		updateFormat()
 		previewVC.view.transform = t
 	}
@@ -222,7 +222,7 @@ class JKImagePickerViewController: JKOrientatedViewController {
 
 extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 	
-	func pictureAvailable(_ image: UIImage) {
+	public func pictureAvailable(_ image: UIImage) {
 		if let cgImage = image.cgImage {
 			self.image = JKImage(cgImage, format: imageFormat)
 			previewVC.jkImage = self.image
@@ -247,7 +247,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 		}
 	}
 	
-	func commandButtonTapped(command: JKCameraCommand) {
+	public func commandButtonTapped(command: JKCameraCommand) {
 		switch command {
 		case JKCameraControlItem.close.rawValue:
 			delegate?.imagePickerCancel()
@@ -265,18 +265,18 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 		}
 	}
 
-	func iconForControlItem(_ item:JKCameraControlItem) -> String {
+	public func iconForControlItem(_ item:JKCameraControlItem) -> String {
 		if let vc = featureVC, let icon = vc.iconForControlItem(item) {
 			return icon
 		}
 		return item.defaultIcon
 	}
 
-	func stateChanged() {
+	public func stateChanged() {
 		self.updateInterface()
 	}
 	
-	func enabledStateChanged(_ enabled: Bool) {
+	public func enabledStateChanged(_ enabled: Bool) {
 		pickerActions?.view.alpha = enabled ? 1.0 : 0.4
 		pickerActions?.view.isUserInteractionEnabled = enabled
 	}
@@ -294,7 +294,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 
 extension JKImagePickerViewController: PickerActionsDelegate {
 	
-    func pickerAction(action: PickerAction) {
+    public func pickerAction(action: PickerAction) {
 		switch action {
 		case .normal:
 			if currentPickerController == cameraVC  {
@@ -342,7 +342,7 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 		
     }
 	
-	func actionSelected(action: PickerAction) {
+	public func actionSelected(action: PickerAction) {
 		switch action {
 		case .normal:
 			currentFeature = .normal

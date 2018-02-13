@@ -9,34 +9,34 @@
 import AVFoundation
 import UIKit
 
-struct JKCameraSettings {
+public struct JKCameraSettings {
 	var mirrorHorizontally: Bool = true
 }
 
-class JKCameraViewController: JKImagePickerSourceViewController {
+public class JKCameraViewController: JKImagePickerSourceViewController {
 	
 	/// cameraPreview
 	///
 	/// The cameraPreview's job is to capture video data and provide convenient accessors to camera device settings
 	
-	var cameraPreview: JKCameraPreview?
+	public var cameraPreview: JKCameraPreview?
 	
 	/// controlView
 	///
 	/// The controlView is reponsible of handling gestures ( pinch, pan, tap, motion ) and display camera device controls. ( focus, exposure )
 	
-	var controlView: JKCameraControlView?
+	public var controlView: JKCameraControlView?
 	
 	
-	var capturePhotoOutput: AVCapturePhotoOutput? { get {
+	public var capturePhotoOutput: AVCapturePhotoOutput? { get {
 		return cameraPreview?.capturePhotoOutput
 		}}
 	
 	//MARK: - Settings
 	
-	var settings: JKCameraSettings = JKCameraSettings()
+	public var settings: JKCameraSettings = JKCameraSettings()
 	
-	var avSettings: AVCapturePhotoSettings {
+	public var avSettings: AVCapturePhotoSettings {
 		get {
 			let settings = AVCapturePhotoSettings()
 			settings.isAutoStillImageStabilizationEnabled = false
@@ -46,15 +46,15 @@ class JKCameraViewController: JKImagePickerSourceViewController {
 		}
 	}
 	
-	var flashModeIndex = 0
-	var flashMode : AVCaptureDevice.FlashMode { get {
+	public var flashModeIndex = 0
+	public var flashMode : AVCaptureDevice.FlashMode { get {
 		return flashModes[flashModeIndex % flashModes.count]
 		} set {
 			flashModeIndex = flashModes.index(of: newValue) ?? 0
 		}}
-	var flashModes : [AVCaptureDevice.FlashMode] = [.off, .on, .auto]
+	public var flashModes : [AVCaptureDevice.FlashMode] = [.off, .on, .auto]
 
-	var hasFlash: Bool { get {
+	public var hasFlash: Bool { get {
 		if let flash = cameraPreview?.currentDevice?.hasFlash {
 			return flash
 		}
@@ -63,7 +63,7 @@ class JKCameraViewController: JKImagePickerSourceViewController {
 	
 	//MARK: - Lifecycle
 	
-	override func viewDidLoad() {
+	public override func viewDidLoad() {
 		super.viewDidLoad()
 
 		let cameraPreview = JKCameraPreview(frame: view.bounds)
@@ -87,17 +87,17 @@ class JKCameraViewController: JKImagePickerSourceViewController {
 		flashIndicator?.layer.cornerRadius = 7
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
+	public override func viewWillAppear(_ animated: Bool) {
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 		UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 	}
 	
-	override func viewWillDisappear(_ animated: Bool) {
+	public override func viewWillDisappear(_ animated: Bool) {
 		NotificationCenter.default.removeObserver(self)
 		UIDevice.current.endGeneratingDeviceOrientationNotifications()
 	}
 	
-	override func viewDidLayoutSubviews() {
+	public override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		cameraPreview?.frame = view.bounds
 		controlView?.frame = view.bounds
@@ -107,19 +107,19 @@ class JKCameraViewController: JKImagePickerSourceViewController {
 
     //MARK: - Notifications
     
-    @objc override func orientationChanged(notif: Notification) {
+    @objc public override func orientationChanged(notif: Notification) {
 		super.orientationChanged(notif: notif)
         controlView?.orientation = orientation
 		
 	}
 	
-	@IBOutlet var flashIndicator: UIView?
+	@IBOutlet public var flashIndicator: UIView?
 	
-	@objc func flashAvailabilityChanged(notification: Notification) {
+	@objc public func flashAvailabilityChanged(notification: Notification) {
 		
 	}
 	
-	@objc func flashActiveChanged(notification: Notification) {
+	@objc public func flashActiveChanged(notification: Notification) {
 		guard let capture = self.cameraPreview?.capturePhotoOutput else { return }
 		UIView.animate(withDuration: 0.3) {
 			self.flashIndicator?.alpha = capture.isFlashScene ? 0.5 : 0
@@ -129,12 +129,12 @@ class JKCameraViewController: JKImagePickerSourceViewController {
 	
 	//MARK: - Buttons delegate
 	
-	override var availableControls: [JKCameraControlItem] { get {
+	override public var availableControls: [JKCameraControlItem] { get {
 		let flashItem: JKCameraControlItem = hasFlash ? .flash : .pad
 		return [flashItem,.switchCam,.gallery,.pad,.pad,.pad,.close]
 		}}
 	
-	override func iconForControlItem(_ item:JKCameraControlItem) -> String {
+	override public func iconForControlItem(_ item:JKCameraControlItem) -> String {
 		if item == .flash {
 			switch flashMode {
 			case .off:
@@ -148,7 +148,7 @@ class JKCameraViewController: JKImagePickerSourceViewController {
 		return super.iconForControlItem(item)
 	}
 	
-	override func commandButtonTapped(command: JKCameraCommand) {
+	override public func commandButtonTapped(command: JKCameraCommand) {
 		switch command {
 		case JKCameraControlItem.switchCam.rawValue:
 			switchCamera()
@@ -162,12 +162,12 @@ class JKCameraViewController: JKImagePickerSourceViewController {
 		}
 	}
 	
-	func switchCamera() {
+	public func switchCamera() {
 		cameraPreview?.switchCamera()
 		stateChanged()
 	}
 	
-	func nextFlashMode() {
+	public func nextFlashMode() {
 		flashModeIndex = (flashModeIndex + 1) % flashModes.count
 		stateChanged()
 	}
@@ -176,12 +176,12 @@ class JKCameraViewController: JKImagePickerSourceViewController {
 
 extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 
-	func photoOutput(_ output: AVCapturePhotoOutput, willBeginCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings) {
+	public func photoOutput(_ output: AVCapturePhotoOutput, willBeginCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings) {
 		print("Capture will begin")
 	}
 
 	// func called when a photo is taken
-	func photoOutput(_ captureOutput: AVCapturePhotoOutput,
+	public func photoOutput(_ captureOutput: AVCapturePhotoOutput,
 					 didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?,
 					 previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?,
 					 resolvedSettings: AVCaptureResolvedPhotoSettings,
@@ -216,7 +216,7 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 		}
 	}
     
-    func processImage(image: UIImage) -> UIImage {
+    public func processImage(image: UIImage) -> UIImage {
         var output = image
 		var mirrored = false
 		if settings.mirrorHorizontally {
@@ -228,11 +228,11 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
         return output //.standardized
     }
 	
-	func registerToInputPortFormatChange() {
+	public func registerToInputPortFormatChange() {
 		NotificationCenter.default.addObserver(self, selector: #selector(avCaptureInputPortFormatChanged(notification:)), name: NSNotification.Name.AVCaptureInputPortFormatDescriptionDidChange, object: nil)
 	}
 	
-	@objc func avCaptureInputPortFormatChanged(notification: Notification) {
+	@objc public  func avCaptureInputPortFormatChanged(notification: Notification) {
 		if let format = cameraPreview?.currentDevice?.activeFormat {
 			print(format.formatDescription)
 		let dimensions: CMVideoDimensions = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
@@ -246,9 +246,9 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 
 //MARK: - Capture
 
-extension JKCameraViewController {
+public extension JKCameraViewController {
 	
-	func capturePhoto() {
+	public func capturePhoto() {
 		// Make sure capturePhotoOutput is valid
 		guard isEnabled, let capturePhotoOutput = self.capturePhotoOutput else {
 			return
@@ -260,7 +260,7 @@ extension JKCameraViewController {
 		capturePhotoOutput.capturePhoto(with: avSettings, delegate: self)
 	}
 	
-	func obture() {
+	public func obture() {
 		let blackView = UIView(frame: view.bounds)
 		blackView.backgroundColor = UIColor.black
 		blackView.alpha = 0

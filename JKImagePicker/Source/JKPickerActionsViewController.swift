@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum PickerAction: Int {
+public enum PickerAction: Int {
     case normal
     case splitted
     case confirm
@@ -25,30 +25,30 @@ enum PickerAction: Int {
     }
 }
 
-protocol PickerActionsDelegate {
+public protocol PickerActionsDelegate {
     func pickerAction(action: PickerAction)
 	func actionSelected(action: PickerAction)
 }
 
-class JKPickerActionsViewController: JKOrientatedViewController {
+public class JKPickerActionsViewController: JKOrientatedViewController {
 
-    var actions = [PickerAction]() {
+    public var actions = [PickerAction]() {
         didSet {
 			reloadButtons()
 		}
     }
 	
-	var actionButtons = [PickerAction: UIButton]()
+	public var actionButtons = [PickerAction: UIButton]()
 
-	var delegate: PickerActionsDelegate?
+	public var delegate: PickerActionsDelegate?
 
-	var needsConfirm: Bool = false {
+	public var needsConfirm: Bool = false {
 		didSet {
 			updateActions()
 			updateLayout()
 		}}
 	
-    var currentAction: PickerAction = .normal {
+    public var currentAction: PickerAction = .normal {
         didSet {
 			updateLayout()
 			delegate?.actionSelected(action: currentAction)
@@ -57,18 +57,18 @@ class JKPickerActionsViewController: JKOrientatedViewController {
 	
 	// Layout
 	
-	var gap: CGFloat { get { return view.bounds.height / 6 } }
+	public var gap: CGFloat { get { return view.bounds.height / 6 } }
 	
-	var buttonSize: CGSize { get {
+	public var buttonSize: CGSize { get {
 		return CGSize(width:view.bounds.height, height:view.bounds.height)
 		} }
 	
-	var smallButtonSize: CGSize { get {
+	public var smallButtonSize: CGSize { get {
 		let size = CGSize(width:view.bounds.height, height:view.bounds.height)
 		return CGSize(width: size.width * 2 / 3, height: size.height * 2 / 3)
 		} }
 	
-	func buttonFrameForAction(_ action: PickerAction) -> CGRect {
+	public func buttonFrameForAction(_ action: PickerAction) -> CGRect {
 		var size = CGSize.zero
 		var offset = CGPoint.zero
 		let s = buttonSize
@@ -90,14 +90,14 @@ class JKPickerActionsViewController: JKOrientatedViewController {
 	
 	//MARK: - Buttons creation
 	
-	func reloadButtons() {
+	public func reloadButtons() {
 		for action in actions {
 			actionButtons[action] = makeButtonForAction(action)
 		}
 		currentAction = actions[0]
 	}
 	
-	func makeButtonForAction(_ action: PickerAction) -> UIButton {
+	public func makeButtonForAction(_ action: PickerAction) -> UIButton {
 		let button = UIButton()
 		button.setImage(UIImage.init(named: action.image), for: .normal)
 		button.tag = action.rawValue
@@ -108,7 +108,7 @@ class JKPickerActionsViewController: JKOrientatedViewController {
 
 	//MARK: - Layout
 	
-	func updateActions() {
+	public func updateActions() {
 		for action in actions {
 			if let button = actionButtons[action] {
 				button.tag = action.rawValue
@@ -120,7 +120,7 @@ class JKPickerActionsViewController: JKOrientatedViewController {
 		mainButton.setImage(UIImage(named: PickerAction.confirm.image), for: .normal)
 	}
 	
-	func updateLayout() {
+	public func updateLayout() {
 		for action in actions {
 			if let button = actionButtons[action] {
 				button.frame = buttonFrameForAction(action)
@@ -130,13 +130,13 @@ class JKPickerActionsViewController: JKOrientatedViewController {
 	
 	//MARK: - Lifecycle
 	
-	override func viewDidLoad() {
+	public override func viewDidLoad() {
 		super.viewDidLoad()
 		actions = [.normal,.splitted]
 		currentAction = .normal
 	}
 
-	override func viewDidLayoutSubviews() {
+	public override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		updateLayout()
 	}
@@ -161,7 +161,7 @@ class JKPickerActionsViewController: JKOrientatedViewController {
 
     }
 
-	override func updateOrientation(transform t: CGAffineTransform) {
+	public override func updateOrientation(transform t: CGAffineTransform) {
 		UIView.animate(withDuration: 0.3) {
 			for view in self.actionButtons.values {
 				view.transform = t

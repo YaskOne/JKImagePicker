@@ -9,26 +9,26 @@
 import Foundation
 import CoreMotion
 
-protocol JKMotionDetectorDelegate {
+public protocol JKMotionDetectorDelegate {
 	func motionDetected()
 }
 
-class JKMotionDetector {
+public class JKMotionDetector {
 	
 	var delegate : JKMotionDetectorDelegate
-	let detectionQueue = OperationQueue()
-	let motion = CMMotionManager()
+	public let detectionQueue = OperationQueue()
+	public let motion = CMMotionManager()
 	
-	var interval: Double = 0.2 { didSet { restart() }}
-	var threshold: Double = 0.04
+	public var interval: Double = 0.2 { didSet { restart() }}
+	public var threshold: Double = 0.04
 	
-	var referenceAcceleration :  CMAcceleration?
+	public var referenceAcceleration :  CMAcceleration?
 	
-	init(delegate: JKMotionDetectorDelegate) {
+	public init(delegate: JKMotionDetectorDelegate) {
 		self.delegate = delegate
 	}
 	
-	var acceleration : CMAcceleration? { didSet {
+	public var acceleration : CMAcceleration? { didSet {
 		
 		guard let acc = acceleration else { return }
 		
@@ -47,7 +47,7 @@ class JKMotionDetector {
 		
 		}}
 	
-	func start() {
+	public func start() {
 		// Make sure the accelerometer hardware is available.
 		guard motion.isAccelerometerAvailable else { return }
 		motion.accelerometerUpdateInterval = interval
@@ -58,12 +58,12 @@ class JKMotionDetector {
 		})
 	}
 	
-	func stop() {
+	public func stop() {
 		referenceAcceleration = nil
 		motion.stopAccelerometerUpdates()
 	}
 	
-	func restart() {
+	public func restart() {
 		stop()
 		start()
 	}

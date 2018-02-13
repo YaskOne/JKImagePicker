@@ -11,70 +11,70 @@ import UIKit
 import iOSCommons
 import JackFoundation
 
-struct JKSplitSettings {
-	var angle: CGFloat = 0
-	var center: CGPoint = CGPoint(x:0.5, y:0.5)
+public struct JKSplitSettings {
+	public var angle: CGFloat = 0
+	public var center: CGPoint = CGPoint(x:0.5, y:0.5)
 	
-	init(angle: CGFloat = 0) {
+	public init(angle: CGFloat = 0) {
 		self.angle = angle
 		self.center = CGPoint(x: 0.5, y:0.5)
 	}
 
-	init(angle: CGFloat = 0, center: CGPoint) {
+	public init(angle: CGFloat = 0, center: CGPoint) {
 		self.angle = angle
 		self.center = CGPoint(x: 0.5, y:0.5)
 	}
 }
 
-class JKSplitView: UIView {
+public class JKSplitView: UIView {
 
-	static let bigRect = CGRect(x:0, y:0, width: 10000, height: 10000)
+	public static let bigRect = CGRect(x:0, y:0, width: 10000, height: 10000)
 
-	var settings: JKSplitSettings = JKSplitSettings()
+	public var settings: JKSplitSettings = JKSplitSettings()
 	
 	//MARK: - Images
-	var image1:UIImage?
-	var image2:UIImage?
-	var swapped: Bool = false
+	public var image1:UIImage?
+	public var image2:UIImage?
+	public var swapped: Bool = false
 	
-	var getFirstImage: UIImage? {
+	public var getFirstImage: UIImage? {
 		get {
 			return swapped ? image2 : image1
 		}
 	}
 	
-	var getSecondImage: UIImage? {
+	public var getSecondImage: UIImage? {
 		get {
 			return swapped ? image1 : image2
 		}
 	}
 	
-	var gotOneImage: Bool { get {return image1 != nil || image2 != nil}}
+	public var gotOneImage: Bool { get {return image1 != nil || image2 != nil}}
 	
 	//MARK: - Overlay
 	
-	var overlayVisibility:(Bool,Bool) = (false,false)
-	var overlayColors:(UIColor,UIColor) = (UIColor.green, UIColor.red)
-	var overlayAlpha:(CGFloat,CGFloat) = (0.4,0.4)
+	public var overlayVisibility:(Bool,Bool) = (false,false)
+	public var overlayColors:(UIColor,UIColor) = (UIColor.green, UIColor.red)
+	public var overlayAlpha:(CGFloat,CGFloat) = (0.4,0.4)
 	
 	//MARK: - Line
 	
-	var showSplitLine:Bool = false
+	public var showSplitLine:Bool = false
 	
 	//MARK: - Path
 	
-	var clipPath: CGPath { get { return clipPath() }}
+	public var clipPath: CGPath { get { return clipPath() }}
 	
-	func clipPath(lineOnly: Bool = false, invert:  Bool = false) -> CGPath {
+	public func clipPath(lineOnly: Bool = false, invert:  Bool = false) -> CGPath {
 		return splittedRectPath(bounds, angle: settings.angle, center: settings.center, lineOnly: lineOnly, invert: invert)
 	}
 	
-	override func layoutSubviews() {
+	public override func layoutSubviews() {
 		super.layoutSubviews()
 		self.setNeedsDisplay()
 	}
 	
-	override func draw(_ rect: CGRect) {
+	public override func draw(_ rect: CGRect) {
 		guard let ctx = UIGraphicsGetCurrentContext() else { return }
 		ctx.saveGState()
 		ctx.setFillColor(UIColor.clear.cgColor)
@@ -90,12 +90,12 @@ class JKSplitView: UIView {
 		}
 	}
 	
-	func drawImages(context: CGContext) {
+	public func drawImages(context: CGContext) {
 		drawImage(getFirstImage?.cgImage, clipPath: clipPath(), overlayIfNil: !gotOneImage && !swapped, context: context)
 		drawImage(getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage && swapped, context: context)
 	}
 	
-	func drawImage(_ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext) {
+	public func drawImage(_ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext) {
 		context.saveGState()
 		
 		if let clip = clipPath {
@@ -118,7 +118,7 @@ class JKSplitView: UIView {
 		context.restoreGState()
 	}
 	
-	func drawOverlays(context: CGContext) {
+	public func drawOverlays(context: CGContext) {
 		context.saveGState()
 		
 		let clip = clipPath
@@ -134,7 +134,7 @@ class JKSplitView: UIView {
 		context.restoreGState()
 	}
 	
-	func strokeSplitLine(context: CGContext) {
+	public func strokeSplitLine(context: CGContext) {
 		context.saveGState()
 
 		let clip = clipPath(lineOnly: true)

@@ -16,7 +16,6 @@
 		BC2CBECF2032ED96005E62D5 /* JKOrientatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA42032ED96005E62D5 /* JKOrientatedViewController.swift */; };
 		BC2CBED02032ED96005E62D5 /* JKShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA62032ED96005E62D5 /* JKShadowButton.swift */; };
 		BC2CBED12032ED96005E62D5 /* JKImagePickerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA72032ED96005E62D5 /* JKImagePickerUtils.swift */; };
-		BC2CBED22032ED96005E62D5 /* JackImagePickerFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA82032ED96005E62D5 /* JackImagePickerFont.swift */; };
 		BC2CBED32032ED96005E62D5 /* JKImageFormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA92032ED96005E62D5 /* JKImageFormatHelper.swift */; };
 		BC2CBED42032ED96005E62D5 /* JKSplitFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEAB2032ED96005E62D5 /* JKSplitFeatureViewController.swift */; };
 		BC2CBED52032ED96005E62D5 /* JKHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEAD2032ED96005E62D5 /* JKHandleView.swift */; };
@@ -47,6 +46,7 @@
 		BC2CBEEE2032ED96005E62D5 /* JKImagePickerViewController+Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBECB2032ED96005E62D5 /* JKImagePickerViewController+Feature.swift */; };
 		BC2CBEF02032EEA2005E62D5 /* iOSCommons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2CBEF12032EEA2005E62D5 /* iOSCommons.framework */; };
 		BC2CBEF22032EF0A005E62D5 /* JackFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2CBEF32032EF0A005E62D5 /* JackFoundation.framework */; };
+		BC2CBEF62032F92D005E62D5 /* JackImagePickerFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA82032ED96005E62D5 /* JackImagePickerFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -401,6 +401,7 @@
 				BC2CBEEE2032ED96005E62D5 /* JKImagePickerViewController+Feature.swift in Sources */,
 				BC2CBEEB2032ED96005E62D5 /* JKImage.swift in Sources */,
 				BC2CBEE52032ED96005E62D5 /* JKGalleryViewController.swift in Sources */,
+				BC2CBEF62032F92D005E62D5 /* JackImagePickerFont.swift in Sources */,
 				BC2CBED92032ED96005E62D5 /* JKSplitView.swift in Sources */,
 				BC2CBEDA2032ED96005E62D5 /* JKCenterAngleControlView.swift in Sources */,
 				BC2CBED62032ED96005E62D5 /* JKSplitViewController.swift in Sources */,
@@ -427,7 +428,6 @@
 				BC2CBEE92032ED96005E62D5 /* JKImagePickerSourceViewController.swift in Sources */,
 				BC2CBED42032ED96005E62D5 /* JKSplitFeatureViewController.swift in Sources */,
 				BC2CBEE32032ED96005E62D5 /* JKGalleryDataLoader.swift in Sources */,
-				BC2CBED22032ED96005E62D5 /* JackImagePickerFont.swift in Sources */,
 				BC2CBED02032ED96005E62D5 /* JKShadowButton.swift in Sources */,
 				BC2CBEDD2032ED96005E62D5 /* JKCameraPreview.swift in Sources */,
 				BC2CBEDE2032ED96005E62D5 /* JKCameraControlView.swift in Sources */,
@@ -579,6 +579,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = JKImagePicker/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Jack-World.JKImagePicker";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -600,6 +601,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = JKImagePicker/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Jack-World.JKImagePicker";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

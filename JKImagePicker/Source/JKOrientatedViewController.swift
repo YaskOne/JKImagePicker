@@ -8,20 +8,20 @@
 
 import UIKit
 
-class JKOrientatedViewController: UIViewController {
+public class JKOrientatedViewController: UIViewController {
 
-	var orientation: UIDeviceOrientation = UIDevice.current.orientation { didSet {
+	public var orientation: UIDeviceOrientation = UIDevice.current.orientation { didSet {
 		if let t = transform {
 			updateOrientation(transform: t)
 		}
 		}}
 
-	override func viewDidLoad() {
+	public override func viewDidLoad() {
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 		UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 	}
 
-	@objc func orientationChanged(notif: Notification) {
+	@objc public func orientationChanged(notif: Notification) {
 		let orientation = UIDevice.current.orientation
 		switch orientation {
 		case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
@@ -31,20 +31,20 @@ class JKOrientatedViewController: UIViewController {
 		}
 	}
 	
-	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+	public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
 		return UIInterfaceOrientationMask.portrait
 	}
 	
-	override var shouldAutorotate: Bool { get {
+	public override var shouldAutorotate: Bool { get {
 		return false
 		}}
 
 	
-	func updateOrientation(transform t: CGAffineTransform) {
+	public func updateOrientation(transform t: CGAffineTransform) {
 		// Override 
 	}
 	
-	var transform: CGAffineTransform? { get {
+	public var transform: CGAffineTransform? { get {
 		let t = JKImagePickerUtils.orientationToTransform(orientation)
 		return t
 		}}

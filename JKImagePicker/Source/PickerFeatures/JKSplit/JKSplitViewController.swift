@@ -8,28 +8,28 @@
 
 import UIKit
 
-class JKSplitViewController: JKFeatureViewController {
+public class JKSplitViewController: JKFeatureViewController {
 
-	@IBOutlet var splitView: JKSplitView!
+	@IBOutlet public var splitView: JKSplitView!
 
 	//TODO: Fully replace UIImage by JKImages to allow repositionning
-	var jkImage2: JKImage?
+	public var jkImage2: JKImage?
 
-	var modeButton: UIButton?
+	public var modeButton: UIButton?
 	
-	var mode: JKSplitMode = JKSplitMode.horizontal { didSet {
+	public var mode: JKSplitMode = JKSplitMode.horizontal { didSet {
 			splitView?.settings = mode.settings
 			modeButton?.setTitle(mode.label, for: .normal)
 			splitView.setNeedsDisplay()
 		}}
 	
-	var modes: [JKSplitMode] = [.vertical,.diagonalLeft,.horizontal,.diagonalRight]
+	public var modes: [JKSplitMode] = [.vertical,.diagonalLeft,.horizontal,.diagonalRight]
 	
-	var modeIndex = 0 { didSet {
+	public var modeIndex = 0 { didSet {
 		mode = modes[modeIndex]
 		}}
 	
-	var image: UIImage? { didSet {
+	public var image: UIImage? { didSet {
 		if image1 == nil {
 			image1 = image
 		}
@@ -38,33 +38,33 @@ class JKSplitViewController: JKFeatureViewController {
 		}
 		}}
 	
-	var image1: UIImage? { didSet {
+	public var image1: UIImage? { didSet {
 		splitView.image1 = image1
 		splitView.setNeedsDisplay()
 		}}
 	
-	var image2: UIImage? { didSet {
+	public var image2: UIImage? { didSet {
 		splitView.image2 = image2
 		splitView.setNeedsDisplay()
 		}}
 
-	var swapped = false { didSet {
+	public var swapped = false { didSet {
 		splitView.swapped = swapped
 		splitView.setNeedsDisplay()
 		}}
 	
-	override func viewDidLoad() {
+	public override func viewDidLoad() {
 		super.viewDidLoad()
 		swapped = false
 		modeIndex = JKSplitMode.vertical.rawValue
 		self.view.clipsToBounds = true
 	}
 
-	override var controlItems: [JKCameraControlItem]? { get {
+	public override var controlItems: [JKCameraControlItem]? { get {
 		return [.split,.swap]
 		}}
 	
-	override func commandButtonTapped(command: JKCameraCommand) {
+	public override func commandButtonTapped(command: JKCameraCommand) {
 		switch command {
 		case JKCameraControlItem.split.rawValue:
 			nextModeTapped()
@@ -75,7 +75,7 @@ class JKSplitViewController: JKFeatureViewController {
 		}
 	}
 
-	override func iconForControlItem(_ item:JKCameraControlItem) -> String?
+	public override func iconForControlItem(_ item:JKCameraControlItem) -> String?
 	{
 		if item == JKCameraControlItem.split {
 			return mode.icon
@@ -83,12 +83,12 @@ class JKSplitViewController: JKFeatureViewController {
 		return item.defaultIcon
 	}
 	
-	override func viewDidLayoutSubviews() {
+	public override func viewDidLayoutSubviews() {
 		self.splitView?.frame = view.bounds
 	}
 }
 
-extension JKSplitViewController {
+public extension JKSplitViewController {
 	
 	@IBAction func nextModeTapped() {
 		var idx = modeIndex + 1

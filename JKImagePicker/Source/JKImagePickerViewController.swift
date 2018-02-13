@@ -29,12 +29,10 @@ public class JKImagePickerViewController: JKOrientatedViewController {
     
     public var delegate: JKImagePickerDelegate? = nil
 	
-	// Sources
-	public static let pickerStoryboard: UIStoryboard = { return UIStoryboard.init(name: "JKImagePicker", bundle: nil)}()
 	
 	public func instantiatePicker(identifier: String) -> JKImagePickerSourceViewController {
 		print("Instantiate view controller '\(identifier)")
-		return JKImagePickerViewController.pickerStoryboard.instantiateViewController(withIdentifier: identifier) as! JKImagePickerSourceViewController
+		return JKImagePicker.storyboard.instantiateViewController(withIdentifier: identifier) as! JKImagePickerSourceViewController
 	}
 	
 	public lazy var cameraVC: JKCameraViewController = { return instantiatePicker(identifier: "Camera") as! JKCameraViewController }()

@@ -251,7 +251,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 		switch command {
 		case JKCameraControlItem.close.rawValue:
 			delegate?.imagePickerCancel()
-			dismiss(animated: true)
+			//dismiss(animated: true)
 			
 		case JKCameraControlItem.camera.rawValue:
 			setPicker(.camera)
@@ -334,7 +334,7 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 						splitComposition.image2 = jkImage2
 						delegate?.imagePickerSuccess(image: splitComposition)
 					}
-					dismiss(animated: true)
+					//dismiss(animated: true)
 					return
 				}
 			case .gallery:
@@ -344,7 +344,7 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 				if let jkImage = self.image {
 						delegate?.imagePickerSuccess(image: jkImage)
 				}
-				dismiss(animated: true)
+				//dismiss(animated: true)
 			}
 		}
 		

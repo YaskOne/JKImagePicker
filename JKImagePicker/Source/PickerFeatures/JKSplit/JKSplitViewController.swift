@@ -63,15 +63,13 @@ public class JKSplitViewController: JKFeatureViewController {
 	}
 
 	public override var controlItems: [JKCameraControlItem]? { get {
-		return [.split,.swap]
+		return [.split]
 		}}
 	
 	public override func commandButtonTapped(command: JKCameraCommand) {
 		switch command {
 		case JKCameraControlItem.split.rawValue:
 			nextModeTapped()
-		case JKCameraControlItem.swap.rawValue:
-			swapTapped()
 		default:
 			break
 		}

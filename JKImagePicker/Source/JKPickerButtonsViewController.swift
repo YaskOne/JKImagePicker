@@ -23,6 +23,7 @@ public protocol JKPickerButtonsDelegate {
 
 public enum JKCameraControlItem: Int {
 	case pad
+	case free
 	case flash
 	case gallery
 	case switchCam
@@ -30,10 +31,11 @@ public enum JKCameraControlItem: Int {
 	case close
 	
 	case split
-	case swap
 
 	public var defaultIcon: String {
 		switch self {
+		case .free:
+			return ""
 		case .pad:
 			return ""
 		case .flash:
@@ -42,8 +44,6 @@ public enum JKCameraControlItem: Int {
 			return JackImagePickerFont.icon_library
 		case .split:
 			return JackImagePickerFont.icon_split_vertical
-		case .swap:
-			return JackImagePickerFont.icon_split_swap
 		case .switchCam:
 			return JackImagePickerFont.icon_switch
 		case .camera:

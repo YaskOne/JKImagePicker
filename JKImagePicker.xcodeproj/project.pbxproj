@@ -47,6 +47,7 @@
 		BC2CBEF22032EF0A005E62D5 /* JackFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2CBEF32032EF0A005E62D5 /* JackFoundation.framework */; };
 		BC2CBEF62032F92D005E62D5 /* JackImagePickerFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CBEA82032ED96005E62D5 /* JackImagePickerFont.swift */; };
 		BC4D9CCC203306180029E9E1 /* JKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4D9CCB203306180029E9E1 /* JKImagePicker.swift */; };
+		D7DD99CB203450A5001131C6 /* ImagePickerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DD99CA203450A5001131C6 /* ImagePickerNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		BC2CBEF32032EF0A005E62D5 /* JackFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JackFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC4D9CCB203306180029E9E1 /* JKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKImagePicker.swift; sourceTree = "<group>"; };
 		BC4D9CCF203308500029E9E1 /* JKSplitFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKSplitFeatureViewController.swift; sourceTree = "<group>"; };
+		D7DD99CA203450A5001131C6 /* ImagePickerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				BC2CBEC52032ED96005E62D5 /* JKImagePickerSourceViewController.swift */,
 				BC2CBEC92032ED96005E62D5 /* JKImagePicker.storyboard */,
 				BC2CBECA2032ED96005E62D5 /* JKImagePickerViewController.swift */,
+				D7DD99CA203450A5001131C6 /* ImagePickerNavigationController.swift */,
 				BC2CBECB2032ED96005E62D5 /* JKImagePickerViewController+Feature.swift */,
 				BC4D9CCB203306180029E9E1 /* JKImagePicker.swift */,
 			);
@@ -425,6 +428,7 @@
 				BC2CBEDB2032ED96005E62D5 /* JKFeatureViewController.swift in Sources */,
 				BC2CBEE72032ED96005E62D5 /* JKStillImageSourceViewController.swift in Sources */,
 				BC2CBECC2032ED96005E62D5 /* JKPickerSettings.swift in Sources */,
+				D7DD99CB203450A5001131C6 /* ImagePickerNavigationController.swift in Sources */,
 				BC2CBEEA2032ED96005E62D5 /* JKSplitComposition.swift in Sources */,
 				BC2CBED52032ED96005E62D5 /* JKHandleView.swift in Sources */,
 				BC2CBED32032ED96005E62D5 /* JKImageFormatHelper.swift in Sources */,

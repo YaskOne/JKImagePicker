@@ -58,10 +58,10 @@
             </objects>
             <point key="canvasLocation" x="-1735" y="212"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Image Picker Navigation Controller-->
         <scene sceneID="SKg-gE-hSu">
             <objects>
-                <navigationController navigationBarHidden="YES" id="W4e-kY-rmT" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="W4e-kY-rmT" customClass="ImagePickerNavigationController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QU5-O4-xgS">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

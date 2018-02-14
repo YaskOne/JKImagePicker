@@ -56,7 +56,7 @@ public class JKSplitView: UIView {
 	public var overlayColors:(UIColor,UIColor) = (UIColor.green, UIColor.red)
 	public var overlayAlpha:(CGFloat,CGFloat) = (0.4,0.4)
 	
-	public var overlayOpacity: CGFloat = 0.8
+	public static var overlayOpacity: CGFloat = 0.8
 	
 	//MARK: - Line
 	
@@ -90,13 +90,35 @@ public class JKSplitView: UIView {
 			strokeSplitLine(context: ctx)
 		}
 	}
+    
+    public static func drawSplit(context: CGContext, image1: CGImage, image2: CGImage, angle: CGFloat, center: CGPoint, frame: CGRect) {
+        let clipPath1 = splittedRectPath(frame, angle: angle, center: center, lineOnly: false, invert: false)
+        let clipPath2 = splittedRectPath(frame, angle: angle, center: center, lineOnly: false, invert: true)
+        
+        drawImage(frame, image1, clipPath: clipPath1, overlayIfNil: false, context: context)
+        drawImage(frame, image2, clipPath: clipPath2, overlayIfNil: false , context: context)
+    }
+    
+    public static func generateSplitImage(image1: CGImage, image2: CGImage, angle: CGFloat, center: CGPoint, frame: CGRect) -> UIImage? {
+        UIGraphicsBeginImageContext(frame.size)
+
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        drawSplit(context: context, image1: image1, image2: image2, angle: angle, center: center, frame: frame)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
 	
 	public func drawImages(context: CGContext) {
-		drawImage(getFirstImage?.cgImage, clipPath: clipPath(), overlayIfNil: false, context: context)
-		drawImage(getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage , context: context)
+        JKSplitView.drawImage(frame, getFirstImage?.cgImage, clipPath: clipPath(), overlayIfNil: false, context: context)
+        JKSplitView.drawImage(frame, getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage , context: context)
 	}
 	
-	public func drawImage(_ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext) {
+    public static func drawImage(_ frame: CGRect, _ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext) {
 		context.saveGState()
 		
 		if let clip = clipPath {
@@ -105,15 +127,15 @@ public class JKSplitView: UIView {
 		}
 		
 		context.scaleBy(x: 1, y: -1)
-		context.translateBy(x: 0, y: -bounds.height)
+		context.translateBy(x: 0, y: -frame.height)
 
 		if 	let img = image {
-			context.draw(img, in: img.frame.filling(rect: self.bounds))
+			context.draw(img, in: img.frame.filling(rect: frame))
 			
 		}
 		else if overlayIfNil {
 			context.setFillColor(UIColor.black.withAlphaComponent(overlayOpacity).cgColor)
-			context.fill(bounds)
+			context.fill(frame)
 		}
 		
 		context.restoreGState()

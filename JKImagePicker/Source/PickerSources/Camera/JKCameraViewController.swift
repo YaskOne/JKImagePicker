@@ -202,7 +202,6 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 			AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) else {
 				return
 		}
-		cameraPreview?.stopCamera()
 		
 		// Initialise a UIImage with our image data
 		if let capturedImage = UIImage.init(data: imageData, scale: 1.0) {
@@ -235,11 +234,11 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 	@objc public  func avCaptureInputPortFormatChanged(notification: Notification) {
 		if let format = cameraPreview?.currentDevice?.activeFormat {
 			print(format.formatDescription)
-		let dimensions: CMVideoDimensions = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
-			
-		JKImageFormatRatio.cameraFrame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(dimensions.height), height: CGFloat(dimensions.width) )
-		JKImageFormatRatio.screenFrame = view.bounds
-	
+            let dimensions: CMVideoDimensions = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+            
+            JKImageFormatRatio.cameraFrame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(dimensions.height), height: CGFloat(dimensions.width) )
+            JKImageFormatRatio.screenFrame = view.bounds
+            delegate?.cameraResolutionLoaded()
 		}
 	}
 }

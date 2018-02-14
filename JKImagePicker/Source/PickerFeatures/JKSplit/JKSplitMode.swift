@@ -55,12 +55,12 @@ public enum JKSplitMode: Int {
 			return JKSplitMode.freeSettings
 		case .horizontal:
 			return JKSplitSettings(angle: 0)
+        case .diagonalRight:
+            return JKSplitSettings(angle: CGFloat.pi / 4)
 		case .vertical:
 			return JKSplitSettings(angle: CGFloat.pi / 2)
 		case .diagonalLeft:
 			return JKSplitSettings(angle: 3 * CGFloat.pi / 4)
-		case .diagonalRight:
-			return JKSplitSettings(angle: CGFloat.pi / 4)
 		}
 		}}
 }

@@ -33,6 +33,8 @@ public class JKImagePickerViewController: JKOrientatedViewController {
         didSet {
             if let formatRatios = _settings?.formatRatios {
                 availableRatios = formatRatios
+                JKImageFormatRatio.screenFrame = self.view.bounds
+                JKImageFormatHelper.shared.format = availableRatios[0]
             }
             
             if let _ = self.view {
@@ -128,6 +130,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		setPicker(.camera)
 		NotificationCenter.default.addObserver(self, selector: #selector(formatChanged(notif:)), name: JKImageFormatHelper.changed, object: nil)
         updateInterfaceAfterSettingsChange()
+        updateFormat()
 	}
 	
 	@objc public func formatChanged(notif: Notification) {
@@ -145,23 +148,26 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		}
 		
 		cameraVC.ratio = ratio
-		//previewVC.ratio = ratio
+        previewVC.ratio = ratio
+        if let vc = currentPickerController {
+        previewVC.view.frame = vc.view.frame
+        }
 		
 		if let vc = currentPickerController {
 			featureVC?.view.frame = vc.view.frame
 		}
 		
 		formatButton.setTitle(format.label, for: .normal)
-
 	}
 	
 	public func setPicker(_ type: PickerType, animated: Bool = true) {
+        
 		if type == self.currentPicker && currentPickerController != nil { return }
         
         if type == .camera {
             cameraVC.cameraPreview?.startCamera()
         }
-		
+        
 		let newPicker = pickerViewController(with: type)
 		setupPicker(newPicker)
 		
@@ -199,13 +205,13 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	public func updateControls(for pickerType: PickerType) {
 		switch pickerType {
 		case .camera:
-				formatButton?.isHidden = false
+				formatButton?.isHidden = availableRatios.count < 2
 				pickerActions?.view.isHidden = false
 				self.pickerActions?.needsConfirm = false
 				featureVC?.view.isHidden = false
 			
 		case .still:
-				formatButton?.isHidden = false
+				formatButton?.isHidden = availableRatios.count < 2
 				pickerActions?.view.isHidden = false
 				self.pickerActions?.needsConfirm = true
 				featureVC?.view.isHidden = false
@@ -220,11 +226,11 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	}
 	
 	public func updateInterfaceAfterSettingsChange() {
-		formatButton.isHidden = settings.formatRatios.count < 2
+		formatButton.isHidden = availableRatios.count < 2
 		if settings.orientationLock {
 			self.orientation = .portrait
 		}
-		imageFormat = JKImageFormat(ratio: settings.formatRatios[0], orientation: orientation.isPortrait ? .portrait : .landscape)
+		imageFormat = JKImageFormat(ratio: availableRatios[0], orientation: orientation.isPortrait ? .portrait : .landscape)
 		if let t = transform {
 			updateOrientation(transform: t)
 		}
@@ -239,7 +245,8 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	public func updateInterface() {
 		currentPickerController?.featureControls = featureControls
 		pickerControls?.reload()
-		currentPickerController?.ratio = imageFormat.ratio.ratio
+        currentPickerController?.ratio = imageFormat.ratio.ratio
+        previewVC.ratio = imageFormat.ratio.ratio
 	}
 	
 	public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -262,6 +269,16 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		updateFormat()
 		previewVC.view.transform = t
 	}
+    
+    override public func viewWillDisappear(_ animated: Bool) {
+        cameraVC.cameraPreview?.stopCamera()
+        
+        super.dismiss(animated: animated)
+    }
+    
+    override public func didReceiveMemoryWarning() {
+        print("MEMORY ERROR")
+    }
 
 }
 
@@ -295,6 +312,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 	public func commandButtonTapped(command: JKCameraCommand) {
 		switch command {
 		case JKCameraControlItem.close.rawValue:
+            print("CLOSING")
 			delegate?.imagePickerCancel()
 			
 		case JKCameraControlItem.camera.rawValue:
@@ -320,6 +338,10 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 	public func stateChanged() {
 		self.updateInterface()
 	}
+    
+    public func cameraResolutionLoaded() {
+        updateFormat()
+    }
 	
 	public func enabledStateChanged(_ enabled: Bool) {
 		pickerActions?.view.alpha = enabled ? 1.0 : 0.4

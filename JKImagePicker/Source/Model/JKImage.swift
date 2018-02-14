@@ -23,7 +23,8 @@ public class JKImage: JKImageRepresentable {
 	public var frame: CGRect { get {
 		if let format = self.format {
 			let rect = sourceImage.frame
-			let cropRect = CGRect(x: 0, y: 0, width: rect.width, height: rect.width / format.ratio.ratio)//.fitting(rect: image.frame)
+            //TO: Check
+			let cropRect = CGRect(x: 0, y: 0, width: rect.height / format.ratio.ratio, height: rect.height)//.filling(rect: image.frame)
 			return cropRect
 		} else {
 			return sourceImage.frame

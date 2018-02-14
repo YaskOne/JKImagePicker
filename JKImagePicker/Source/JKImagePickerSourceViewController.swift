@@ -22,12 +22,19 @@ public protocol JKImagePickerSourceDelegate {
 	
 	func commandButtonTapped(command: JKCameraCommand)
 	
-	/// stateChanged
-	///
-	/// Called when state of the picker changes
-	/// So the delegate can update interface
-	
-	func stateChanged()
+    /// stateChanged
+    ///
+    /// Called when state of the picker changes
+    /// So the delegate can update interface
+    
+    func stateChanged()
+    
+    /// cameraResolutionLoaded
+    ///
+    /// Called when source resolution changed
+    /// So the delegate can update interface
+    
+    func cameraResolutionLoaded()
 	
 	/// enabledStateChanged
 	///
@@ -51,9 +58,13 @@ public class JKImagePickerSourceViewController : JKOrientatedViewController, JKP
 	
 	//MARK: - State change
 	
-	public func stateChanged() {
-		delegate?.stateChanged()
-	}
+    public func stateChanged() {
+        delegate?.stateChanged()
+    }
+
+    public func cameraResolutionLoaded() {
+        delegate?.cameraResolutionLoaded()
+    }
 	
 	public var ratio: CGFloat = 1 { didSet {
 		guard let sv = view.superview else { return }
@@ -72,7 +83,7 @@ public class JKImagePickerSourceViewController : JKOrientatedViewController, JKP
 		UIView.animate(withDuration: 0.3) {
 			self.view.frame = CGRect.init(x: leftOffset, y: topOffset, width: width, height: height)
 		}
-		}}
+    }}
 
     //MARK: - Orientation
     

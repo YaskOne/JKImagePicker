@@ -23,7 +23,7 @@ public class JKSplitViewController: JKFeatureViewController {
 		updateSplit()
 		}}
 	
-	public var modes: [JKSplitMode] = [.vertical,.diagonalLeft,.horizontal,.diagonalRight]
+	public var modes: [JKSplitMode] = [.horizontal,.diagonalRight,.vertical,.diagonalLeft]
 	
 	public var modeIndex = 0 { didSet {
 		mode = modes[modeIndex]

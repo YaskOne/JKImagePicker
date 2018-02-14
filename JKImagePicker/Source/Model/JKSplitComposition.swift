@@ -32,15 +32,12 @@ public class JKSplitComposition : JKComposition {
 	public var center: CGPoint = CGPoint(x: 0.5, y: 0.5)
 
 	public override var image: UIImage? { get {
-		guard let image1 = self.image1 else { return nil }
-		let splitView = JKSplitView(frame: image1.frame)
-		splitView.settings = JKSplitSettings.init(angle: angle,center: center)
-		splitView.image1 = image1.image
-		splitView.image2 = image2?.image
-		splitView.setNeedsDisplay()
-		let output = splitView.snapshot
-		return output
-		}}
+        guard let img1 = image1?.image?.cgImage, let img2 = image2?.image?.cgImage, let frame = image1?.frame else {
+            return nil
+        }
+        return JKSplitView.generateSplitImage(image1: img1, image2: img2, angle: angle, center: center, frame: frame)
+        }
+    }
 
 	init(angle: CGFloat, center: CGPoint) {
 		super.init()

@@ -104,7 +104,6 @@
 		BC2CBEF12032EEA2005E62D5 /* iOSCommons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSCommons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2CBEF32032EF0A005E62D5 /* JackFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JackFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC4D9CCB203306180029E9E1 /* JKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKImagePicker.swift; sourceTree = "<group>"; };
-		BC4D9CCF203308500029E9E1 /* JKSplitFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKSplitFeatureViewController.swift; sourceTree = "<group>"; };
 		D7DD99CA203450A5001131C6 /* ImagePickerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				BC2CBEB32032ED96005E62D5 /* JKFeatureViewController.swift */,
-				BC4D9CCF203308500029E9E1 /* JKSplitFeatureViewController.swift */,
 				BC2CBEAC2032ED96005E62D5 /* JKSplit */,
 			);
 			path = PickerFeatures;

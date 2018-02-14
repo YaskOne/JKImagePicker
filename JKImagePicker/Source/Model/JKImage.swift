@@ -16,10 +16,13 @@ import iOSCommons
 public protocol JKImageRepresentable {
 	var image : UIImage? { get }
 	var format: JKImageFormat? { get set }
+	var frame: CGRect { get set }
 }
 
 public class JKImage: JKImageRepresentable {
+	
 	public var sourceImage : CGImage
+	
 	public var frame: CGRect { get {
 		if let format = self.format {
 			let rect = sourceImage.frame
@@ -29,7 +32,12 @@ public class JKImage: JKImageRepresentable {
 		} else {
 			return sourceImage.frame
 		}
-		}}
+		}
+		set {
+			
+		}
+	}
+	
 	public var center: CGPoint = CGPoint(x: 0.5, y: 0.5)
 	public var scale: CGFloat = 1.0
 

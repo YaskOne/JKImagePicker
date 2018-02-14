@@ -74,7 +74,7 @@ public class JKCameraPreview: UIView {
 			if let device = currentDevice {
 				device.addObserver(self, forKeyPath: "adjustingFocus", options: .new, context: nil)
 				device.addObserver(self, forKeyPath: "isFlashAvailable", options: .new, context: nil)
-				avCapturePhotoOutput.addObserver(self, forKeyPath: "isFlashScene", options: .new, context: nil)
+//                avCapturePhotoOutput.addObserver(self, forKeyPath: "isFlashScene", options: .new, context: nil)
 			}
 		})
     }
@@ -84,7 +84,7 @@ public class JKCameraPreview: UIView {
 			NotificationCenter.default.post(name: JKCameraPreview.isoChangedNotification, object: self, userInfo: change)
 		}
 		else if keyPath == "isFlashScene" {
-			NotificationCenter.default.post(name: JKCameraPreview.flashActiveChangedNotification, object: self, userInfo: nil)
+//            NotificationCenter.default.post(name: JKCameraPreview.flashActiveChangedNotification, object: self, userInfo: nil)
 		}
 		else if keyPath == "isFlashAvailable" {
 			NotificationCenter.default.post(name: JKCameraPreview.flashReadyChangedNotification, object: self, userInfo: nil)
@@ -98,7 +98,7 @@ public class JKCameraPreview: UIView {
     public func stopCamera() {
 		if let device = currentDevice {
 			device.removeObserver(self, forKeyPath: "adjustingFocus")
-			self.capturePhotoOutput?.removeObserver(self, forKeyPath: "isFlashScene")
+//            self.capturePhotoOutput?.removeObserver(self, forKeyPath: "isFlashScene")
 			device.removeObserver(self, forKeyPath: "isFlashAvailable")
 		}
         if self.captureSession != nil && self.captureSession!.isRunning {

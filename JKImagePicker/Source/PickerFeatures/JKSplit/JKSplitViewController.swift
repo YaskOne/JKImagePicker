@@ -12,7 +12,9 @@ public class JKSplitViewController: JKFeatureViewController {
 
 	@IBOutlet public var splitView: JKSplitView!
 
-	//TODO: Fully replace UIImage by JKImages to allow repositionning
+    @IBOutlet weak var touchAngleControl: JKCenterAngleControlView!
+
+    //TODO: Fully replace UIImage by JKImages to allow repositionning
 	public var jkImage2: JKImage?
 
 	public var modeButton: UIButton?

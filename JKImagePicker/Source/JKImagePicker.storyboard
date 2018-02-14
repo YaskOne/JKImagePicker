@@ -20,11 +20,11 @@
         <scene sceneID="Cgh-Vz-I6U">
             <objects>
                 <viewController storyboardIdentifier="Split" id="Twz-Xj-Mdn" customClass="JKSplitViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hfc-Ch-LkP">
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="hfc-Ch-LkP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-Oz-6Dp" customClass="JKSplitView" customModule="JKImagePicker" customModuleProvider="target">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-Oz-6Dp" customClass="JKSplitView" customModule="JKImagePicker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -51,6 +51,7 @@
                     </view>
                     <connections>
                         <outlet property="splitView" destination="e4y-Oz-6Dp" id="ndz-yN-QdM"/>
+                        <outlet property="touchAngleControl" destination="UWP-GB-7qK" id="LdI-lH-2rH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPV-Lb-aTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -60,9 +61,8 @@
         <!--Navigation Controller-->
         <scene sceneID="SKg-gE-hSu">
             <objects>
-                <navigationController id="W4e-kY-rmT" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="W4e-kY-rmT" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QU5-O4-xgS">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -86,10 +86,10 @@
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QzJ-NY-YAs">
-                                <rect key="frame" x="16" y="64" width="343" height="56"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="53.5"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="QzJ-NY-YAs" secondAttribute="height" multiplier="7:1" constant="-49" id="3dG-fi-DIs"/>
+                                    <constraint firstAttribute="width" secondItem="QzJ-NY-YAs" secondAttribute="height" multiplier="7:1" id="7eC-bW-MZH"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="y87-ES-1nW" kind="embed" identifier="pickerControlsSegue" id="b4d-Hd-hO9"/>
@@ -121,13 +121,13 @@
                             <constraint firstItem="ig8-HO-SOw" firstAttribute="bottom" secondItem="El1-bA-CzZ" secondAttribute="bottom" constant="-25" id="0wW-Dh-Ksg"/>
                             <constraint firstItem="Uza-8r-exW" firstAttribute="centerX" secondItem="EjT-Sk-qg6" secondAttribute="centerX" id="3nR-Ks-I0i"/>
                             <constraint firstItem="ig8-HO-SOw" firstAttribute="top" secondItem="Uza-8r-exW" secondAttribute="bottom" constant="3" id="Bd6-xC-97Q"/>
-                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="top" secondItem="El1-bA-CzZ" secondAttribute="top" id="FaA-6t-stg"/>
                             <constraint firstItem="ZwL-0O-ubg" firstAttribute="top" secondItem="EjT-Sk-qg6" secondAttribute="top" id="IHe-AY-dFB"/>
-                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" constant="-16" id="RTZ-u7-qK3"/>
+                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" id="Kte-OF-wyH"/>
+                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="top" secondItem="El1-bA-CzZ" secondAttribute="top" id="NnK-28-XyM"/>
                             <constraint firstItem="ig8-HO-SOw" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" constant="16" id="VRc-12-LqP"/>
+                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" id="asS-ga-GUf"/>
                             <constraint firstItem="ZwL-0O-ubg" firstAttribute="bottom" secondItem="El1-bA-CzZ" secondAttribute="bottom" id="ebE-Zo-utP"/>
                             <constraint firstItem="ZwL-0O-ubg" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" id="gUZ-rl-pJS"/>
-                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" constant="16" id="ixx-nv-jxp"/>
                             <constraint firstItem="ig8-HO-SOw" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" constant="-16" id="mK7-bB-1rs"/>
                             <constraint firstItem="ZwL-0O-ubg" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" id="n4t-da-Cbo"/>
                         </constraints>
@@ -140,30 +140,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dfz-3X-FCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-63" y="-151"/>
+            <point key="canvasLocation" x="-63.200000000000003" y="-151.57421289355324"/>
         </scene>
         <!--Picker Buttons View Controller-->
         <scene sceneID="xdT-oo-3wa">
             <objects>
                 <viewController storyboardIdentifier="pickerControls" id="y87-ES-1nW" customClass="JKPickerButtonsViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gCz-h6-oeA">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7B6-TH-hpY">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                                <rect key="frame" x="7" y="0.0" width="361" height="53.5"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" priority="250" constant="53" id="hZs-3j-qUd"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="mH7-KV-Rmy" firstAttribute="trailing" secondItem="7B6-TH-hpY" secondAttribute="trailing" priority="600" id="4Vc-ZL-LEE"/>
-                            <constraint firstItem="7B6-TH-hpY" firstAttribute="leading" secondItem="mH7-KV-Rmy" secondAttribute="leading" id="Mub-Vo-9Cn"/>
-                            <constraint firstItem="mH7-KV-Rmy" firstAttribute="bottom" secondItem="7B6-TH-hpY" secondAttribute="bottom" id="b3E-pe-mXv"/>
-                            <constraint firstItem="7B6-TH-hpY" firstAttribute="top" secondItem="gCz-h6-oeA" secondAttribute="top" id="rKv-AU-m4G"/>
+                            <constraint firstAttribute="trailing" secondItem="7B6-TH-hpY" secondAttribute="trailing" constant="7" id="D67-AB-RjU"/>
+                            <constraint firstItem="7B6-TH-hpY" firstAttribute="top" secondItem="mH7-KV-Rmy" secondAttribute="top" id="O7O-ke-vcR"/>
+                            <constraint firstItem="7B6-TH-hpY" firstAttribute="bottom" secondItem="mH7-KV-Rmy" secondAttribute="bottom" id="R1l-HI-tyr"/>
+                            <constraint firstItem="7B6-TH-hpY" firstAttribute="leading" secondItem="mH7-KV-Rmy" secondAttribute="leading" constant="7" id="Y6B-V7-ZNo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mH7-KV-Rmy"/>
                     </view>

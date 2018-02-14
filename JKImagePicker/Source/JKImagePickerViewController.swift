@@ -29,7 +29,17 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	
     public var delegate: JKImagePickerDelegate? = nil
 	
-	public var _settings: JKPickerSettings?
+    public var _settings: JKPickerSettings? {
+        didSet {
+            if let formatRatios = _settings?.formatRatios {
+                availableRatios = formatRatios
+            }
+            
+            if let _ = self.view {
+                updateInterfaceAfterSettingsChange()
+            }
+        }
+    }
 	
 	public lazy var formatHelper = { return JKImageFormatHelper(formats: self.settings.formatRatios, format: nil) }()
 	
@@ -38,9 +48,6 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		}
 		set {
 			_settings = newValue
-			if let _ = self.view {
-				updateInterfaceAfterSettingsChange()
-			}
 		}
 	}
 	
@@ -93,6 +100,10 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 				break
 			case .split:
 				loadFeature(named:"Split", animated: true)
+                if let splitVC = featureVC as? JKSplitViewController {
+                    splitVC.view.isUserInteractionEnabled = settings.hasFreeSplit
+                    splitVC.touchAngleControl.isUserInteractionEnabled = settings.hasFreeSplit
+                }
 				break
 			}
 			updateInterface()
@@ -102,7 +113,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	
 	public var imageFormat: JKImageFormat = JKImageFormat(ratio: JKImageFormatRatio.fullScreen, orientation: JKImageFormatOrientation.portrait)
 	
-	public var availableRatios = [JKImageFormatRatio.fullScreen]
+	public var availableRatios = JKPickerSettings.default.formatRatios
 	
 	public var image: JKImage?
 
@@ -116,6 +127,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
         super.viewDidLoad()
 		setPicker(.camera)
 		NotificationCenter.default.addObserver(self, selector: #selector(formatChanged(notif:)), name: JKImageFormatHelper.changed, object: nil)
+        updateInterfaceAfterSettingsChange()
 	}
 	
 	@objc public func formatChanged(notif: Notification) {
@@ -144,11 +156,11 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	}
 	
 	public func setPicker(_ type: PickerType, animated: Bool = true) {
-		if type == .camera {
-			cameraVC.cameraPreview?.startCamera()
-		}
-
 		if type == self.currentPicker && currentPickerController != nil { return }
+        
+        if type == .camera {
+            cameraVC.cameraPreview?.startCamera()
+        }
 		
 		let newPicker = pickerViewController(with: type)
 		setupPicker(newPicker)

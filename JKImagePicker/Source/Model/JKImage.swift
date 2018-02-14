@@ -30,6 +30,7 @@ public class JKImage: JKImageRepresentable {
 			return sourceImage.frame
 		}
 		}}
+    
 	public var center: CGPoint = CGPoint(x: 0.5, y: 0.5)
 	public var scale: CGFloat = 1.0
 

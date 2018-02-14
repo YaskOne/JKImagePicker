@@ -45,7 +45,7 @@ public enum JKCameraControlItem: Int {
 		case .split:
 			return JackImagePickerFont.icon_split_vertical
 		case .switchCam:
-			return JackImagePickerFont.icon_switch
+			return JackImagePickerFont.icon_front_camera
 		case .camera:
 			return JackImagePickerFont.icon_camera
 		case .close:

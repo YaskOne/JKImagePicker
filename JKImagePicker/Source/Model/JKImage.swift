@@ -34,7 +34,7 @@ public class JKImage: JKImageRepresentable {
 
 	public var format: JKImageFormat?
 	
-	init(_ image: CGImage, format: JKImageFormat) {
+	public init(_ image: CGImage, format: JKImageFormat? = nil) {
 		self.sourceImage = image
 		self.format = format
 	}

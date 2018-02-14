@@ -441,4 +441,3 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 	}
 
 }
-

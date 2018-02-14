@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Photos
 
 public struct JKImagePicker {
 	public static let bundle = Bundle(identifier: "Jack-World.JKImagePicker")
@@ -27,5 +28,20 @@ public struct JKImagePicker {
 		}
 		return picker
 	}
-	
+
+    public static func checkGalleryAuthorization(error: (() -> Void)? = nil, success: @escaping() -> Void) {
+        PHPhotoLibrary.requestAuthorization({(status:PHAuthorizationStatus)in
+            switch status {
+            case .denied:
+                error?()
+                return
+            case .authorized:
+                success()
+                return
+            default:
+                error?()
+                return
+            }
+        })
+    }
 }

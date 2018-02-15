@@ -247,16 +247,17 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 
 public extension JKCameraViewController {
 	
-	public func capturePhoto() {
+	public func capturePhoto() -> Bool {
 		// Make sure capturePhotoOutput is valid
 		guard isEnabled, let capturePhotoOutput = self.capturePhotoOutput else {
-			return
+			return false
 		}
 		obture()
 		isEnabled = false
 		// Call capturePhoto method by passing our photo settings and a
 		// delegate implementing AVCapturePhotoCaptureDelegate
 		capturePhotoOutput.capturePhoto(with: avSettings, delegate: self)
+        return true
 	}
 	
 	public func obture() {

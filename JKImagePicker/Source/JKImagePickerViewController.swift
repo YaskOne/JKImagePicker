@@ -72,7 +72,25 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 			return previewVC
 		}
 	}
-	
+    
+    var blockOverlay: UIView? = nil
+    
+    func lockOverlay() {
+        guard let window = self.view.window else {
+            return
+        }
+        let view = UIView(frame: window.bounds)
+        window.addSubview(view)
+        view.isUserInteractionEnabled = true
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        blockOverlay = view
+    }
+    
+    func unlockOverlay() {
+        blockOverlay?.removeFromSuperview()
+        blockOverlay = nil
+    }
+    
 	public var currentPickerController: JKImagePickerSourceViewController? { didSet {
 		updateInterface()
 		}}
@@ -280,7 +298,10 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 	
 	public func pictureAvailable(_ image: UIImage) {
-		if let cgImage = image.cgImage {
+        pickerActions?.needsConfirm = true
+        unlockOverlay()
+
+        if let cgImage = image.cgImage {
 			self.image = JKImage(cgImage, format: imageFormat)
 			previewVC.jkImage = self.image
 		}
@@ -288,7 +309,9 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 			previewVC.image = image
 		}
 
-        if !settings.hasConfirmation && (currentPickerController is JKCameraViewController) && featureVC == nil {
+        if !settings.hasConfirmation
+            && (currentPickerController is JKCameraViewController)
+            && featureVC == nil {
             pickerAction(action: .confirm)
             return
         }
@@ -373,9 +396,10 @@ extension JKImagePickerViewController: PickerActionsDelegate {
     public func pickerAction(action: PickerAction) {
 		switch action {
 		case .normal:
-			if currentPickerController == cameraVC  {
-				cameraVC.capturePhoto()
-				pickerActions?.needsConfirm = true
+			if currentPickerController == cameraVC {
+                if cameraVC.capturePhoto() {
+                    lockOverlay()
+                }
 			}
 		case .splitted:
 			if let splitVC = featureVC as? JKSplitViewController {
@@ -384,7 +408,9 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 					return
 				}
 				if currentPickerController == cameraVC  {
-					cameraVC.capturePhoto()
+                    if cameraVC.capturePhoto() {
+                        lockOverlay()
+                    }
 					return
 				}
 /*
@@ -402,7 +428,6 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 			switch currentPicker {
 			case .camera:
 				// Should not happen, since mode gets back to still just after an image has been selected in Camera
-                
                 if let jkImage = self.image {
                     delegate?.imagePickerSuccess(image: jkImage)
                 }

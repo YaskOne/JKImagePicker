@@ -93,7 +93,9 @@ import UIKit
     
     public func hideFocus() {
 		guard let focus = focusView else { return }
-		motion?.start()
+		if let _ = self.focusPoint {
+			motion?.start()
+		}
 		UIView.animate(withDuration: 0.3) { focus.alpha = 0 }
     }
     

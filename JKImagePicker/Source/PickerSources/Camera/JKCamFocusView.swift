@@ -13,13 +13,15 @@ public class JKCamFocusView: UIView {
     public var focusSquare: UIView?
     public var verticalSlider: JKVerticalSlider?
 	
+	var showSliderInAutofocus = true
+	
 	public var autoFocus: Bool = true { didSet {
 			sliderVisible = !autoFocus
 			largeFocus = autoFocus
 		}}
 	
 	public var sliderVisible: Bool = true { didSet {
-		//verticalSlider?.alpha = sliderVisible ? 1 : 0
+		verticalSlider?.alpha = showSliderInAutofocus && sliderVisible ? 1 : 0
 		}}
 	
 	public var largeFocus: Bool = false { didSet {

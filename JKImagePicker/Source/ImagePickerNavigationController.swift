@@ -9,7 +9,12 @@
 import Foundation
 
 class ImagePickerNavigationController: UINavigationController {
-    
+	
+	// For debugging purpose
+	override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+		super.dismiss(animated: flag, completion: completion)
+	}
+	
     override var shouldAutorotate: Bool {
         get {
             return false

@@ -46,6 +46,7 @@ public class JKImage: JKImageRepresentable {
 	public init(_ image: CGImage, format: JKImageFormat? = nil) {
 		self.sourceImage = image
 		self.format = format
+		self.frame = CGRect.zero
 	}
 	
 	public var originalImage: UIImage {

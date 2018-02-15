@@ -20,7 +20,7 @@ public class JKMotionDetector {
 	public let motion = CMMotionManager()
 	
 	public var interval: Double = 0.2 { didSet { restart() }}
-	public var threshold: Double = 0.04
+	public var threshold: Double = 0.1
 	
 	public var referenceAcceleration :  CMAcceleration?
 	

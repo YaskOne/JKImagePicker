@@ -72,25 +72,6 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 			return previewVC
 		}
 	}
-    
-    var blockOverlay: UIView? = nil
-    
-    func lockOverlay() {
-        guard let window = self.view.window else {
-            return
-        }
-        let view = UIView(frame: window.bounds)
-        window.addSubview(view)
-        view.isUserInteractionEnabled = true
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
-        blockOverlay = view
-    }
-    
-    func unlockOverlay() {
-        blockOverlay?.removeFromSuperview()
-        blockOverlay = nil
-    }
-    
 	public var currentPickerController: JKImagePickerSourceViewController? { didSet {
 		updateInterface()
 		}}
@@ -162,6 +143,29 @@ public class JKImagePickerViewController: JKOrientatedViewController {
         super.viewWillDisappear(animated)
     }
 	
+	//MARK: - Block Overlay
+	
+	var blockOverlay: UIView? = nil
+	
+	func lockOverlay() {
+		guard let window = self.view.window else {
+			return
+		}
+		let view = UIView(frame: window.bounds)
+		view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+		window.addSubview(view)
+		view.isUserInteractionEnabled = true
+		blockOverlay = view
+	}
+	
+	func unlockOverlay() {
+		blockOverlay?.removeFromSuperview()
+		blockOverlay = nil
+	}
+	
+
+	//MARK: - Format
+	
 	@objc public func formatChanged(notif: Notification) {
 		if let formatRatio = notif.userInfo?[JKImageFormatHelper.key] as? JKImageFormatRatio {
 			imageFormat.ratio = formatRatio
@@ -188,6 +192,8 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		
 		formatButton.setTitle(format.label, for: .normal)
 	}
+	
+	//MARK: - Picker selection
 	
 	public func setPicker(_ type: PickerType, animated: Bool = true) {
         
@@ -466,6 +472,7 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 		switch action {
 		case .normal:
 			currentFeature = .normal
+			self.image = nil
 			if let feature = featureVC as? JKSplitViewController {
 				feature.image2 = nil
 				feature.image1 = nil

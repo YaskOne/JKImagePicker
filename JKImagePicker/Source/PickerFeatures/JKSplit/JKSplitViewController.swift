@@ -51,7 +51,7 @@ public class JKSplitViewController: JKFeatureViewController {
 		}}
 	
 	public func updateSplit() {
-		var settings = mode.settings
+		var settings = mode.settingsForFrame(frame: self.view.frame)
 		settings.angle += swapped ? CGFloat.pi : 0
 		splitView?.settings = settings
 		modeButton?.setTitle(mode.label, for: .normal)

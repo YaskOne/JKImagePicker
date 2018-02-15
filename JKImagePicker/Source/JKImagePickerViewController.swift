@@ -298,7 +298,6 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 	
 	public func pictureAvailable(_ image: UIImage) {
-        pickerActions?.needsConfirm = true
         unlockOverlay()
 
         if let cgImage = image.cgImage {
@@ -320,6 +319,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 			split.image = image
 			
 			if split.image2 != nil {
+                pickerActions?.needsConfirm = true
 				split.jkImage2 = self.image
 				setPicker(.still)
 			} else {
@@ -328,6 +328,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 			}
 		}
         else {
+            pickerActions?.needsConfirm = true
             setPicker(.still)
         }
 	}

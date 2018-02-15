@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import iOSCommons
 
 public enum JKSplitMode: Int {
 	case free
@@ -49,18 +50,33 @@ public enum JKSplitMode: Int {
 		}
 		}}
 
-	public var settings: JKSplitSettings { get {
-		switch self {
-		case .free:
-			return JKSplitMode.freeSettings
-		case .horizontal:
-			return JKSplitSettings(angle: 0)
+    public var settings: JKSplitSettings { get {
+        switch self {
+        case .free:
+            return JKSplitMode.freeSettings
+        case .horizontal:
+            return JKSplitSettings(angle: 0)
         case .diagonalRight:
             return JKSplitSettings(angle: CGFloat.pi / 4)
-		case .vertical:
-			return JKSplitSettings(angle: CGFloat.pi / 2)
-		case .diagonalLeft:
-			return JKSplitSettings(angle: 3 * CGFloat.pi / 4)
-		}
-		}}
+        case .vertical:
+            return JKSplitSettings(angle: CGFloat.pi / 2)
+        case .diagonalLeft:
+            return JKSplitSettings(angle: 3 * CGFloat.pi / 4)
+        }
+        }}
+
+    public func settingsForFrame(frame: CGRect) -> JKSplitSettings {
+        switch self {
+        case .free:
+            return JKSplitMode.freeSettings
+        case .horizontal:
+            return JKSplitSettings(angle: 0)
+        case .diagonalRight:
+            return JKSplitSettings(angle: angleBetweenPoints(frame.center, CGPoint(x: frame.maxX, y: 0)))
+        case .vertical:
+            return JKSplitSettings(angle: CGFloat.pi / 2)
+        case .diagonalLeft:
+            return JKSplitSettings(angle: angleBetweenPoints(frame.center, CGPoint.zero))
+        }
+    }
 }

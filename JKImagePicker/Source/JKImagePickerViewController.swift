@@ -275,11 +275,6 @@ public class JKImagePickerViewController: JKOrientatedViewController {
         
         super.viewWillDisappear(animated)
     }
-    
-    override public func didReceiveMemoryWarning() {
-        print("MEMORY ERROR")
-    }
-
 }
 
 extension JKImagePickerViewController: JKImagePickerSourceDelegate {
@@ -293,6 +288,11 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 			previewVC.image = image
 		}
 
+        if !settings.hasConfirmation && (currentPickerController is JKCameraViewController) && featureVC == nil {
+            pickerAction(action: .confirm)
+            return
+        }
+
 		if let split = featureVC as? JKSplitViewController {
 			split.image = image
 			
@@ -304,9 +304,9 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 				setPicker(.camera)
 			}
 		}
-		else {
-			setPicker(.still)
-		}
+        else {
+            setPicker(.still)
+        }
 	}
 	
 	public func commandButtonTapped(command: JKCameraCommand) {
@@ -319,7 +319,14 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 			setPicker(.camera)
 			
 		case JKCameraControlItem.gallery.rawValue:
-			setPicker(.gallery)
+            
+            JKImagePicker.checkGalleryAuthorization(error: {
+                print("Not authorized for gallery access")
+            }, success: {
+                DispatchQueue.main.async {
+                    self.setPicker(.gallery)
+                }
+            })
 			
 		default:
 			featureVC?.commandButtonTapped(command: command)
@@ -395,6 +402,10 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 			switch currentPicker {
 			case .camera:
 				// Should not happen, since mode gets back to still just after an image has been selected in Camera
+                
+                if let jkImage = self.image {
+                    delegate?.imagePickerSuccess(image: jkImage)
+                }
 				break
 			case .gallery:
 				// Should not happen, since mode gets back to still just after an image has been selected in Gallery

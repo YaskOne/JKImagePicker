@@ -460,6 +460,10 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 		switch action {
 		case .normal:
 			currentFeature = .normal
+			if let feature = featureVC as? JKSplitViewController {
+				feature.image2 = nil
+				feature.image1 = nil
+			}
 			setPicker(.camera)
 		case .splitted:
 			if let feature = featureVC as? JKSplitViewController {

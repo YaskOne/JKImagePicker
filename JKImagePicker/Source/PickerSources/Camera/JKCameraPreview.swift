@@ -56,7 +56,6 @@ public class JKCameraPreview: UIView {
     
     
     public func startCamera() {
-		backgroundColor = UIColor.red
 		self.configureCaptureSession({ success, avCapturePhotoOutput in
 			guard let session = self.captureSession, success else { return }
 			

@@ -16,7 +16,18 @@ public class JKSplitViewController: JKFeatureViewController {
 
     //TODO: Fully replace UIImage by JKImages to allow repositionning
 	public var jkImage2: JKImage?
+	{
+		didSet {
+			image2 = jkImage2?.image
+		}
+	}
 
+	override public var jkImage1: JKImage? {
+		didSet {
+			image1 = jkImage1?.image
+		}
+	}
+	
 	public var modeButton: UIButton?
 	
 	public var mode: JKSplitMode = JKSplitMode.horizontal { didSet {

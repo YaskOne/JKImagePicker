@@ -145,11 +145,22 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	
     override public func viewDidLoad() {
         super.viewDidLoad()
-		setPicker(.camera)
 		NotificationCenter.default.addObserver(self, selector: #selector(formatChanged(notif:)), name: JKImageFormatHelper.changed, object: nil)
         updateInterfaceAfterSettingsChange()
         updateFormat()
 	}
+    
+    override public func viewWillAppear(_ animated: Bool) {
+        setPicker(.camera)
+        
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override public func viewWillDisappear(_ animated: Bool) {
+        cameraVC.cameraPreview?.stopCamera()
+        
+        super.viewWillDisappear(animated)
+    }
 	
 	@objc public func formatChanged(notif: Notification) {
 		if let formatRatio = notif.userInfo?[JKImageFormatHelper.key] as? JKImageFormatRatio {
@@ -287,12 +298,6 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		updateFormat()
 		previewVC.view.transform = t
 	}
-    
-    override public func viewWillDisappear(_ animated: Bool) {
-        cameraVC.cameraPreview?.stopCamera()
-        
-        super.viewWillDisappear(animated)
-    }
 }
 
 extension JKImagePickerViewController: JKImagePickerSourceDelegate {

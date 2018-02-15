@@ -8,20 +8,20 @@
 
 import Foundation
 
-class ImagePickerNavigationController: UINavigationController {
+public class ImagePickerNavigationController: UINavigationController {
 	
 	// For debugging purpose
-	override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+    override public func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
 		super.dismiss(animated: flag, completion: completion)
 	}
 	
-    override var shouldAutorotate: Bool {
+    override public var shouldAutorotate: Bool {
         get {
             return false
         }
     }
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         get {
             return .portrait
         }

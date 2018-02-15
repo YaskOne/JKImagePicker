@@ -18,6 +18,7 @@ public struct JKImagePicker {
 			let picker = nav.topViewController as? JKImagePickerViewController else {
 				return nil
 		}
+        
 		DispatchQueue.main.async {
 			picker.delegate = delegate
 			if let settings = settings {

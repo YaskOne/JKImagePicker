@@ -273,7 +273,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
     override public func viewWillDisappear(_ animated: Bool) {
         cameraVC.cameraPreview?.stopCamera()
         
-        super.dismiss(animated: animated)
+        super.viewWillDisappear(animated)
     }
     
     override public func didReceiveMemoryWarning() {

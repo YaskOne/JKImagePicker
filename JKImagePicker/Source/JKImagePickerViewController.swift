@@ -142,6 +142,12 @@ public class JKImagePickerViewController: JKOrientatedViewController {
         
         super.viewWillDisappear(animated)
     }
+    
+    override public func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+        print("$$$$$$$$ MEMORY WARNING IN JACK IMAGE PICKER VIEW CONTROLLER $$$$$$$$$$$")
+    }
 	
 	//MARK: - Block Overlay
 	

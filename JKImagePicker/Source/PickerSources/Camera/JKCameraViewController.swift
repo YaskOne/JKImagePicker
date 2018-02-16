@@ -68,8 +68,8 @@ public class JKCameraViewController: JKImagePickerSourceViewController {
 
 		let cameraPreview = JKCameraPreview(frame: view.bounds)
 		view.addSubview(cameraPreview)
-		cameraPreview.startCamera()
-		self.cameraPreview = cameraPreview
+
+        self.cameraPreview = cameraPreview
 		
 		let controlView = JKCameraControlView(frame: view.bounds)
 		view.addSubview(controlView)
@@ -103,6 +103,11 @@ public class JKCameraViewController: JKImagePickerSourceViewController {
 		controlView?.frame = view.bounds
 	}
 	
+    override public func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+        print("$$$$$$$$ MEMORY WARNING IN JACK CAMERA VIEW CONTROLLER $$$$$$$$$$$")
+    }
 
 
     //MARK: - Notifications

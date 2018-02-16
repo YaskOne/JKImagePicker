@@ -51,7 +51,7 @@ public class JKCamFocusView: UIView {
 		let w = focusSize
         focusSquare = UIView(frame: CGRect(x: w / 2, y: w / 2, width: w, height: w))
         verticalSlider = JKVerticalSlider(frame: CGRect(x: w + 10, y: 0, width: w / 2, height: bounds.height))
-        
+        autoFocus = true
         focusSquare?.layer.backgroundColor = UIColor.clear.cgColor
         focusSquare?.layer.borderColor = UIColor.white.cgColor
         focusSquare?.layer.borderWidth = 1

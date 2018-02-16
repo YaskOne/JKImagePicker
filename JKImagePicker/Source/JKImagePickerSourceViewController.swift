@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JackFoundation
 
 public protocol JKImagePickerSourceDelegate {
 	
@@ -14,7 +15,7 @@ public protocol JKImagePickerSourceDelegate {
 	///
 	/// Called when the image is ready to be used
 	
-	func pictureAvailable(_ image: UIImage)
+    func pictureAvailable(_ image: UIImage, metaData: JsonDict?)
 	
 	/// commandButtonTapped
 	///

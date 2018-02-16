@@ -215,7 +215,7 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 			
 			// Let the time to see the obturation and the picture
 			DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-				self.delegate?.pictureAvailable(image)
+                self.delegate?.pictureAvailable(image, metaData: nil)
 			}
 		}
 	}

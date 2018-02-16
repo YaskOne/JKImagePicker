@@ -8,9 +8,10 @@
 
 import UIKit
 import AVFoundation
+import JackFoundation
 
 public protocol JKImagePickerDelegate {
-    func imagePickerSuccess(image: JKImageRepresentable)
+    func imagePickerSuccess(image: JKImageRepresentable, metaData: JsonDict?)
     func imagePickerCancel()
 }
 
@@ -116,7 +117,8 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	
 	public var availableRatios = JKPickerSettings.default.formatRatios
 	
-	public var image: JKImage?
+    public var image: JKImage?
+    public var metaData: JsonDict?
 
 	public var composition: JKComposition?
 	
@@ -314,7 +316,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 
 extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 	
-	public func pictureAvailable(_ image: UIImage) {
+    public func pictureAvailable(_ image: UIImage, metaData: JsonDict? = nil) {
         unlockOverlay()
 
         if let cgImage = image.cgImage {
@@ -324,6 +326,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 		else {
 			previewVC.image = image
 		}
+        self.metaData = metaData
 
         if !settings.hasConfirmation
             && (currentPickerController is JKCameraViewController)
@@ -447,7 +450,7 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 			case .camera:
 				// Should not happen, since mode gets back to still just after an image has been selected in Camera
                 if let jkImage = self.image {
-                    delegate?.imagePickerSuccess(image: jkImage)
+                    delegate?.imagePickerSuccess(image: jkImage, metaData: self.metaData)
                 }
 				break
 			case .gallery:
@@ -461,13 +464,13 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 						let splitComposition = JKSplitComposition(angle: settings.angle, center: settings.center)
 						splitComposition.image1 = jkImage1
 						splitComposition.image2 = jkImage2
-						delegate?.imagePickerSuccess(image: splitComposition)
+						delegate?.imagePickerSuccess(image: splitComposition, metaData: self.metaData)
 					}
 					return
 				}
 
 				if let jkImage = self.image {
-						delegate?.imagePickerSuccess(image: jkImage)
+						delegate?.imagePickerSuccess(image: jkImage, metaData: self.metaData)
 				}
 			}
 		}

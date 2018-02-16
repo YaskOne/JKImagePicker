@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JackFoundation
 
 public class JKGalleryViewController: JKImagePickerSourceViewController {
 
@@ -21,7 +22,7 @@ public class JKGalleryViewController: JKImagePickerSourceViewController {
 			if let vc = segue.destination as? JKGalleryCollectionViewController {
 				photoLoader.fetchAllPhotos()
 				vc.delegate = self
-				vc.items = photoLoader.photos.map{ JKGalleryItem(asset:$0) }
+				vc.items = photoLoader.sortedPhotos.map{ JKGalleryItem(asset:$0) }
 			}
 		}
 	}
@@ -31,12 +32,17 @@ public class JKGalleryViewController: JKImagePickerSourceViewController {
 extension JKGalleryViewController : JKGalleryViewControllerDelegate {
 	
 	public func photoAssetSelected(_ asset: JKPhotoAsset) {
-		
 		if asset.fullSize == nil {
 			JKGalleryDataLoader.loadImageForAsset(asset: asset)
 		}
 		if let image = asset.fullSize {
-			delegate?.pictureAvailable(image)
+            var dict: JsonDict? = nil
+
+            if let location = asset.location {
+                dict = ["location": location]
+            }
+            
+			delegate?.pictureAvailable(image, metaData: dict)
 		}
 	}
 	

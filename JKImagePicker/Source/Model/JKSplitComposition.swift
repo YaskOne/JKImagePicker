@@ -47,16 +47,6 @@ public class JKComposition: JKImageRepresentable {
 
 	public var image1: JKImage?
 	public var image2: JKImage?
-	
-	public func dictionary(image1UID: String, image2UID: String) -> JsonDict {
-		let img1Dict: JsonDict = ["uid" : image1UID]
-		let img2Dict: JsonDict = ["uid" : image2UID]
-		let splitDict: JsonDict = ["image1": img1Dict, "image2": img2Dict]
-		let featuresDict: JsonDict = ["base" : splitDict]
-		let info: JsonDict = ["size": frame.size, "features" : featuresDict]
-		
-		return info
-	}
 
 }
 
@@ -64,16 +54,6 @@ public class JKSplitComposition : JKComposition {
 	public var angle: CGFloat = 0
 	public var center: CGPoint = CGPoint(x: 0.5, y: 0.5)
 
-	override public func dictionary(image1UID: String, image2UID: String) -> JsonDict {
-		let img1Dict: JsonDict = ["uid" : image1UID]
-		let img2Dict: JsonDict = ["uid" : image2UID]
-		let splitDict: JsonDict = ["angle" : angle, "center" : center, "image1": img1Dict, "image2": img2Dict]
-		let featuresDict: JsonDict = ["split" : splitDict]
-		let info: JsonDict = ["size": frame.size, "features" : featuresDict]
-		
-		return info
-		}
-	
 	public override var image: UIImage? { get {
         guard let img1 = image1?.image?.cgImage, let img2 = image2?.image?.cgImage, let frame = image1?.frame else {
             return nil
@@ -83,7 +63,7 @@ public class JKSplitComposition : JKComposition {
     }
 
 	
-	init(angle: CGFloat, center: CGPoint) {
+	public init(angle: CGFloat = 0, center: CGPoint = CGPoint(x:0.5, y:0.5)) {
 		super.init()
 		self.angle = angle
 		self.center = center

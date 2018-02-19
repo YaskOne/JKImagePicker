@@ -13,7 +13,8 @@ import CoreLocation
 public class JKPhotoAsset {
 	
 	public var asset: PHAsset
-	public var location: CLLocation? { get { return asset.location } }
+    public var location: CLLocation? { get { return asset.location } }
+    public var date: Date? { get { return asset.creationDate } }
 	public var thumbnail: UIImage? = nil
 	public var fullSize: UIImage? = nil
 	
@@ -26,6 +27,7 @@ public class JKPhotoAsset {
 public class JKAlbumAsset {
 	public var name:String { get { return collection.localizedTitle ?? "Untitled"}}
 	public var count:Int { get { return collection.estimatedAssetCount} }
+    public var date: Date? { get { return collection.startDate } }
 	
 	public let collection:PHAssetCollection
 	
@@ -41,7 +43,25 @@ public class JKGalleryDataLoader {
     public var albums = [JKAlbumAsset]()
 	
 	public var photos = [JKPhotoAsset]()
-	
+    
+    public var sortedPhotos: [JKPhotoAsset] {
+        get {
+            return photos.sorted(by: { (lhs, rhs) -> Bool in
+                if let date1 = lhs.date, let date2 = rhs.date {
+                    return date1.compare(date2).rawValue > 0
+                }
+                return false
+            })
+        }
+    }
+    
+//    public var sortedAlbums: [JKAlbumAsset] {
+//        get {
+//            return photos.sorted(by: { (lhs, rhs) -> Bool in
+//                return lhs.
+//            })
+//        }
+//    }
 	
     public func fetchAllPhotos() {
         fetchAlbums()

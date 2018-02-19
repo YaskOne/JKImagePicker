@@ -56,6 +56,7 @@ public class JKCameraPreview: UIView {
     
     
     public func startCamera() {
+        print("JACK CAMERA - Starting camera")
 		self.configureCaptureSession({ success, avCapturePhotoOutput in
 			guard let session = self.captureSession, success else { return }
 			
@@ -95,6 +96,7 @@ public class JKCameraPreview: UIView {
 	}
 	
     public func stopCamera() {
+        print("JACK CAMERA - Stoping camera")
 		if let device = currentDevice {
 			device.removeObserver(self, forKeyPath: "adjustingFocus")
 //            self.capturePhotoOutput?.removeObserver(self, forKeyPath: "isFlashScene")

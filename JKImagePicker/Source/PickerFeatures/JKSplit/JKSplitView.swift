@@ -115,7 +115,7 @@ public class JKSplitView: UIView {
 	
 	public func drawImages(context: CGContext) {
         JKSplitView.drawImage(frame, getFirstImage?.cgImage, clipPath: clipPath(), overlayIfNil: false, context: context)
-        JKSplitView.drawImage(frame, getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage , context: context)
+        JKSplitView.drawImage(frame, getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage, context: context)
 	}
 	
     public static func drawImage(_ frame: CGRect, _ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext) {

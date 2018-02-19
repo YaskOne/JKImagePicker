@@ -50,9 +50,7 @@ import UIKit
 	
     public func setup() {
 		motion = JKMotionDetector(delegate: self)
-
-		focusPoint = CGPoint(x: bounds.width/2, y: bounds.height/2)
-		
+        
 		let focusView = JKCamFocusView(frame: focusViewFrame)
 		
 		focusView.setup()

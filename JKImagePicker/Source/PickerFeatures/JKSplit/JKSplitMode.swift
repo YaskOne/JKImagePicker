@@ -72,11 +72,11 @@ public enum JKSplitMode: Int {
         case .horizontal:
             return JKSplitSettings(angle: 0)
         case .diagonalRight:
-            return JKSplitSettings(angle: angleBetweenPoints(frame.center, CGPoint(x: frame.maxX, y: 0)))
+            return JKSplitSettings(angle: frame.center.angleToPoint(CGPoint(x: frame.maxX, y: 0)))
         case .vertical:
             return JKSplitSettings(angle: CGFloat.pi / 2)
         case .diagonalLeft:
-            return JKSplitSettings(angle: angleBetweenPoints(frame.center, CGPoint.zero))
+            return JKSplitSettings(angle: frame.center.angleToPoint(CGPoint.zero))
         }
     }
 }

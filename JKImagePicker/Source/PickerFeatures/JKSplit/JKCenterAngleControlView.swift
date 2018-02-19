@@ -234,7 +234,7 @@ public class JKCenterAngleControlView: UIView {
 	}
 	
 	func angleBetweenHandleViews(_ v1: JKHandleView, _ v2: JKHandleView) -> CGFloat {
-		return angleBetweenPoints(v1.point,v2.point)
+		return v1.point.angleToPoint(v2.point)
 	}
 	
 	public override func draw(_ rect: CGRect) {

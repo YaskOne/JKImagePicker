@@ -54,6 +54,28 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		}
 	}
 	
+	public var userInfo: JsonDict? {
+		didSet {
+			if let composition = userInfo?["composition"] as? JKSplitComposition,
+				let image = userInfo?["sourceImage"] as? UIImage,
+				let cgImage = image.cgImage
+			{
+				self.image = JKImage.init(cgImage)
+				
+				pickerActions?.actions = [.splitted]
+				currentFeature = .split
+
+				if let feature = featureVC as? JKSplitViewController {
+					feature.image2 = nil
+					feature.image1 = image
+					feature.allowsInviteFriends = false
+					feature.allowsChangeAngle = false
+					feature.splitView.settings = JKSplitSettings(angle: composition.angle, center: composition.center)
+				}
+			}
+		}
+	}
+	
 	public func instantiatePicker(identifier: String) -> JKImagePickerSourceViewController {
 		print("Instantiate view controller '\(identifier)")
 		return JKImagePicker.storyboard.instantiateViewController(withIdentifier: identifier) as! JKImagePickerSourceViewController
@@ -101,7 +123,9 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 				removeFeature(animated: true)
 				break
 			case .split:
-				loadFeature(named:"Split", animated: true)
+				if (featureVC as? JKSplitViewController) == nil {
+					loadFeature(named:"Split", animated: true)
+				}
                 if let splitVC = featureVC as? JKSplitViewController {
                     splitVC.view.isUserInteractionEnabled = true //settings.hasFreeSplit
                     splitVC.touchAngleControl.isUserInteractionEnabled = settings.hasFreeSplit

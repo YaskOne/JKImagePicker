@@ -20,6 +20,14 @@ public class JKSplitViewController: JKFeatureViewController {
 	
     @IBOutlet weak var touchAngleControl: JKCenterAngleControlView!
 
+	public var allowsInviteFriends: Bool = true { didSet {
+		updateInterface()
+		}}
+	
+	public var allowsChangeAngle: Bool = true { didSet {
+		updateInterface()
+		}}
+	
     //TODO: Fully replace UIImage by JKImages to allow repositionning
 	public var jkImage2: JKImage?
 	{
@@ -92,7 +100,7 @@ public class JKSplitViewController: JKFeatureViewController {
 	
 	public func updateInterface() {
 		inviteFriendsToCompleteButton?.layer.cornerRadius = 4
-		inviteFriendsToCompleteButton?.isHidden = image1 == nil && image2 == nil
+		inviteFriendsToCompleteButton?.isHidden = !(allowsInviteFriends && (image1 == nil || image2 == nil))
 	}
 	
 	public func updateSplit() {
@@ -106,7 +114,7 @@ public class JKSplitViewController: JKFeatureViewController {
 	//MARK: - JKImagePicker Controls
 	
 	public override var controlItems: [JKCameraControlItem]? { get {
-		return [.split]
+		return allowsChangeAngle ? [.split] : []
 		}}
 	
 	public override func commandButtonTapped(command: JKCameraCommand) {
@@ -134,6 +142,9 @@ public class JKSplitViewController: JKFeatureViewController {
 public extension JKSplitViewController {
 	
 	@IBAction func nextModeTapped() {
+		if !allowsChangeAngle {
+			return
+		}
 		var idx = modeIndex + 1
 		if idx >= modes.count {
 			idx = 0
@@ -143,6 +154,9 @@ public extension JKSplitViewController {
 	}
 	
 	@IBAction func swapTapped() {
+		if !allowsChangeAngle {
+			return
+		}
 		swapped = !swapped
 		updateSplit()
 	}

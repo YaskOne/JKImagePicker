@@ -8,22 +8,25 @@
 
 import Foundation
 import Photos
+import JackFoundation
 
 public struct JKImagePicker {
 	public static let bundle = Bundle(identifier: "Jack-World.JKImagePicker")
 	public static let storyboard = UIStoryboard(name: "JKImagePicker", bundle: JKImagePicker.bundle)
 	
-	public static func open(over viewController: UIViewController?, delegate: JKImagePickerDelegate, settings: JKPickerSettings? = nil) -> JKImagePickerViewController? {
+	public static func open(over viewController: UIViewController?, delegate: JKImagePickerDelegate, settings: JKPickerSettings? = nil, info: JsonDict? = nil) -> JKImagePickerViewController? {
 		guard let nav = JKImagePicker.storyboard.instantiateInitialViewController() as? UINavigationController,
 			let picker = nav.topViewController as? JKImagePickerViewController else {
 				return nil
 		}
         
 		DispatchQueue.main.async {
+			let _ = picker.view
 			picker.delegate = delegate
 			if let settings = settings {
 				picker.settings = settings
 			}
+			picker.userInfo = info
 			nav.isNavigationBarHidden = true
 			viewController?.present(nav, animated: true, completion: nil)
 		}

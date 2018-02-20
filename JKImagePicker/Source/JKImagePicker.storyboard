@@ -313,7 +313,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryItemCell" id="VxR-Oi-sxp" customClass="JKGalleryPhotoCollectionViewCell" customModule="JKImagePicker" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="GalleryItemCell" id="VxR-Oi-sxp" customClass="JKGalleryPhotoCollectionViewCell" customModule="JKImagePicker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="130" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -321,7 +321,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fjN-I7-61n">
-                                            <rect key="frame" x="0.0" y="0.0" width="130" height="87"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="14"/>
                                         </imageView>
                                     </subviews>
                                 </view>

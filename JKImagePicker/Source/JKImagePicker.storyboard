@@ -16,11 +16,11 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Delegate-->
+        <!--Split Controller-->
         <scene sceneID="Cgh-Vz-I6U">
             <objects>
-                <viewController storyboardIdentifier="Split" id="Twz-Xj-Mdn" customClass="JKSplitViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="hfc-Ch-LkP">
+                <viewController storyboardIdentifier="Split" id="Twz-Xj-Mdn" userLabel="Split Controller" customClass="JKSplitViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hfc-Ch-LkP" customClass="JKSplitFeatureView" customModule="JKImagePicker" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -35,6 +35,16 @@
                                     <outlet property="delegate" destination="Twz-Xj-Mdn" id="yBB-E4-A8n"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xC-Ha-CbA" customClass="JKShadowButton" customModule="JKImagePicker" customModuleProvider="target">
+                                <rect key="frame" x="71" y="523" width="233" height="30"/>
+                                <color key="backgroundColor" red="0.19209966193983277" green="0.52856958195925929" blue="0.13380255973134261" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="   Invite friends to complete Split   ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="inviteFriendsTapped" destination="Twz-Xj-Mdn" eventType="touchUpInside" id="sfT-iP-1Ev"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -42,6 +52,8 @@
                             <constraint firstItem="e4y-Oz-6Dp" firstAttribute="top" secondItem="hfc-Ch-LkP" secondAttribute="top" id="B50-Eb-LBt"/>
                             <constraint firstItem="e4y-Oz-6Dp" firstAttribute="leading" secondItem="b91-z0-MjQ" secondAttribute="leading" id="Q6Y-fa-Ypk"/>
                             <constraint firstItem="UWP-GB-7qK" firstAttribute="top" secondItem="hfc-Ch-LkP" secondAttribute="top" id="QC0-xR-oPB"/>
+                            <constraint firstItem="b91-z0-MjQ" firstAttribute="bottom" secondItem="6xC-Ha-CbA" secondAttribute="bottom" constant="114" id="R5C-3t-z5a"/>
+                            <constraint firstItem="6xC-Ha-CbA" firstAttribute="centerX" secondItem="hfc-Ch-LkP" secondAttribute="centerX" id="YnD-5S-i7Y"/>
                             <constraint firstItem="e4y-Oz-6Dp" firstAttribute="trailing" secondItem="b91-z0-MjQ" secondAttribute="trailing" id="ZIj-pC-UGS"/>
                             <constraint firstItem="UWP-GB-7qK" firstAttribute="leading" secondItem="b91-z0-MjQ" secondAttribute="leading" id="dC4-Td-TY6"/>
                             <constraint firstItem="e4y-Oz-6Dp" firstAttribute="bottom" secondItem="b91-z0-MjQ" secondAttribute="bottom" id="gH0-Tf-dSs"/>
@@ -50,6 +62,7 @@
                         <viewLayoutGuide key="safeArea" id="b91-z0-MjQ"/>
                     </view>
                     <connections>
+                        <outlet property="inviteFriendsToCompleteButton" destination="6xC-Ha-CbA" id="y3n-j2-xcK"/>
                         <outlet property="splitView" destination="e4y-Oz-6Dp" id="ndz-yN-QdM"/>
                         <outlet property="touchAngleControl" destination="UWP-GB-7qK" id="LdI-lH-2rH"/>
                     </connections>

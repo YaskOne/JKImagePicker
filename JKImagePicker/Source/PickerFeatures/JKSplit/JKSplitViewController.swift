@@ -8,10 +8,16 @@
 
 import UIKit
 
-public class JKSplitViewController: JKFeatureViewController {
+public enum JKSplitControl: Int {
+	case inviteFriendsControlTag = 1
+}
 
+public class JKSplitViewController: JKFeatureViewController {
+	
 	@IBOutlet public var splitView: JKSplitView!
 
+	@IBOutlet public var inviteFriendsToCompleteButton: UIButton?
+	
     @IBOutlet weak var touchAngleControl: JKCenterAngleControlView!
 
     //TODO: Fully replace UIImage by JKImages to allow repositionning
@@ -27,6 +33,8 @@ public class JKSplitViewController: JKFeatureViewController {
 			image1 = jkImage1?.image
 		}
 	}
+	
+	var splitFeatureView: JKSplitFeatureView? { return view as? JKSplitFeatureView }
 	
 	public var modeButton: UIButton?
 	
@@ -54,12 +62,38 @@ public class JKSplitViewController: JKFeatureViewController {
 	public var image1: UIImage? { didSet {
 		splitView.image1 = image1
 		splitView.setNeedsDisplay()
+		updateInterface()
 		}}
 	
 	public var image2: UIImage? { didSet {
 		splitView.image2 = image2
 		splitView.setNeedsDisplay()
+		updateInterface()
 		}}
+	
+	//MARK: - Lifecycle
+	
+	public override func viewDidLoad() {
+		super.viewDidLoad()
+		modeIndex = (modes.index{$0 == .vertical}) ?? 0
+		self.view.clipsToBounds = true
+		
+		if let splitFeatureView = self.splitFeatureView, let inviteButton = self.inviteFriendsToCompleteButton {
+			splitFeatureView.addInteractiveView(inviteButton)
+		}
+	}
+	
+	override public func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		updateInterface()
+	}
+
+	//MARK: - Update
+	
+	public func updateInterface() {
+		inviteFriendsToCompleteButton?.layer.cornerRadius = 4
+		inviteFriendsToCompleteButton?.isHidden = image1 == nil && image2 == nil
+	}
 	
 	public func updateSplit() {
 		var settings = mode.settingsForFrame(frame: self.view.frame)
@@ -69,12 +103,8 @@ public class JKSplitViewController: JKFeatureViewController {
 		splitView.setNeedsDisplay()
 	}
 	
-	public override func viewDidLoad() {
-		super.viewDidLoad()
-		modeIndex = (modes.index{$0 == .vertical}) ?? 0
-		self.view.clipsToBounds = true
-	}
-
+	//MARK: - JKImagePicker Controls
+	
 	public override var controlItems: [JKCameraControlItem]? { get {
 		return [.split]
 		}}
@@ -117,4 +147,8 @@ public extension JKSplitViewController {
 		updateSplit()
 	}
 	
+	@IBAction func inviteFriendsTapped() {
+		guard let button = inviteFriendsToCompleteButton else { return }
+		delegate?.featureControlTapped(self, controlTag: button.tag)
+	}
 }

@@ -16,9 +16,10 @@ public class JKSplitComposition : JKComposition {
 	public var center: CGPoint = CGPoint(x: 0.5, y: 0.5)
 
 	public override var image: UIImage? { get {
-        guard let img1 = image1?.image?.cgImage, let img2 = image2?.image?.cgImage, let frame = image1?.frame else {
+        guard let img1 = image1?.image?.cgImage, let frame = image1?.frame else {
             return nil
         }
+		let img2 = image2?.image?.cgImage
         return JKSplitView.generateSplitImage(image1: img1, image2: img2, angle: angle, center: center, frame: frame)
         }
     }

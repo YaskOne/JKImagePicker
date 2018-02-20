@@ -14,12 +14,10 @@
 		BC25D289203C2156009729CC /* JKImagePickerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D25A203C2156009729CC /* JKImagePickerUtils.swift */; };
 		BC25D28A203C2156009729CC /* JackImagePickerFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D25B203C2156009729CC /* JackImagePickerFont.swift */; };
 		BC25D28B203C2156009729CC /* JKImageFormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D25C203C2156009729CC /* JKImageFormatHelper.swift */; };
-		BC25D28D203C2156009729CC /* JKHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D260203C2156009729CC /* JKHandleView.swift */; };
 		BC25D28E203C2156009729CC /* JKSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D261203C2156009729CC /* JKSplitViewController.swift */; };
 		BC25D28F203C2156009729CC /* JKSplitMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D262203C2156009729CC /* JKSplitMode.swift */; };
 		BC25D290203C2156009729CC /* JKSplitViewController+Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D263203C2156009729CC /* JKSplitViewController+Control.swift */; };
 		BC25D291203C2156009729CC /* JKSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D264203C2156009729CC /* JKSplitView.swift */; };
-		BC25D292203C2156009729CC /* JKCenterAngleControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D265203C2156009729CC /* JKCenterAngleControlView.swift */; };
 		BC25D293203C2156009729CC /* JKFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D266203C2156009729CC /* JKFeatureViewController.swift */; };
 		BC25D294203C2156009729CC /* JKCameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D269203C2156009729CC /* JKCameraPreview.swift */; };
 		BC25D295203C2156009729CC /* JKCameraControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25D26A203C2156009729CC /* JKCameraControlView.swift */; };
@@ -50,6 +48,9 @@
 		BC2CBEF02032EEA2005E62D5 /* iOSCommons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2CBEF12032EEA2005E62D5 /* iOSCommons.framework */; };
 		BC2CBEF22032EF0A005E62D5 /* JackFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2CBEF32032EF0A005E62D5 /* JackFoundation.framework */; };
 		BC86E7F8203C263D0084708F /* JKGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7F7203C263D0084708F /* JKGallery.swift */; };
+		BC86E7FA203C37710084708F /* JKSplitFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7F9203C37710084708F /* JKSplitFeatureView.swift */; };
+		BC86E7FE203C37B80084708F /* JKHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7FC203C37B80084708F /* JKHandleView.swift */; };
+		BC86E7FF203C37B80084708F /* JKCenterAngleControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7FD203C37B80084708F /* JKCenterAngleControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,12 +71,10 @@
 		BC25D25A203C2156009729CC /* JKImagePickerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKImagePickerUtils.swift; sourceTree = "<group>"; };
 		BC25D25B203C2156009729CC /* JackImagePickerFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JackImagePickerFont.swift; sourceTree = "<group>"; };
 		BC25D25C203C2156009729CC /* JKImageFormatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKImageFormatHelper.swift; sourceTree = "<group>"; };
-		BC25D260203C2156009729CC /* JKHandleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHandleView.swift; sourceTree = "<group>"; };
 		BC25D261203C2156009729CC /* JKSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKSplitViewController.swift; sourceTree = "<group>"; };
 		BC25D262203C2156009729CC /* JKSplitMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKSplitMode.swift; sourceTree = "<group>"; };
 		BC25D263203C2156009729CC /* JKSplitViewController+Control.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JKSplitViewController+Control.swift"; sourceTree = "<group>"; };
 		BC25D264203C2156009729CC /* JKSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKSplitView.swift; sourceTree = "<group>"; };
-		BC25D265203C2156009729CC /* JKCenterAngleControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKCenterAngleControlView.swift; sourceTree = "<group>"; };
 		BC25D266203C2156009729CC /* JKFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKFeatureViewController.swift; sourceTree = "<group>"; };
 		BC25D269203C2156009729CC /* JKCameraPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKCameraPreview.swift; sourceTree = "<group>"; };
 		BC25D26A203C2156009729CC /* JKCameraControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKCameraControlView.swift; sourceTree = "<group>"; };
@@ -109,6 +108,9 @@
 		BC2CBEF12032EEA2005E62D5 /* iOSCommons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSCommons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2CBEF32032EF0A005E62D5 /* JackFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JackFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC86E7F7203C263D0084708F /* JKGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKGallery.swift; sourceTree = "<group>"; };
+		BC86E7F9203C37710084708F /* JKSplitFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKSplitFeatureView.swift; sourceTree = "<group>"; };
+		BC86E7FC203C37B80084708F /* JKHandleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHandleView.swift; sourceTree = "<group>"; };
+		BC86E7FD203C37B80084708F /* JKCenterAngleControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKCenterAngleControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 		BC25D256203C2156009729CC /* PickerTools */ = {
 			isa = PBXGroup;
 			children = (
+				BC86E7FB203C37B80084708F /* JKCenterAngleControl */,
 				BC25D257203C2156009729CC /* JKShadowButton.swift */,
 				BC25D258203C2156009729CC /* JKOrientatedViewController.swift */,
 				BC25D259203C2156009729CC /* JKImagePickerNavigationController.swift */,
@@ -183,12 +186,11 @@
 		BC25D25F203C2156009729CC /* JKSplit */ = {
 			isa = PBXGroup;
 			children = (
-				BC25D260203C2156009729CC /* JKHandleView.swift */,
+				BC86E7F9203C37710084708F /* JKSplitFeatureView.swift */,
 				BC25D261203C2156009729CC /* JKSplitViewController.swift */,
 				BC25D262203C2156009729CC /* JKSplitMode.swift */,
 				BC25D263203C2156009729CC /* JKSplitViewController+Control.swift */,
 				BC25D264203C2156009729CC /* JKSplitView.swift */,
-				BC25D265203C2156009729CC /* JKCenterAngleControlView.swift */,
 			);
 			path = JKSplit;
 			sourceTree = "<group>";
@@ -302,6 +304,15 @@
 				BC2CBEF12032EEA2005E62D5 /* iOSCommons.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC86E7FB203C37B80084708F /* JKCenterAngleControl */ = {
+			isa = PBXGroup;
+			children = (
+				BC86E7FC203C37B80084708F /* JKHandleView.swift */,
+				BC86E7FD203C37B80084708F /* JKCenterAngleControlView.swift */,
+			);
+			path = JKCenterAngleControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,7 +429,6 @@
 				BC25D294203C2156009729CC /* JKCameraPreview.swift in Sources */,
 				BC25D2A2203C2156009729CC /* JKPickerActionsViewController.swift in Sources */,
 				BC25D2A3203C2156009729CC /* JKImagePicker.swift in Sources */,
-				BC25D292203C2156009729CC /* JKCenterAngleControlView.swift in Sources */,
 				BC25D2A8203C2156009729CC /* JKImage.swift in Sources */,
 				BC25D29E203C2156009729CC /* JKImagePickerSourceViewController.swift in Sources */,
 				BC25D299203C2156009729CC /* JKCameraViewController.swift in Sources */,
@@ -426,11 +436,13 @@
 				BC25D28A203C2156009729CC /* JackImagePickerFont.swift in Sources */,
 				BC25D29D203C2156009729CC /* JKGalleryCollectionViewController.swift in Sources */,
 				BC25D297203C2156009729CC /* JKCamFocusView.swift in Sources */,
+				BC86E7FA203C37710084708F /* JKSplitFeatureView.swift in Sources */,
 				BC25D28B203C2156009729CC /* JKImageFormatHelper.swift in Sources */,
 				BC25D295203C2156009729CC /* JKCameraControlView.swift in Sources */,
 				BC25D2AA203C2156009729CC /* JKImagePickerViewController.swift in Sources */,
 				BC25D2A6203C2156009729CC /* JKAsset.swift in Sources */,
 				BC25D2A0203C2156009729CC /* JKSystemImageSourceViewController.swift in Sources */,
+				BC86E7FE203C37B80084708F /* JKHandleView.swift in Sources */,
 				BC25D2A5203C2156009729CC /* JKComposition.swift in Sources */,
 				BC25D296203C2156009729CC /* JKMotionDetector.swift in Sources */,
 				BC25D288203C2156009729CC /* JKImagePickerNavigationController.swift in Sources */,
@@ -439,6 +451,7 @@
 				BC25D29F203C2156009729CC /* JKStillImageSourceViewController.swift in Sources */,
 				BC25D29C203C2156009729CC /* JKGalleryViewController.swift in Sources */,
 				BC25D291203C2156009729CC /* JKSplitView.swift in Sources */,
+				BC86E7FF203C37B80084708F /* JKCenterAngleControlView.swift in Sources */,
 				BC25D289203C2156009729CC /* JKImagePickerUtils.swift in Sources */,
 				BC25D2A4203C2156009729CC /* JKPickerSettings.swift in Sources */,
 				BC25D287203C2156009729CC /* JKOrientatedViewController.swift in Sources */,
@@ -447,7 +460,6 @@
 				BC25D28F203C2156009729CC /* JKSplitMode.swift in Sources */,
 				BC25D2A7203C2156009729CC /* JKSplitComposition.swift in Sources */,
 				BC25D290203C2156009729CC /* JKSplitViewController+Control.swift in Sources */,
-				BC25D28D203C2156009729CC /* JKHandleView.swift in Sources */,
 				BC25D298203C2156009729CC /* JKVerticalSlider.swift in Sources */,
 				BC25D2A1203C2156009729CC /* JKPickerButtonsViewController.swift in Sources */,
 				BC25D2AB203C2156009729CC /* JKImagePickerViewController+Feature.swift in Sources */,

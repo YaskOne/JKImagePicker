@@ -9,6 +9,7 @@
 import UIKit
 
 extension JKImagePickerViewController : JKFeatureViewControllerDelegate {
+
 	
 	public func loadFeature(named name: String, animated: Bool = false) {
 
@@ -59,4 +60,14 @@ extension JKImagePickerViewController : JKFeatureViewControllerDelegate {
 	public func featureDidUnload(_ featureVC: JKFeatureViewController) {
 		self.featureVC = nil
 	}
+	
+	public func featureControlTapped(_ featureVC: JKFeatureViewController, controlTag: Int) {
+		if let _ = featureVC as? JKSplitViewController, let control = JKSplitControl(rawValue: controlTag) {
+			switch control {
+			case .inviteFriendsControlTag:
+				confirm()
+			}
+		}
+	}
+	
 }

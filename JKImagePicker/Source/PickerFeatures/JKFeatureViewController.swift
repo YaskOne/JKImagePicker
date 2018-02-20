@@ -11,6 +11,8 @@ import UIKit
 public protocol JKFeatureViewControllerDelegate {
 	func featureDidLoad(_ featureVC: JKFeatureViewController)
 	func featureDidUnload(_ featureVC: JKFeatureViewController)
+	
+	func featureControlTapped(_ featureVC: JKFeatureViewController, controlTag: Int)
 }
 
 public protocol JKFeatureViewControllerProtocol {

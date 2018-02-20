@@ -91,15 +91,15 @@ public class JKSplitView: UIView {
 		}
 	}
     
-    public static func drawSplit(context: CGContext, image1: CGImage, image2: CGImage, angle: CGFloat, center: CGPoint, frame: CGRect) {
+    public static func drawSplit(context: CGContext, image1: CGImage, image2: CGImage?, angle: CGFloat, center: CGPoint, frame: CGRect) {
         let clipPath1 = splittedRectPath(frame, angle: angle, center: center, lineOnly: false, invert: false)
         let clipPath2 = splittedRectPath(frame, angle: angle, center: center, lineOnly: false, invert: true)
         
-        drawImage(frame, image1, clipPath: clipPath1, overlayIfNil: false, context: context)
-        drawImage(frame, image2, clipPath: clipPath2, overlayIfNil: false , context: context)
+        drawImage(frame, image1, clipPath: clipPath1, overlayIfNil: true, context: context)
+        drawImage(frame, image2, clipPath: clipPath2, overlayIfNil: true , context: context)
     }
     
-    public static func generateSplitImage(image1: CGImage, image2: CGImage, angle: CGFloat, center: CGPoint, frame: CGRect) -> UIImage? {
+    public static func generateSplitImage(image1: CGImage, image2: CGImage?, angle: CGFloat, center: CGPoint, frame: CGRect) -> UIImage? {
         UIGraphicsBeginImageContext(frame.size)
 
         guard let context = UIGraphicsGetCurrentContext() else {

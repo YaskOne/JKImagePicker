@@ -10,35 +10,7 @@ import UIKit
 import Photos
 import CoreLocation
 
-public class JKPhotoAsset {
-	
-	public var asset: PHAsset
-    public var location: CLLocation? { get { return asset.location } }
-    public var date: Date? { get { return asset.creationDate } }
-	public var thumbnail: UIImage? = nil
-	public var fullSize: UIImage? = nil
-	
-	public init(asset: PHAsset) {
-		self.asset = asset
-	}
-}
-
-
-public class JKAlbumAsset {
-	public var name:String { get { return collection.localizedTitle ?? "Untitled"}}
-	public var count:Int { get { return collection.estimatedAssetCount} }
-    public var date: Date? { get { return collection.startDate } }
-	
-	public let collection:PHAssetCollection
-	
-	public var photoAssets = [JKPhotoAsset]()
-	
-	public init(collection:PHAssetCollection) {
-		self.collection = collection
-	}
-}
-
-public class JKGalleryDataLoader {
+public class JKGallery {
     
     public var albums = [JKAlbumAsset]()
 	
@@ -63,17 +35,18 @@ public class JKGalleryDataLoader {
 //        }
 //    }
 	
-    public func fetchAllPhotos() {
-        fetchAlbums()
-        
-        for album in albums {
-            fetchPhotoAssets(in: album)
-        }
-        
-    }
-    
-    // MARK: - UIImagePickerControllerDelegate Methods
-        
+	
+    // MARK: - Assets Loading
+	
+	public func fetchAllPhotos() {
+		fetchAlbums()
+		
+		for album in albums {
+			fetchPhotoAssets(in: album)
+		}
+		
+	}
+	
     public func fetchAlbums() {
         let options = PHFetchOptions()
         let userAlbums = PHAssetCollection.fetchAssetCollections(with: PHAssetCollectionType.smartAlbum, subtype: PHAssetCollectionSubtype.any, options: options)
@@ -92,7 +65,6 @@ public class JKGalleryDataLoader {
     }
     
     public func fetchPhotoAssets(in album: JKAlbumAsset) {
-		
         let photoAssets = PHAsset.fetchAssets(in: album.collection, options: nil)
 
 		photoAssets.enumerateObjects{(object: AnyObject!,
@@ -106,6 +78,8 @@ public class JKGalleryDataLoader {
             }
         }
     }
+	
+	//MARK: - Image Data Loading
 	
 	public static func loadImageForAsset(asset: JKPhotoAsset) {
 		let imageManager = PHImageManager.default()
@@ -152,11 +126,59 @@ public class JKGalleryDataLoader {
 		})
 	}
 
+	//MARK: - Static Utilities
+	
+	static public func saveImageAsAsset(image: UIImage,location: CLLocation? = nil, failure: (()->Void)? = nil, success: @escaping (Date,String)->Void) {
+		var assetChangeRequest: PHAssetChangeRequest?
+		var placeholder:PHObjectPlaceholder?
+		let date = Date()
+		var identifier = ""
+		
+		JKImagePicker.checkGalleryAuthorization(error: {
+			failure?()
+		}, success: {
+			DispatchQueue.main.async {
+				PHPhotoLibrary.shared().performChanges({
+					assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+					
+					if let loc = location {
+						assetChangeRequest?.location = loc
+					}
+					
+					assetChangeRequest?.creationDate = date
+					placeholder = assetChangeRequest?.placeholderForCreatedAsset
+					identifier = placeholder?.localIdentifier ?? ""
+				}, completionHandler: { successed, error in
+					if successed {
+						success(date,identifier)
+					}
+					else {
+						failure?()
+					}
+				})
+			}
+		})
+	}
+	
+	public static func checkAuthorization(error: (() -> Void)? = nil, success: @escaping() -> Void) {
+		PHPhotoLibrary.requestAuthorization({(status:PHAuthorizationStatus)in
+			switch status {
+			case .denied:
+				error?()
+				return
+			case .authorized:
+				success()
+				return
+			default:
+				error?()
+				return
+			}
+		})
+	}
 }
 
-public extension PHAsset {
-    func isPortrait() -> Bool {
-        return self.pixelWidth < self.pixelHeight
-    }
+extension UIImage {
+	public func saveToGallery(location: CLLocation? = nil, failure: (()->Void)? = nil, success: @escaping (Date,String)->Void) {
+		JKGallery.saveImageAsAsset(image: self, location: location, failure: failure, success: success)
+	}
 }
-

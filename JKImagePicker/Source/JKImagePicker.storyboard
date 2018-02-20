@@ -61,7 +61,7 @@
         <!--Image Picker Navigation Controller-->
         <scene sceneID="SKg-gE-hSu">
             <objects>
-                <navigationController navigationBarHidden="YES" id="W4e-kY-rmT" customClass="ImagePickerNavigationController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="W4e-kY-rmT" customClass="JKImagePickerNavigationController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QU5-O4-xgS">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -300,25 +300,26 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="GalleryItemCell" id="VxR-Oi-sxp" customClass="JKGalleryPhotoCollectionViewCell" customModule="JKImagePicker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="130" height="160"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryItemCell" id="VxR-Oi-sxp" customClass="JKGalleryPhotoCollectionViewCell" customModule="JKImagePicker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="130" height="160"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="130" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjN-I7-61n">
-                                            <rect key="frame" x="0.0" y="0.0" width="130" height="160"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fjN-I7-61n">
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="87"/>
                                         </imageView>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="fjN-I7-61n" secondAttribute="trailing" id="1hN-cj-Naq"/>
-                                    <constraint firstItem="fjN-I7-61n" firstAttribute="top" secondItem="VxR-Oi-sxp" secondAttribute="top" id="2hf-OS-1jr"/>
-                                    <constraint firstAttribute="bottom" secondItem="fjN-I7-61n" secondAttribute="bottom" id="TV4-Wv-apl"/>
-                                    <constraint firstItem="fjN-I7-61n" firstAttribute="leading" secondItem="VxR-Oi-sxp" secondAttribute="leading" id="z4d-fM-PFJ"/>
+                                    <constraint firstItem="fjN-I7-61n" firstAttribute="leading" secondItem="VxR-Oi-sxp" secondAttribute="leading" id="4b1-1a-Y66"/>
+                                    <constraint firstItem="fjN-I7-61n" firstAttribute="top" secondItem="VxR-Oi-sxp" secondAttribute="top" id="UfG-Zo-zQY"/>
+                                    <constraint firstAttribute="bottom" secondItem="fjN-I7-61n" secondAttribute="bottom" id="eXc-Ip-UCB"/>
+                                    <constraint firstAttribute="trailing" secondItem="fjN-I7-61n" secondAttribute="trailing" id="gzc-69-Kup"/>
                                 </constraints>
+                                <size key="customSize" width="130" height="87"/>
                                 <connections>
                                     <outlet property="imageView" destination="fjN-I7-61n" id="75b-DO-qoY"/>
                                 </connections>

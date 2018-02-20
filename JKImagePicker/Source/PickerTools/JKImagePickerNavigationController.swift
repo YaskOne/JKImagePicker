@@ -1,5 +1,5 @@
 //
-//  FixedNavigationController.swift
+//  JKImagePickerNavigationController.swift
 //  JKImagePicker
 //
 //  Created by Arthur Ngo Van on 14/02/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ImagePickerNavigationController: UINavigationController {
+public class JKImagePickerNavigationController: UINavigationController {
 	
 	// For debugging purpose
     override public func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {

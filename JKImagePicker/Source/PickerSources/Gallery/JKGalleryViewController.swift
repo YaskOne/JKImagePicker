@@ -15,7 +15,7 @@ public class JKGalleryViewController: JKImagePickerSourceViewController {
 			return [.camera,.free,.free,.free,.free,.free,.close]
 			}}
 	
-	public let photoLoader = JKGalleryDataLoader()
+	public let photoLoader = JKGallery()
 	
 	public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "EmbedCollection" {
@@ -33,7 +33,7 @@ extension JKGalleryViewController : JKGalleryViewControllerDelegate {
 	
 	public func photoAssetSelected(_ asset: JKPhotoAsset) {
 		if asset.fullSize == nil {
-			JKGalleryDataLoader.loadImageForAsset(asset: asset)
+			JKGallery.loadImageForAsset(asset: asset)
 		}
 		if let image = asset.fullSize {
             var dict: JsonDict? = nil

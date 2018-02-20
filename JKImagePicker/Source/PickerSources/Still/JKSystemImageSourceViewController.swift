@@ -15,7 +15,6 @@ public class JKSystemImageSourceViewController: JKImagePickerSourceViewControlle
 	public var image: UIImage? {
 		set {
             imageView?.image = newValue
-            let image = newValue
 		}
 		get {
 			return imageView?.image

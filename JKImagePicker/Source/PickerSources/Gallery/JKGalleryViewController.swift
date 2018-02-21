@@ -12,7 +12,7 @@ import JackFoundation
 public class JKGalleryViewController: JKImagePickerSourceViewController {
 
 	override public var availableControls: [JKCameraControlItem] { get {
-			return [.camera,.free,.free,.free,.free,.free,.close]
+			return [.back,.free,.free,.free,.free,.free,.free]
 			}}
 	
 	public let photoLoader = JKGallery()

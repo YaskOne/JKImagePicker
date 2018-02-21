@@ -28,7 +28,8 @@ public enum JKCameraControlItem: Int {
 	case gallery
 	case switchCam
 	case camera
-	case close
+    case back
+    case close
 	
 	case split
 
@@ -48,8 +49,10 @@ public enum JKCameraControlItem: Int {
 			return JackImagePickerFont.icon_front_camera
 		case .camera:
 			return JackImagePickerFont.icon_camera
-		case .close:
-			return JackImagePickerFont.icon_cross
+        case .back:
+            return JackImagePickerFont.icon_back
+        case .close:
+            return JackImagePickerFont.icon_cross
 		}
 	}
 	

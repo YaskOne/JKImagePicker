@@ -383,7 +383,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
             print("CLOSING")
 			delegate?.imagePickerCancel()
 			
-		case JKCameraControlItem.camera.rawValue:
+		case JKCameraControlItem.camera.rawValue, JKCameraControlItem.back.rawValue:
 			setPicker(.camera)
 			
 		case JKCameraControlItem.gallery.rawValue:

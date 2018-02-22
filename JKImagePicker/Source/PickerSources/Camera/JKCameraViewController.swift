@@ -53,6 +53,8 @@ public class JKCameraViewController: JKImagePickerSourceViewController {
 			flashModeIndex = flashModes.index(of: newValue) ?? 0
 		}}
 	public var flashModes : [AVCaptureDevice.FlashMode] = [.off, .on, .auto]
+    
+    public var hasGallery: Bool = true
 
 	public var hasFlash: Bool { get {
 		if let flash = cameraPreview?.currentDevice?.hasFlash {
@@ -136,7 +138,7 @@ public class JKCameraViewController: JKImagePickerSourceViewController {
 	
 	override public var availableControls: [JKCameraControlItem] { get {
 		let flashItem: JKCameraControlItem = hasFlash ? .flash : .pad
-		return [flashItem,.switchCam,.gallery,.free,.free,.free,.close]
+        return [flashItem, .switchCam, (hasGallery ? .gallery : .free), .free, .free, .free, .close]
 		}}
 	
 	override public func iconForControlItem(_ item:JKCameraControlItem) -> String {

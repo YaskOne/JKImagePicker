@@ -12,7 +12,7 @@ import UIKit
 @IBDesignable public class JKCameraControlView: UIView, JKMotionDetectorDelegate {
 	
     @IBInspectable public var focusViewSize: CGFloat = 100
-    @IBInspectable public var friction: Float = 0.00005
+    @IBInspectable public var friction: Float = 50000
 	
     public var camera: CameraPreviewProtocol?
 
@@ -148,7 +148,7 @@ import UIKit
 				break
 			}
 			
-			let delta = -Float( velocity )  * friction
+			let delta = -Float( velocity ) * (1 / friction)
 			exposureActionIso += delta
 			if exposureActionIso > 1 {
 				exposureActionIso = 1

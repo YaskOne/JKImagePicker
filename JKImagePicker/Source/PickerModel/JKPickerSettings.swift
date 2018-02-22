@@ -14,15 +14,17 @@ public struct JKPickerSettings {
 	public var hasSplitFeature: Bool
     public var hasFreeSplit: Bool
     public var hasConfirmation: Bool
+    public var hasGallery: Bool
 	public var formatRatios: [JKImageFormatRatio]
 	
-    public init(orientationLock: Bool, snapTime: CGFloat, hasSplitFeature: Bool, hasFreeSplit: Bool, formatRatios: [JKImageFormatRatio], hasConfirmation: Bool = true) {
+    public init(orientationLock: Bool, snapTime: CGFloat, hasSplitFeature: Bool, hasFreeSplit: Bool, formatRatios: [JKImageFormatRatio], hasConfirmation: Bool = false, hasGallery: Bool = false) {
 		self.orientationLock = orientationLock
 		self.snapTime = snapTime
 		self.hasSplitFeature = hasSplitFeature
 		self.hasFreeSplit = hasFreeSplit
 		self.formatRatios = formatRatios
         self.hasConfirmation = hasConfirmation
+        self.hasGallery = hasGallery
 	}
 	
 	public static var `default` = JKPickerSettings(orientationLock: false, snapTime: 0.3, hasSplitFeature: true, hasFreeSplit: true, formatRatios: JKImageFormatRatio.all)

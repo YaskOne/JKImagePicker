@@ -37,6 +37,9 @@ public class JKImagePickerViewController: JKOrientatedViewController {
                 JKImageFormatRatio.screenFrame = self.view.bounds
                 JKImageFormatHelper.shared.format = availableRatios[0]
             }
+            if let hasGallery = _settings?.hasGallery {
+                cameraVC.hasGallery = hasGallery
+            }
             
             if let _ = self.view {
                 updateInterfaceAfterSettingsChange()

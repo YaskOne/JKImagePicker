@@ -158,7 +158,20 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	}
     
     override public func viewWillAppear(_ animated: Bool) {
+        image = nil
+        
+        if let _ = userInfo?["composition"] as? JKSplitComposition,
+            let feature = featureVC as? JKSplitViewController {
+            feature.image2 = nil
+        }
+        else if let feature = featureVC as? JKSplitViewController {
+            feature.image1 = nil
+            feature.image2 = nil
+            feature.image = nil
+        }
+        
         setPicker(.camera)
+        cameraVC.cameraPreview?.startCamera()
         
         navigationController?.isNavigationBarHidden = true
     }

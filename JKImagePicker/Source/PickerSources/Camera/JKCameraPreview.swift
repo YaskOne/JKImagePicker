@@ -46,6 +46,8 @@ public class JKCameraPreview: UIView {
     public var exposureDelay: DispatchWorkItem? = nil
 	public var _zoom: CGFloat = 1
 	public var _focusPoint: CGPoint?
+    
+    var isCameraSetup: Bool = false
 	
     private static let orientationMap: [UIDeviceOrientation : AVCaptureVideoOrientation] = [
         .portrait           : .portrait,
@@ -57,26 +59,29 @@ public class JKCameraPreview: UIView {
     
     public func startCamera() {
         print("JACK CAMERA - Starting camera")
-		self.configureCaptureSession({ success, avCapturePhotoOutput in
-			guard let session = self.captureSession, success else { return }
-			
-			// redimesions the camera preview
-			preview.videoGravity = AVLayerVideoGravity.resizeAspectFill
-			// mirrors the image when front facing
-			preview.connection?.automaticallyAdjustsVideoMirroring = false
-			
-			preview.connection?.isVideoMirrored = self.cameraPosition == .front
-			
-			self.isCaptureSessionConfigured = true
-			session.startRunning()
-			self.session = session
-
-			if let device = currentDevice {
-				device.addObserver(self, forKeyPath: "adjustingFocus", options: .new, context: nil)
-				device.addObserver(self, forKeyPath: "isFlashAvailable", options: .new, context: nil)
-//                avCapturePhotoOutput.addObserver(self, forKeyPath: "isFlashScene", options: .new, context: nil)
-			}
-		})
+        
+        if !isCameraSetup {
+            self.configureCaptureSession({ success, avCapturePhotoOutput in
+                guard let session = self.captureSession, let device = currentDevice, success else { return }
+                
+                isCameraSetup = true
+                
+                // redimesions the camera preview
+                preview.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                // mirrors the image when front facing
+                preview.connection?.automaticallyAdjustsVideoMirroring = false
+                
+                preview.connection?.isVideoMirrored = self.cameraPosition == .front
+                
+                self.isCaptureSessionConfigured = true
+                session.startRunning()
+                self.session = session
+                
+                device.addObserver(self, forKeyPath: "adjustingFocus", options: .new, context: nil)
+                device.addObserver(self, forKeyPath: "isFlashAvailable", options: .new, context: nil)
+                    //                avCapturePhotoOutput.addObserver(self, forKeyPath: "isFlashScene", options: .new, context: nil)
+            })
+        }
     }
 	
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -97,7 +102,9 @@ public class JKCameraPreview: UIView {
 	
     public func stopCamera() {
         print("JACK CAMERA - Stoping camera")
-		if let device = currentDevice {
+		if let device = currentDevice, isCameraSetup {
+            isCameraSetup = false
+            
 			device.removeObserver(self, forKeyPath: "adjustingFocus")
 //            self.capturePhotoOutput?.removeObserver(self, forKeyPath: "isFlashScene")
 			device.removeObserver(self, forKeyPath: "isFlashAvailable")

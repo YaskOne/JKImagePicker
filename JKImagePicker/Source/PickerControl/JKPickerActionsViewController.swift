@@ -92,6 +92,10 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
 	//MARK: - Buttons creation
 	
 	public func reloadButtons() {
+        for action in actionButtons {
+            action.value.removeFromSuperview()
+        }
+        actionButtons = [:]
 		for action in actions {
 			actionButtons[action] = makeButtonForAction(action)
 		}

@@ -32,14 +32,16 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	
     public var _settings: JKPickerSettings? {
         didSet {
-            if let formatRatios = _settings?.formatRatios {
-                availableRatios = formatRatios
-                JKImageFormatRatio.screenFrame = self.view.bounds
-                JKImageFormatHelper.shared.format = availableRatios[0]
+            guard let settings = _settings else {
+                return
             }
-            if let hasGallery = _settings?.hasGallery {
-                cameraVC.hasGallery = hasGallery
-            }
+
+            availableRatios = settings.formatRatios
+            JKImageFormatRatio.screenFrame = self.view.bounds
+            JKImageFormatHelper.shared.format = availableRatios[0]
+            
+            cameraVC.hasGallery = settings.hasGallery
+            cameraVC.orientationLocked = settings.lockOrientation
             
             if let _ = self.view {
                 updateInterfaceAfterSettingsChange()
@@ -245,11 +247,11 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 	
 	public func setPicker(_ type: PickerType, animated: Bool = true) {
         
-		if type == self.currentPicker && currentPickerController != nil { return }
-        
         if type == .camera {
             cameraVC.cameraPreview?.startCamera()
         }
+        
+		if type == self.currentPicker && currentPickerController != nil { return }
         
 		let newPicker = pickerViewController(with: type)
 		setupPicker(newPicker)
@@ -368,11 +370,11 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 		}
         self.metaData = metaData
 
-        if !settings.hasConfirmation
-            && (currentPickerController is JKCameraViewController)
-            && featureVC == nil {
-            pickerAction(action: .confirm)
-            return
+        if !settings.hasConfirmation && currentPickerController is JKCameraViewController {
+            if featureVC == nil || (featureVC as? JKSplitViewController)?.image2 != nil {
+                pickerAction(action: .confirm)
+                return
+            }
         }
 
 		if let split = featureVC as? JKSplitViewController {
@@ -384,13 +386,14 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 				setPicker(.still)
 			} else {
 				split.jkImage1 = self.image
-				setPicker(.camera)
+                setPicker(.camera)
 			}
 		}
         else {
             pickerActions?.needsConfirm = true
             setPicker(.still)
         }
+        
 	}
 	
 	public func commandButtonTapped(command: JKCameraCommand) {
@@ -454,11 +457,15 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 
 extension JKImagePickerViewController: PickerActionsDelegate {
 	
+    func completionHandler() {
+        cameraVC.cameraPreview?.stopCamera()
+    }
+    
     public func pickerAction(action: PickerAction) {
 		switch action {
 		case .normal:
 			if currentPickerController == cameraVC {
-                if cameraVC.capturePhoto() {
+                if cameraVC.capturePhoto(completionHandler: completionHandler) {
                     lockOverlay()
                 }
 			}
@@ -469,7 +476,7 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 					return
 				}
 				if currentPickerController == cameraVC  {
-                    if cameraVC.capturePhoto() {
+                    if cameraVC.capturePhoto(completionHandler: completionHandler) {
                         lockOverlay()
                     }
 					return

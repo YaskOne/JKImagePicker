@@ -57,7 +57,8 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
 	
 	// Layout
 	
-	public var gap: CGFloat { get { return view.bounds.height / 6 } }
+    public var xGap: CGFloat { get { return view.bounds.height / 4 } }
+    public var yGap: CGFloat { get { return view.bounds.height / 6 } }
 	
 	public var buttonSize: CGSize { get {
 		return CGSize(width:view.bounds.height, height:view.bounds.height)
@@ -82,8 +83,8 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
 		// else button is offseted and scaled down
 		else if let index = (actions.filter{$0 != currentAction}.index{$0==action}) {
 			size = smallButtonSize
-			offset.x = s.width + gap + CGFloat(index) * s.width
-			offset.y = gap
+			offset.x = s.width + xGap + CGFloat(index) * s.width
+			offset.y = yGap
 		}
 		return CGRect(x: leftMargin + offset.x, y: offset.y, width: size.width, height: size.height)
 	}

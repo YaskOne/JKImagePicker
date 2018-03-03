@@ -63,6 +63,8 @@ public class JKCameraViewController: JKImagePickerSourceViewController {
 		return false
 		}}
 	
+    public var orientationLocked = true
+    
 	//MARK: - Lifecycle
 	
 	public override func viewDidLoad() {
@@ -229,7 +231,7 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 			mirrored = cameraPreview?.cameraPosition == .back
 		}
 
-		output = output.fromAVCapture(withDeviceOrientation: orientation, flip:mirrored)
+        output = output.fromAVCapture(withDeviceOrientation: orientationLocked ? .portrait : orientation, flip:mirrored)
 
         return output //.standardized
     }
@@ -254,28 +256,29 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 
 public extension JKCameraViewController {
 	
-	public func capturePhoto() -> Bool {
+	public func capturePhoto(completionHandler: @escaping ()->Void) -> Bool {
 		// Make sure capturePhotoOutput is valid
 		guard isEnabled, let capturePhotoOutput = self.capturePhotoOutput else {
 			return false
 		}
-		obture()
 		isEnabled = false
 		// Call capturePhoto method by passing our photo settings and a
 		// delegate implementing AVCapturePhotoCaptureDelegate
 		capturePhotoOutput.capturePhoto(with: avSettings, delegate: self)
+        obture(completionHandler: completionHandler)
         return true
 	}
 	
-	public func obture() {
+	public func obture(completionHandler: @escaping ()->Void) {
 		let blackView = UIView(frame: view.bounds)
 		blackView.backgroundColor = UIColor.black
 		blackView.alpha = 0
 		cameraPreview?.addSubview(blackView)
-		UIView.animate(withDuration: 0.3, delay: 0, options: .autoreverse, animations: {
+		UIView.animate(withDuration: 0.4, delay: 0, options: .autoreverse, animations: {
 			blackView.alpha = 1
 		}) { finished in
 			blackView.removeFromSuperview()
+            completionHandler()
 		}
 	}
 	

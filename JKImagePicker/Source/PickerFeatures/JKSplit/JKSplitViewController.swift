@@ -20,6 +20,8 @@ public class JKSplitViewController: JKFeatureViewController {
 	
     @IBOutlet weak var touchAngleControl: JKCenterAngleControlView!
 
+	var allowSoloSplit:Bool = false
+	
 	public var allowsInviteFriends: Bool = true { didSet {
 		updateInterface()
 		}}

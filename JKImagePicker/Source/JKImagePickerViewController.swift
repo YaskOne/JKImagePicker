@@ -134,6 +134,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
                 if let splitVC = featureVC as? JKSplitViewController {
                     splitVC.view.isUserInteractionEnabled = true //settings.hasFreeSplit
                     splitVC.touchAngleControl.isUserInteractionEnabled = settings.hasFreeSplit
+					splitVC.allowSoloSplit = settings.allowSoloSplit
                 }
 				break
 			}
@@ -371,7 +372,10 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
         self.metaData = metaData
 
         if !settings.hasConfirmation && currentPickerController is JKCameraViewController {
-            if featureVC == nil || (featureVC as? JKSplitViewController)?.image2 != nil {
+            if featureVC == nil || (featureVC as? JKSplitViewController)?.image2 != nil || !settings.allowSoloSplit {
+				if let split = featureVC as? JKSplitViewController {
+					split.jkImage1 = self.image
+				}
                 pickerAction(action: .confirm)
                 return
             }
@@ -386,7 +390,13 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 				setPicker(.still)
 			} else {
 				split.jkImage1 = self.image
-                setPicker(.camera)
+				if settings.allowSoloSplit {
+					setPicker(.camera)
+				}
+				else {
+					pickerActions?.needsConfirm = true
+					setPicker(.still)
+				}
 			}
 		}
         else {

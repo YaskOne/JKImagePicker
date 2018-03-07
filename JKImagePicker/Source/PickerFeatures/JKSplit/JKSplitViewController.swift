@@ -102,7 +102,7 @@ public class JKSplitViewController: JKFeatureViewController {
 	
 	public func updateInterface() {
 		inviteFriendsToCompleteButton?.layer.cornerRadius = 4
-		inviteFriendsToCompleteButton?.isHidden = !(allowsInviteFriends && (image1 != nil && image2 == nil))
+		inviteFriendsToCompleteButton?.isHidden = !(allowsInviteFriends && (image1 != nil && image2 == nil)) || !allowSoloSplit
 	}
 	
 	public func updateSplit() {

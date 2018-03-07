@@ -374,7 +374,12 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
         if !settings.hasConfirmation && currentPickerController is JKCameraViewController {
             if featureVC == nil || (featureVC as? JKSplitViewController)?.image2 != nil || !settings.allowSoloSplit {
 				if let split = featureVC as? JKSplitViewController {
-					split.jkImage1 = self.image
+					
+					if split.image1 != nil {
+						split.jkImage2 = self.image
+					} else {
+						split.jkImage1 = self.image
+					}
 				}
                 pickerAction(action: .confirm)
                 return

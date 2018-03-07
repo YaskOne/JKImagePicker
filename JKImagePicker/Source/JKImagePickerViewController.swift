@@ -10,6 +10,8 @@ import UIKit
 import AVFoundation
 import JackFoundation
 
+let dev = false
+
 public protocol JKImagePickerDelegate {
     func imagePickerSuccess(image: JKImageRepresentable, metaData: JsonDict?)
     func imagePickerCancel()
@@ -86,7 +88,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		return JKImagePicker.storyboard.instantiateViewController(withIdentifier: identifier) as! JKImagePickerSourceViewController
 	}
 	
-	public lazy var cameraVC: JKCameraViewController = { return instantiatePicker(identifier: "Camera") as! JKCameraViewController }()
+    public lazy var cameraVC: JKCameraViewController = { return instantiatePicker(identifier: dev ? "DevCamera" : "Camera") as! JKCameraViewController }()
 	public lazy var previewVC: JKStillImageSourceViewController = { return instantiatePicker(identifier: "Preview") as! JKStillImageSourceViewController }()
 	public lazy var galleryVC: JKGalleryViewController = { return instantiatePicker(identifier: "Gallery") as! JKGalleryViewController }()
 

@@ -51,6 +51,7 @@
 		BC86E7FA203C37710084708F /* JKSplitFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7F9203C37710084708F /* JKSplitFeatureView.swift */; };
 		BC86E7FE203C37B80084708F /* JKHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7FC203C37B80084708F /* JKHandleView.swift */; };
 		BC86E7FF203C37B80084708F /* JKCenterAngleControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7FD203C37B80084708F /* JKCenterAngleControlView.swift */; };
+		D795AE01204FE4AD0025AA90 /* JKDevTeamCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D795AE00204FE4AD0025AA90 /* JKDevTeamCameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		BC86E7F9203C37710084708F /* JKSplitFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKSplitFeatureView.swift; sourceTree = "<group>"; };
 		BC86E7FC203C37B80084708F /* JKHandleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHandleView.swift; sourceTree = "<group>"; };
 		BC86E7FD203C37B80084708F /* JKCenterAngleControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKCenterAngleControlView.swift; sourceTree = "<group>"; };
+		D795AE00204FE4AD0025AA90 /* JKDevTeamCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKDevTeamCameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 				BC25D26C203C2156009729CC /* JKCamFocusView.swift */,
 				BC25D26D203C2156009729CC /* JKVerticalSlider.swift */,
 				BC25D26E203C2156009729CC /* JKCameraViewController.swift */,
+				D795AE00204FE4AD0025AA90 /* JKDevTeamCameraViewController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				BC25D297203C2156009729CC /* JKCamFocusView.swift in Sources */,
 				BC86E7FA203C37710084708F /* JKSplitFeatureView.swift in Sources */,
 				BC25D28B203C2156009729CC /* JKImageFormatHelper.swift in Sources */,
+				D795AE01204FE4AD0025AA90 /* JKDevTeamCameraViewController.swift in Sources */,
 				BC25D295203C2156009729CC /* JKCameraControlView.swift in Sources */,
 				BC25D2AA203C2156009729CC /* JKImagePickerViewController.swift in Sources */,
 				BC25D2A6203C2156009729CC /* JKAsset.swift in Sources */,

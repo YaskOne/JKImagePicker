@@ -17,8 +17,10 @@ public struct JKPickerSettings {
     public var hasConfirmation: Bool
     public var hasGallery: Bool
     public var formatRatios: [JKImageFormatRatio]
-	
-    public init(orientationLock: Bool, snapTime: CGFloat, hasSplitFeature: Bool, hasFreeSplit: Bool, formatRatios: [JKImageFormatRatio], hasConfirmation: Bool = false, allowSoloSplit: Bool = false, hasGallery: Bool = false) {
+    public var dummyImage1: UIImage?
+    public var dummyImage2: UIImage?
+
+    public init(orientationLock: Bool, snapTime: CGFloat, hasSplitFeature: Bool, hasFreeSplit: Bool, formatRatios: [JKImageFormatRatio], hasConfirmation: Bool = false, allowSoloSplit: Bool = false, hasGallery: Bool = false, dummyImage1: UIImage? = nil, dummyImage2: UIImage? = nil) {
 		self.orientationLock = orientationLock
 		self.snapTime = snapTime
 		self.hasSplitFeature = hasSplitFeature

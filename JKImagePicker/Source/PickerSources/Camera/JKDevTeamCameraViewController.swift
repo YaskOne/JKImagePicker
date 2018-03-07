@@ -12,8 +12,11 @@ public class JKDevTeamCameraViewController: JKCameraViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    var image1: UIImage?
+    var image2: UIImage?
+    
     public override func viewDidLoad() {
-        imageView.image = UIImage.init(named: "MysteryPreview")
+        imageView.image = image1 ?? UIImage.init(named: "MysteryPreview")
     }
     
     public override func viewWillAppear(_ animated: Bool) {

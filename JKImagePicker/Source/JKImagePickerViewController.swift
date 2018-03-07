@@ -45,6 +45,9 @@ public class JKImagePickerViewController: JKOrientatedViewController {
             cameraVC.hasGallery = settings.hasGallery
             cameraVC.orientationLocked = settings.orientationLock
             
+            (cameraVC as? JKDevTeamCameraViewController)?.image1 = settings.dummyImage1
+            (cameraVC as? JKDevTeamCameraViewController)?.image2 = settings.dummyImage2
+            
             if let _ = self.view {
                 updateInterfaceAfterSettingsChange()
             }

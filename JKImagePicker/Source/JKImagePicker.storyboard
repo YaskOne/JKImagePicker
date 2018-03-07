@@ -259,6 +259,35 @@
             </objects>
             <point key="canvasLocation" x="159" y="573"/>
         </scene>
+        <!--Dev Team Camera View Controller-->
+        <scene sceneID="Wzs-V7-nWZ">
+            <objects>
+                <viewController storyboardIdentifier="DevCamera" id="7Zh-8O-RNa" customClass="JKDevTeamCameraViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cdg-de-iDC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ugZ-Og-DhN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="leading" secondItem="RVh-3Y-bOm" secondAttribute="leading" id="2q8-nw-QAF"/>
+                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="bottom" secondItem="RVh-3Y-bOm" secondAttribute="bottom" id="IsI-l3-jQ8"/>
+                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="trailing" secondItem="RVh-3Y-bOm" secondAttribute="trailing" id="crC-ej-yde"/>
+                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="top" secondItem="cdg-de-iDC" secondAttribute="top" id="pok-P3-Kd6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RVh-3Y-bOm"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="ugZ-Og-DhN" id="t1w-H2-xrs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I3w-SO-KxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="170.40000000000001" y="1240.9295352323838"/>
+        </scene>
         <!--Gallery View Controller-->
         <scene sceneID="GG1-46-kaw">
             <objects>

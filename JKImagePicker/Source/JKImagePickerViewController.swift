@@ -10,8 +10,6 @@ import UIKit
 import AVFoundation
 import JackFoundation
 
-let dev = false
-
 public protocol JKImagePickerDelegate {
     func imagePickerSuccess(image: JKImageRepresentable, metaData: JsonDict?)
     func imagePickerCancel()
@@ -91,7 +89,16 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		return JKImagePicker.storyboard.instantiateViewController(withIdentifier: identifier) as! JKImagePickerSourceViewController
 	}
 	
-    public lazy var cameraVC: JKCameraViewController = { return instantiatePicker(identifier: dev ? "DevCamera" : "Camera") as! JKCameraViewController }()
+    public lazy var cameraVC: JKCameraViewController = {
+		if let dummy = settings.dummyImage1 {
+			let camVC = instantiatePicker(identifier: "DevCamera") as! JKCameraViewController
+			(camVC as? JKDevTeamCameraViewController)?.image1 = settings.dummyImage1
+			(camVC as? JKDevTeamCameraViewController)?.image2 = settings.dummyImage2
+			return camVC
+		} else {
+			return instantiatePicker(identifier: "Camera") as! JKCameraViewController
+		}
+	}()
 	public lazy var previewVC: JKStillImageSourceViewController = { return instantiatePicker(identifier: "Preview") as! JKStillImageSourceViewController }()
 	public lazy var galleryVC: JKGalleryViewController = { return instantiatePicker(identifier: "Gallery") as! JKGalleryViewController }()
 
@@ -485,6 +492,10 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 		switch action {
 		case .normal:
 			if currentPickerController == cameraVC {
+				if settings.dummyImage1 != nil {
+					self.pictureAvailable(settings.dummyImage1!)
+					return
+				}
                 if cameraVC.capturePhoto(completionHandler: completionHandler) {
                     lockOverlay()
                 }

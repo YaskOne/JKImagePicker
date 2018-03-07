@@ -21,12 +21,12 @@ public struct JKImagePicker {
 		}
         
 		DispatchQueue.main.async {
-			let _ = picker.view
-			picker.delegate = delegate
 			if let settings = settings {
 				picker.settings = settings
 			}
+			picker.delegate = delegate
 			picker.userInfo = info
+			let _ = picker.view
 			nav.isNavigationBarHidden = true
 			viewController?.present(nav, animated: true, completion: nil)
 		}

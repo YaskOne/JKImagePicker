@@ -30,4 +30,7 @@ public class JKDevTeamCameraViewController: JKCameraViewController {
     
     public override func switchCamera() {
     }
+	
+	
+
 }

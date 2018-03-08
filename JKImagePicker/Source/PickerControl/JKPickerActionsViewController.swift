@@ -104,6 +104,9 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
 	
 	public func makeButtonForAction(_ action: PickerAction) -> UIButton {
 		let button = UIButton()
+		let label = action.image
+		button.accessibilityLabel = label
+		button.accessibilityIdentifier = label
 		button.setImage(UIImage.init(named: action.image), for: .normal)
 		button.tag = action.rawValue
 		button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)

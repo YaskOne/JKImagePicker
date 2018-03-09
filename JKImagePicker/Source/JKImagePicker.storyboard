@@ -20,7 +20,7 @@
         <scene sceneID="Cgh-Vz-I6U">
             <objects>
                 <viewController storyboardIdentifier="Split" id="Twz-Xj-Mdn" userLabel="Split Controller" customClass="JKSplitViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hfc-Ch-LkP" customClass="JKSplitFeatureView" customModule="JKImagePicker" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hfc-Ch-LkP" customClass="JKSplitFeatureView" customModule="JKImagePicker" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -28,7 +28,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWP-GB-7qK" customClass="JKCenterAngleControlView" customModule="JKImagePicker" customModuleProvider="target">
+                            <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWP-GB-7qK" customClass="JKCenterAngleControlView" customModule="JKImagePicker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -48,18 +48,18 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="UWP-GB-7qK" firstAttribute="trailing" secondItem="b91-z0-MjQ" secondAttribute="trailing" id="4Cj-7Q-V5M"/>
+                            <constraint firstItem="UWP-GB-7qK" firstAttribute="trailing" secondItem="hfc-Ch-LkP" secondAttribute="trailing" id="4Cj-7Q-V5M"/>
                             <constraint firstItem="e4y-Oz-6Dp" firstAttribute="top" secondItem="hfc-Ch-LkP" secondAttribute="top" id="B50-Eb-LBt"/>
-                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="leading" secondItem="b91-z0-MjQ" secondAttribute="leading" id="Q6Y-fa-Ypk"/>
+                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="leading" secondItem="hfc-Ch-LkP" secondAttribute="leading" id="Q6Y-fa-Ypk"/>
                             <constraint firstItem="UWP-GB-7qK" firstAttribute="top" secondItem="hfc-Ch-LkP" secondAttribute="top" id="QC0-xR-oPB"/>
-                            <constraint firstItem="b91-z0-MjQ" firstAttribute="bottom" secondItem="6xC-Ha-CbA" secondAttribute="bottom" constant="114" id="R5C-3t-z5a"/>
+                            <constraint firstAttribute="bottom" secondItem="6xC-Ha-CbA" secondAttribute="bottom" constant="114" id="R5C-3t-z5a"/>
                             <constraint firstItem="6xC-Ha-CbA" firstAttribute="centerX" secondItem="hfc-Ch-LkP" secondAttribute="centerX" id="YnD-5S-i7Y"/>
-                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="trailing" secondItem="b91-z0-MjQ" secondAttribute="trailing" id="ZIj-pC-UGS"/>
-                            <constraint firstItem="UWP-GB-7qK" firstAttribute="leading" secondItem="b91-z0-MjQ" secondAttribute="leading" id="dC4-Td-TY6"/>
-                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="bottom" secondItem="b91-z0-MjQ" secondAttribute="bottom" id="gH0-Tf-dSs"/>
-                            <constraint firstItem="UWP-GB-7qK" firstAttribute="bottom" secondItem="b91-z0-MjQ" secondAttribute="bottom" id="or3-9T-c8l"/>
+                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="trailing" secondItem="hfc-Ch-LkP" secondAttribute="trailing" id="ZIj-pC-UGS"/>
+                            <constraint firstItem="UWP-GB-7qK" firstAttribute="leading" secondItem="hfc-Ch-LkP" secondAttribute="leading" id="dC4-Td-TY6"/>
+                            <constraint firstItem="e4y-Oz-6Dp" firstAttribute="bottom" secondItem="hfc-Ch-LkP" secondAttribute="bottom" id="gH0-Tf-dSs"/>
+                            <constraint firstItem="UWP-GB-7qK" firstAttribute="bottom" secondItem="hfc-Ch-LkP" secondAttribute="bottom" id="or3-9T-c8l"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="b91-z0-MjQ"/>
+                        <viewLayoutGuide key="safeArea" id="tDo-e8-gxV"/>
                     </view>
                     <connections>
                         <outlet property="inviteFriendsToCompleteButton" destination="6xC-Ha-CbA" id="y3n-j2-xcK"/>
@@ -90,7 +90,7 @@
         <scene sceneID="xYW-eh-BdP">
             <objects>
                 <viewController storyboardIdentifier="imagePicker" id="SxK-ob-J0Z" customClass="JKImagePickerViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EjT-Sk-qg6">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EjT-Sk-qg6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -131,20 +131,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ig8-HO-SOw" firstAttribute="bottom" secondItem="El1-bA-CzZ" secondAttribute="bottom" constant="-25" id="0wW-Dh-Ksg"/>
+                            <constraint firstItem="ig8-HO-SOw" firstAttribute="bottom" secondItem="EjT-Sk-qg6" secondAttribute="bottom" constant="-25" id="0wW-Dh-Ksg"/>
                             <constraint firstItem="Uza-8r-exW" firstAttribute="centerX" secondItem="EjT-Sk-qg6" secondAttribute="centerX" id="3nR-Ks-I0i"/>
                             <constraint firstItem="ig8-HO-SOw" firstAttribute="top" secondItem="Uza-8r-exW" secondAttribute="bottom" constant="3" id="Bd6-xC-97Q"/>
                             <constraint firstItem="ZwL-0O-ubg" firstAttribute="top" secondItem="EjT-Sk-qg6" secondAttribute="top" id="IHe-AY-dFB"/>
-                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" id="Kte-OF-wyH"/>
-                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="top" secondItem="El1-bA-CzZ" secondAttribute="top" id="NnK-28-XyM"/>
-                            <constraint firstItem="ig8-HO-SOw" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" constant="16" id="VRc-12-LqP"/>
-                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" id="asS-ga-GUf"/>
-                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="bottom" secondItem="El1-bA-CzZ" secondAttribute="bottom" id="ebE-Zo-utP"/>
-                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" id="gUZ-rl-pJS"/>
-                            <constraint firstItem="ig8-HO-SOw" firstAttribute="trailing" secondItem="El1-bA-CzZ" secondAttribute="trailing" constant="-16" id="mK7-bB-1rs"/>
-                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="leading" secondItem="El1-bA-CzZ" secondAttribute="leading" id="n4t-da-Cbo"/>
+                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="leading" secondItem="EjT-Sk-qg6" secondAttribute="leading" id="Kte-OF-wyH"/>
+                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="top" secondItem="EjT-Sk-qg6" secondAttribute="top" constant="20" id="NnK-28-XyM"/>
+                            <constraint firstItem="ig8-HO-SOw" firstAttribute="leading" secondItem="EjT-Sk-qg6" secondAttribute="leading" constant="16" id="VRc-12-LqP"/>
+                            <constraint firstItem="QzJ-NY-YAs" firstAttribute="trailing" secondItem="EjT-Sk-qg6" secondAttribute="trailing" id="asS-ga-GUf"/>
+                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="bottom" secondItem="EjT-Sk-qg6" secondAttribute="bottom" id="ebE-Zo-utP"/>
+                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="trailing" secondItem="EjT-Sk-qg6" secondAttribute="trailing" id="gUZ-rl-pJS"/>
+                            <constraint firstItem="ig8-HO-SOw" firstAttribute="trailing" secondItem="EjT-Sk-qg6" secondAttribute="trailing" constant="-16" id="mK7-bB-1rs"/>
+                            <constraint firstItem="ZwL-0O-ubg" firstAttribute="leading" secondItem="EjT-Sk-qg6" secondAttribute="leading" id="n4t-da-Cbo"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="El1-bA-CzZ"/>
+                        <viewLayoutGuide key="safeArea" id="mK1-Kr-yQ8"/>
                     </view>
                     <navigationItem key="navigationItem" id="3bX-8L-AZA"/>
                     <connections>
@@ -189,11 +189,11 @@
         <scene sceneID="eWu-vx-Ub2">
             <objects>
                 <viewController storyboardIdentifier="Preview" id="V2v-Gf-etM" customClass="JKStillImageSourceViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="76N-1D-kKP">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="76N-1D-kKP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bu2-mw-aNc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bu2-mw-aNc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="1" green="0.61802842881944442" blue="0.36512586805555558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
@@ -201,11 +201,11 @@
                         <color key="backgroundColor" red="0.0621499036" green="0.61802842881944442" blue="0.0621499036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bu2-mw-aNc" firstAttribute="top" secondItem="76N-1D-kKP" secondAttribute="top" id="AjF-2s-Hst"/>
-                            <constraint firstItem="bu2-mw-aNc" firstAttribute="leading" secondItem="48c-Q4-eoL" secondAttribute="leading" id="GmD-xU-6XX"/>
-                            <constraint firstItem="bu2-mw-aNc" firstAttribute="trailing" secondItem="48c-Q4-eoL" secondAttribute="trailing" id="QTz-X3-Yys"/>
-                            <constraint firstItem="bu2-mw-aNc" firstAttribute="bottom" secondItem="48c-Q4-eoL" secondAttribute="bottom" id="Rvz-lB-K83"/>
+                            <constraint firstItem="bu2-mw-aNc" firstAttribute="leading" secondItem="76N-1D-kKP" secondAttribute="leading" id="GmD-xU-6XX"/>
+                            <constraint firstItem="bu2-mw-aNc" firstAttribute="trailing" secondItem="76N-1D-kKP" secondAttribute="trailing" id="QTz-X3-Yys"/>
+                            <constraint firstItem="bu2-mw-aNc" firstAttribute="bottom" secondItem="76N-1D-kKP" secondAttribute="bottom" id="Rvz-lB-K83"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="48c-Q4-eoL"/>
+                        <viewLayoutGuide key="safeArea" id="0DB-yB-d8W"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="bu2-mw-aNc" id="eGl-ix-15V"/>
@@ -219,12 +219,12 @@
         <scene sceneID="ziN-zS-acu">
             <objects>
                 <viewController storyboardIdentifier="Camera" modalPresentationStyle="currentContext" id="afA-TR-d91" customClass="JKCameraViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lC5-Ee-9M4">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lC5-Ee-9M4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ff4-mX-Goq">
-                                <rect key="frame" x="169" y="98" width="37" height="24"/>
+                                <rect key="frame" x="169" y="78" width="37" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqg-b2-VCP">
                                         <rect key="frame" x="10.5" y="3" width="17" height="17"/>
@@ -246,10 +246,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ff4-mX-Goq" firstAttribute="top" secondItem="ATA-Qs-tEc" secondAttribute="top" constant="78" id="RmX-Ku-XhR"/>
+                            <constraint firstItem="Ff4-mX-Goq" firstAttribute="top" secondItem="lC5-Ee-9M4" secondAttribute="top" constant="78" id="RmX-Ku-XhR"/>
                             <constraint firstItem="Ff4-mX-Goq" firstAttribute="centerX" secondItem="lC5-Ee-9M4" secondAttribute="centerX" id="lia-eW-ite"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ATA-Qs-tEc"/>
+                        <viewLayoutGuide key="safeArea" id="28y-tN-caK"/>
                     </view>
                     <connections>
                         <outlet property="flashIndicator" destination="Ff4-mX-Goq" id="GcF-Km-rRK"/>
@@ -263,22 +263,22 @@
         <scene sceneID="Wzs-V7-nWZ">
             <objects>
                 <viewController storyboardIdentifier="DevCamera" id="7Zh-8O-RNa" customClass="JKDevTeamCameraViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cdg-de-iDC">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cdg-de-iDC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ugZ-Og-DhN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugZ-Og-DhN">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="leading" secondItem="RVh-3Y-bOm" secondAttribute="leading" id="2q8-nw-QAF"/>
-                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="bottom" secondItem="RVh-3Y-bOm" secondAttribute="bottom" id="IsI-l3-jQ8"/>
-                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="trailing" secondItem="RVh-3Y-bOm" secondAttribute="trailing" id="crC-ej-yde"/>
+                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="leading" secondItem="cdg-de-iDC" secondAttribute="leading" id="2q8-nw-QAF"/>
+                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="bottom" secondItem="cdg-de-iDC" secondAttribute="bottom" id="IsI-l3-jQ8"/>
+                            <constraint firstItem="ugZ-Og-DhN" firstAttribute="trailing" secondItem="cdg-de-iDC" secondAttribute="trailing" id="crC-ej-yde"/>
                             <constraint firstItem="ugZ-Og-DhN" firstAttribute="top" secondItem="cdg-de-iDC" secondAttribute="top" id="pok-P3-Kd6"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="RVh-3Y-bOm"/>
+                        <viewLayoutGuide key="safeArea" id="h7S-Jt-8B7"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="ugZ-Og-DhN" id="t1w-H2-xrs"/>
@@ -292,18 +292,18 @@
         <scene sceneID="GG1-46-kaw">
             <objects>
                 <viewController storyboardIdentifier="Gallery" id="B4M-38-vNE" customClass="JKGalleryViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rD9-jv-XYH">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rD9-jv-XYH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSK-WG-cor">
-                                <rect key="frame" x="0.0" y="73" width="375" height="594"/>
+                                <rect key="frame" x="0.0" y="53" width="375" height="614"/>
                                 <connections>
                                     <segue destination="rf4-Sp-hwd" kind="embed" identifier="EmbedCollection" id="eeS-rR-iMu"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pJ-Eg-CCG">
-                                <rect key="frame" x="0.0" y="20" width="375" height="53"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0pJ-Eg-CCG" secondAttribute="height" multiplier="375:53" id="41H-y7-fmV"/>
@@ -313,14 +313,14 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tSK-WG-cor" firstAttribute="top" secondItem="0pJ-Eg-CCG" secondAttribute="bottom" id="ez4-3z-KpK"/>
-                            <constraint firstItem="tSK-WG-cor" firstAttribute="trailing" secondItem="2YK-32-tLF" secondAttribute="trailing" id="fYE-ZW-yAL"/>
-                            <constraint firstItem="0pJ-Eg-CCG" firstAttribute="top" secondItem="2YK-32-tLF" secondAttribute="top" id="mgG-0q-C6p"/>
-                            <constraint firstItem="0pJ-Eg-CCG" firstAttribute="trailing" secondItem="2YK-32-tLF" secondAttribute="trailing" id="qdb-2a-p9Z"/>
-                            <constraint firstItem="0pJ-Eg-CCG" firstAttribute="leading" secondItem="2YK-32-tLF" secondAttribute="leading" id="r2q-aD-dLu"/>
-                            <constraint firstItem="tSK-WG-cor" firstAttribute="leading" secondItem="2YK-32-tLF" secondAttribute="leading" id="rvd-SK-OwS"/>
-                            <constraint firstItem="tSK-WG-cor" firstAttribute="bottom" secondItem="2YK-32-tLF" secondAttribute="bottom" id="s2l-25-gLL"/>
+                            <constraint firstItem="tSK-WG-cor" firstAttribute="trailing" secondItem="rD9-jv-XYH" secondAttribute="trailing" id="fYE-ZW-yAL"/>
+                            <constraint firstItem="0pJ-Eg-CCG" firstAttribute="top" secondItem="rD9-jv-XYH" secondAttribute="top" id="mgG-0q-C6p"/>
+                            <constraint firstItem="0pJ-Eg-CCG" firstAttribute="trailing" secondItem="rD9-jv-XYH" secondAttribute="trailing" id="qdb-2a-p9Z"/>
+                            <constraint firstItem="0pJ-Eg-CCG" firstAttribute="leading" secondItem="rD9-jv-XYH" secondAttribute="leading" id="r2q-aD-dLu"/>
+                            <constraint firstItem="tSK-WG-cor" firstAttribute="leading" secondItem="rD9-jv-XYH" secondAttribute="leading" id="rvd-SK-OwS"/>
+                            <constraint firstItem="tSK-WG-cor" firstAttribute="bottom" secondItem="rD9-jv-XYH" secondAttribute="bottom" id="s2l-25-gLL"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="2YK-32-tLF"/>
+                        <viewLayoutGuide key="safeArea" id="JFV-4I-WRo"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjO-5U-G7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -331,8 +331,8 @@
         <scene sceneID="Dit-Pi-yYv">
             <objects>
                 <collectionViewController id="rf4-Sp-hwd" customClass="JKGalleryCollectionViewController" customModule="JKImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="nyc-NE-XV7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="594"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" dataMode="prototypes" id="nyc-NE-XV7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="614"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HtJ-Jj-KEV">
@@ -350,7 +350,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fjN-I7-61n">
-                                            <rect key="frame" x="0.0" y="0.0" width="130" height="14"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="34"/>
                                         </imageView>
                                     </subviews>
                                 </view>

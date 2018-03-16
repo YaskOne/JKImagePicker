@@ -15,7 +15,7 @@ public protocol JKImagePickerSourceDelegate {
 	///
 	/// Called when the image is ready to be used
 	
-    func pictureAvailable(_ image: UIImage, metaData: JsonDict?)
+    func pictureAvailable(_ image: UIImage?, metaData: JsonDict?)
 	
 	/// commandButtonTapped
 	///

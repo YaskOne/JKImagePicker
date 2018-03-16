@@ -371,9 +371,14 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 
 extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 	
-    public func pictureAvailable(_ image: UIImage, metaData: JsonDict? = nil) {
+    public func pictureAvailable(_ image: UIImage?, metaData: JsonDict? = nil) {
         unlockOverlay()
 
+        guard let image = image else {
+            print("[JKImagePicker]: error capturing image, try again")
+            setPicker(.camera)
+            return
+        }
         if let cgImage = image.cgImage {
 			self.image = JKImage(cgImage, format: imageFormat)
 			previewVC.jkImage = self.image

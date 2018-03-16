@@ -203,6 +203,7 @@ extension JKCameraViewController : AVCapturePhotoCaptureDelegate   {
 		guard error == nil,
 			let photoSampleBuffer = photoSampleBuffer else {
 				print("Error capturing photo: \(String(describing: error))")
+                self.delegate?.pictureAvailable(nil, metaData: nil)
 				return
 		}
 		
@@ -264,8 +265,13 @@ public extension JKCameraViewController {
 		isEnabled = false
 		// Call capturePhoto method by passing our photo settings and a
 		// delegate implementing AVCapturePhotoCaptureDelegate
-		capturePhotoOutput.capturePhoto(with: avSettings, delegate: self)
-        obture(completionHandler: completionHandler)
+//        do {
+            capturePhotoOutput.capturePhoto(with: avSettings, delegate: self)
+            obture(completionHandler: completionHandler)
+//        }
+//        catch {
+//            print("[JKImagePicker]: error catching photo")
+//        }
         return true
 	}
 	

@@ -103,8 +103,6 @@ public class JKCameraPreview: UIView {
     public func stopCamera() {
         print("JACK CAMERA - Stoping camera")
 		if let device = currentDevice, isCameraSetup {
-            isCameraSetup = false
-            
 			device.removeObserver(self, forKeyPath: "adjustingFocus")
 //            self.capturePhotoOutput?.removeObserver(self, forKeyPath: "isFlashScene")
 			device.removeObserver(self, forKeyPath: "isFlashAvailable")
@@ -112,6 +110,7 @@ public class JKCameraPreview: UIView {
         if self.captureSession != nil && self.captureSession!.isRunning {
             self.captureSession?.stopRunning()
         }
+        isCameraSetup = false
     }
 }
 

@@ -16,6 +16,7 @@ public class JKDevTeamCameraViewController: JKCameraViewController {
     var image2: UIImage?
     
     public override func viewDidLoad() {
+		imageView.contentMode = .scaleAspectFill
         imageView.image = image1 ?? UIImage.init(named: "MysteryPreview")
     }
     

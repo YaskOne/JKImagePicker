@@ -42,6 +42,7 @@ public class JKCameraViewController: JKImagePickerSourceViewController {
 			settings.isAutoStillImageStabilizationEnabled = false
 			settings.isHighResolutionPhotoEnabled = true
             settings.flashMode = hasFlash ? flashMode : .off
+            
 			return settings
 		}
 	}

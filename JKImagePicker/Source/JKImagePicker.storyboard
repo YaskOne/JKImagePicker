@@ -96,7 +96,7 @@
                         <subviews>
                             <containerView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="Picker Container" translatesAutoresizingMaskIntoConstraints="NO" id="ZwL-0O-ubg" userLabel="Picker Container">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QzJ-NY-YAs">
                                 <rect key="frame" x="0.0" y="20" width="375" height="53.5"/>
@@ -129,7 +129,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ig8-HO-SOw" firstAttribute="bottom" secondItem="EjT-Sk-qg6" secondAttribute="bottom" constant="-25" id="0wW-Dh-Ksg"/>
                             <constraint firstItem="Uza-8r-exW" firstAttribute="centerX" secondItem="EjT-Sk-qg6" secondAttribute="centerX" id="3nR-Ks-I0i"/>

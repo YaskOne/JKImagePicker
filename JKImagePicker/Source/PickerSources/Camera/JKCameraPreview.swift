@@ -203,6 +203,12 @@ public extension JKCameraPreview {
 			NotificationCenter.default.post(name: JKCameraPreview.didLockNotification, object: self)
 
 			handler(device)
+            
+            do {
+                _ = try device.setTorchModeOn(level: 0.5)
+            } catch {
+                print("error setting flash intensity")
+            }
 			
 			if (autoUnlock) {
 				endConfigure(device: device)
@@ -217,7 +223,7 @@ public extension JKCameraPreview {
 		device.unlockForConfiguration()
 		NotificationCenter.default.post(name: JKCameraPreview.didUnlockNotification, object: self)
 	}
-	
+
 }
 
 

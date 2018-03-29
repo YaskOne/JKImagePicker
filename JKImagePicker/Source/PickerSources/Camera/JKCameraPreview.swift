@@ -204,12 +204,6 @@ public extension JKCameraPreview {
 
 			handler(device)
             
-            do {
-                _ = try device.setTorchModeOn(level: 0.5)
-            } catch {
-                print("error setting flash intensity")
-            }
-			
 			if (autoUnlock) {
 				endConfigure(device: device)
 			}

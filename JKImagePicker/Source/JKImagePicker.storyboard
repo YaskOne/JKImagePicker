@@ -164,16 +164,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7B6-TH-hpY">
-                                <rect key="frame" x="7" y="0.0" width="361" height="53.5"/>
+                                <rect key="frame" x="12" y="0.0" width="351" height="53.5"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="7B6-TH-hpY" secondAttribute="trailing" constant="7" id="D67-AB-RjU"/>
+                            <constraint firstAttribute="trailing" secondItem="7B6-TH-hpY" secondAttribute="trailing" constant="12" id="D67-AB-RjU"/>
                             <constraint firstItem="7B6-TH-hpY" firstAttribute="top" secondItem="mH7-KV-Rmy" secondAttribute="top" id="O7O-ke-vcR"/>
                             <constraint firstItem="7B6-TH-hpY" firstAttribute="bottom" secondItem="mH7-KV-Rmy" secondAttribute="bottom" id="R1l-HI-tyr"/>
-                            <constraint firstItem="7B6-TH-hpY" firstAttribute="leading" secondItem="mH7-KV-Rmy" secondAttribute="leading" constant="7" id="Y6B-V7-ZNo"/>
+                            <constraint firstItem="7B6-TH-hpY" firstAttribute="leading" secondItem="mH7-KV-Rmy" secondAttribute="leading" constant="12" id="Y6B-V7-ZNo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mH7-KV-Rmy"/>
                     </view>

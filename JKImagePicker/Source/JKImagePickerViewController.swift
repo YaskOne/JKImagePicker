@@ -44,6 +44,10 @@ public class JKImagePickerViewController: JKOrientatedViewController {
             cameraVC.orientationLocked = settings.orientationLock
             cameraVC.cameraPreview?.cameraPosition = settings.startPosition
             
+            currentFeature = settings.startFeature
+            
+            pickerActions?.currentAction = settings.startFeature == .normal ? .normal : .splitted
+            
             (cameraVC as? JKDevTeamCameraViewController)?.image1 = settings.dummyImage1
             (cameraVC as? JKDevTeamCameraViewController)?.image2 = settings.dummyImage2
             
@@ -190,6 +194,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
         }
         
         setPicker(.camera)
+        cameraVC.cameraPreview?.cameraPosition = settings.startPosition
         cameraVC.cameraPreview?.startCamera()
         
         navigationController?.isNavigationBarHidden = true

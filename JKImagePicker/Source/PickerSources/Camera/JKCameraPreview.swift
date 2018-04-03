@@ -121,7 +121,17 @@ public extension JKCameraPreview {
                                                 for: AVMediaType.video,
                                                 position: cameraPosition) {
             return device // use default back facing camera otherwise
-        } else {
+		} else if let device = AVCaptureDevice.default(.builtInWideAngleCamera,
+													  for: AVMediaType.video,
+													  position: .back) {
+														return device // use default back facing camera otherwise
+		} else if let device = AVCaptureDevice.default(.builtInWideAngleCamera,
+												  for: AVMediaType.video,
+												  position: .front) {
+			return device // use default back facing camera otherwise
+		}
+		else
+		{
             fatalError("All supported devices are expected to have at least one of the queried capture devices.")
         }
     }

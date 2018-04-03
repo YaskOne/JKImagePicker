@@ -141,7 +141,9 @@ public class JKCameraViewController: JKImagePickerSourceViewController {
 	
 	override public var availableControls: [JKCameraControlItem] { get {
 		let flashItem: JKCameraControlItem = hasFlash ? .flash : .pad
-        return [flashItem, .switchCam, (hasGallery ? .gallery : .free), .free, .free, .free, .close]
+		
+		let switchItem: JKCameraControlItem = JKImagePicker.hasBackCamera && JKImagePicker.hasFrontCamera ? .switchCam : .pad
+        return [flashItem, switchItem, (hasGallery ? .gallery : .free), .free, .free, .free, .close]
 		}}
 	
 	override public func iconForControlItem(_ item:JKCameraControlItem) -> String {

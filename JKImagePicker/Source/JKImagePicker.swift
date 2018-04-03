@@ -48,4 +48,16 @@ public struct JKImagePicker {
             }
         })
     }
+	
+	public static var hasFrontCamera: Bool {
+		return AVCaptureDevice.default(.builtInWideAngleCamera,
+									   for: AVMediaType.video,
+									   position: .front) != nil
+	}
+	
+	public static var hasBackCamera: Bool {
+		return AVCaptureDevice.default(.builtInWideAngleCamera,
+									   for: AVMediaType.video,
+									   position: .back) != nil
+	}
 }

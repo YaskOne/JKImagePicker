@@ -44,16 +44,18 @@ public class JKImagePickerViewController: JKOrientatedViewController {
             cameraVC.orientationLocked = settings.orientationLock
             cameraVC.cameraPreview?.cameraPosition = settings.startPosition
             
-            currentFeature = settings.startFeature
-            
-            pickerActions?.currentAction = settings.startFeature == .normal ? .normal : .splitted
-            
-            (cameraVC as? JKDevTeamCameraViewController)?.image1 = settings.dummyImage1
-            (cameraVC as? JKDevTeamCameraViewController)?.image2 = settings.dummyImage2
-            
+			
             if let _ = self.view {
                 updateInterfaceAfterSettingsChange()
             }
+			
+			if let dummyCamera = cameraVC as? JKDevTeamCameraViewController {
+				dummyCamera.image1 = settings.dummyImage1
+				dummyCamera.image2 = settings.dummyImage2
+			}
+			else if settings.startFeature == .split {
+				self.pickerAction(action: .splitted)
+			}
         }
     }
 	

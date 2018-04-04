@@ -53,10 +53,6 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 				dummyCamera.image1 = settings.dummyImage1
 				dummyCamera.image2 = settings.dummyImage2
 			}
-			else if settings.startFeature == .split {
-				self.actionSelected(action: .splitted)
-			}
-
         }
     }
 	
@@ -202,7 +198,10 @@ public class JKImagePickerViewController: JKOrientatedViewController {
         
         navigationController?.isNavigationBarHidden = true
 		
-
+		if settings.startFeature == .split {
+			self.actionSelected(action: .splitted)
+			self.pickerActions?.currentAction = (currentFeature == .split) ? .splitted : .normal
+		}
     }
     
     override public func viewWillDisappear(_ animated: Bool) {

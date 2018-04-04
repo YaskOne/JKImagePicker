@@ -53,6 +53,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 				dummyCamera.image1 = settings.dummyImage1
 				dummyCamera.image2 = settings.dummyImage2
 			}
+			
         }
     }
 	
@@ -83,6 +84,15 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 					feature.allowsInviteFriends = false
 					feature.allowsChangeAngle = false
 					feature.splitView.settings = JKSplitSettings(angle: composition.angle, center: composition.center)
+				}
+			}
+			else {
+				if settings.startFeature == .split {
+					currentFeature = .split
+					//self.pickerAction(action: .splitted)
+					//self.actionSelected(action: .splitted)
+					self.pickerActions?.currentAction = (currentFeature == .split) ? .splitted : .normal
+					
 				}
 			}
 		}
@@ -197,11 +207,16 @@ public class JKImagePickerViewController: JKOrientatedViewController {
         cameraVC.cameraPreview?.startCamera()
         
         navigationController?.isNavigationBarHidden = true
-		
-		if settings.startFeature == .split {
-			self.actionSelected(action: .splitted)
+		/*
+		if settings.startFeature == .split && settings{
+			currentFeature = .split
+			//self.pickerAction(action: .splitted)
+			//self.actionSelected(action: .splitted)
 			self.pickerActions?.currentAction = (currentFeature == .split) ? .splitted : .normal
+
 		}
+*/
+
     }
     
     override public func viewWillDisappear(_ animated: Bool) {

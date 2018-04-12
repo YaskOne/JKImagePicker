@@ -14,6 +14,7 @@ import JackFoundation
 public struct JKSplitSettings {
 	public var angle: CGFloat = 0
 	public var center: CGPoint = CGPoint(x:0.5, y:0.5)
+	public var overlayColor: CGColor?
 	
 	public init(angle: CGFloat = 0) {
 		self.angle = angle
@@ -115,10 +116,10 @@ public class JKSplitView: UIView {
 	
 	public func drawImages(context: CGContext) {
         JKSplitView.drawImage(frame, getFirstImage?.cgImage, clipPath: clipPath(), overlayIfNil: false, context: context)
-        JKSplitView.drawImage(frame, getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage, context: context)
+        JKSplitView.drawImage(frame, getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage, context: context, splitAreaOverlayColor: settings.overlayColor)
 	}
 	
-    public static func drawImage(_ frame: CGRect, _ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext) {
+	public static func drawImage(_ frame: CGRect, _ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext, splitAreaOverlayColor: CGColor? = nil ) {
 		context.saveGState()
 		
 		if let clip = clipPath {
@@ -134,7 +135,8 @@ public class JKSplitView: UIView {
 			
 		}
 		else if overlayIfNil {
-			context.setFillColor(UIColor.black.withAlphaComponent(overlayOpacity).cgColor)
+			let color = splitAreaOverlayColor ?? UIColor.black.withAlphaComponent(overlayOpacity).cgColor
+			context.setFillColor(color)
 			context.fill(frame)
 		}
 		

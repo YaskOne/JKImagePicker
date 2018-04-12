@@ -58,6 +58,8 @@ public class JKCameraViewController: JKImagePickerSourceViewController {
     public var hasGallery: Bool = true
 
 	public var hasFlash: Bool { get {
+		let flashModes = self.capturePhotoOutput?.supportedFlashModes
+		
 		if let flash = cameraPreview?.currentDevice?.hasFlash {
 			return flash
 		}
@@ -270,7 +272,9 @@ public extension JKCameraViewController {
 		// delegate implementing AVCapturePhotoCaptureDelegate
 //        do {
             capturePhotoOutput.capturePhoto(with: avSettings, delegate: self)
-            obture(completionHandler: completionHandler)
+			if flashMode == .off {
+				obture(completionHandler: completionHandler)
+			}
 //        }
 //        catch {
 //            print("[JKImagePicker]: error catching photo")

@@ -161,6 +161,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
                     splitVC.view.isUserInteractionEnabled = true //settings.hasFreeSplit
                     splitVC.touchAngleControl.isUserInteractionEnabled = settings.hasFreeSplit
 					splitVC.allowSoloSplit = settings.allowSoloSplit
+					splitVC.splitView.settings.overlayColor = settings.splitColor.cgColor
                 }
 				break
 			}

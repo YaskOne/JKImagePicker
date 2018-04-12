@@ -24,7 +24,9 @@ public struct JKPickerSettings {
     public var startPosition: AVCaptureDevice.Position
     public var startFeature: PickerFeature
 
-    public init(orientationLock: Bool, snapTime: CGFloat, hasSplitFeature: Bool, hasFreeSplit: Bool, formatRatios: [JKImageFormatRatio], hasConfirmation: Bool = false, allowSoloSplit: Bool = false, hasGallery: Bool = false, dummyImage1: UIImage? = nil, dummyImage2: UIImage? = nil, startPosition: AVCaptureDevice.Position = .back, startFeature: PickerFeature = .split) {
+	public var splitColor: UIColor = UIColor.black
+	
+	public init(orientationLock: Bool, snapTime: CGFloat, hasSplitFeature: Bool, hasFreeSplit: Bool, formatRatios: [JKImageFormatRatio], hasConfirmation: Bool = false, allowSoloSplit: Bool = false, hasGallery: Bool = false, dummyImage1: UIImage? = nil, dummyImage2: UIImage? = nil, startPosition: AVCaptureDevice.Position = .back, startFeature: PickerFeature = .split, splitColor: UIColor = UIColor.black) {
 		self.orientationLock = orientationLock
 		self.snapTime = snapTime
 		self.hasSplitFeature = hasSplitFeature
@@ -36,6 +38,7 @@ public struct JKPickerSettings {
 		self.useDummyCamera = dummyImage1 != nil
         self.startPosition = startPosition
         self.startFeature = startFeature
+		self.splitColor = splitColor
 	}
 	
 	public static var `default` = JKPickerSettings(orientationLock: true, snapTime: 0.3, hasSplitFeature: true, hasFreeSplit: true, formatRatios: JKImageFormatRatio.all)

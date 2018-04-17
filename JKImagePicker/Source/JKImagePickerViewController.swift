@@ -515,6 +515,20 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 
 extension JKImagePickerViewController: PickerActionsDelegate {
 	
+	public func selectedAction() -> PickerAction {
+		if settings.hasSplitFeature && settings.startFeature == .split {
+			return .splitted
+		}
+		return .normal
+	}
+	
+	public func availablePickerActions() -> [PickerAction]{
+		if settings.hasSplitFeature {
+			return [.normal,.splitted]
+		}
+		return [.normal]
+	}
+	
     func completionHandler() {
         cameraVC.cameraPreview?.stopCamera()
     }

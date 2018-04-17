@@ -28,19 +28,30 @@ public enum PickerAction: Int {
 public protocol PickerActionsDelegate {
     func pickerAction(action: PickerAction)
 	func actionSelected(action: PickerAction)
+	
+	func availablePickerActions() -> [PickerAction]
+	func selectedAction() -> PickerAction
 }
 
 public class JKPickerActionsViewController: JKOrientatedViewController {
 
-    public var actions = [PickerAction]() {
-        didSet {
+    private var _actions = [PickerAction]()
+	
+	public var actions: [PickerAction] {
+		get {
+			return delegate?.availablePickerActions() ?? _actions
+		}
+		set {
+			_actions = actions
 			reloadButtons()
 		}
-    }
+	}
 	
 	public var actionButtons = [PickerAction: UIButton]()
 
-	public var delegate: PickerActionsDelegate?
+	public var delegate: PickerActionsDelegate? { didSet {
+		reloadButtons()
+		}}
 
 	public var needsConfirm: Bool = false {
 		didSet {
@@ -99,7 +110,7 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
 		for action in actions {
 			actionButtons[action] = makeButtonForAction(action)
 		}
-		currentAction = actions[0]
+		currentAction = actions.first ?? .normal
 	}
 	
 	public func makeButtonForAction(_ action: PickerAction) -> UIButton {
@@ -140,10 +151,10 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
 	
 	public override func viewDidLoad() {
 		super.viewDidLoad()
-		actions = [.normal,.splitted]
-		currentAction = .normal
+		currentAction = delegate?.selectedAction() ?? .normal
 	}
 
+	
 	public override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		updateLayout()

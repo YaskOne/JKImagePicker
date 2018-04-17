@@ -31,7 +31,11 @@ public class JKSplitView: UIView {
 
 	public static let bigRect = CGRect(x:0, y:0, width: 10000, height: 10000)
 
-	public var settings: JKSplitSettings = JKSplitSettings()
+	public var settings: JKSplitSettings = JKSplitSettings() {
+		didSet {
+			print("[JKImagePicker:JKSplitView] : settings changed")
+		}
+	}
 	
 	//MARK: - Images
 	public var image1:UIImage?

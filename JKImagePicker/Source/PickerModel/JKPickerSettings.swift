@@ -41,7 +41,7 @@ public struct JKPickerSettings {
 		self.splitColor = splitColor
 	}
 	
-	public static var `default` = JKPickerSettings(orientationLock: true, snapTime: 0.3, hasSplitFeature: true, hasFreeSplit: true, formatRatios: JKImageFormatRatio.all, startPosition: .back, startFeature: .split)
+	public static var `default` = JKPickerSettings(orientationLock: true, snapTime: 0.3, hasSplitFeature: true, hasFreeSplit: true, formatRatios: JKImageFormatRatio.all, hasGallery: true, startPosition: .back, startFeature: .split)
 	
-	public static var profile = JKPickerSettings(orientationLock: true, snapTime: 0.3, hasSplitFeature: true, hasFreeSplit: true, formatRatios: [JKImageFormatRatio.square], startPosition: .front, startFeature: .normal)
+	public static var profile = JKPickerSettings(orientationLock: true, snapTime: 0.3, hasSplitFeature: true, hasFreeSplit: true, formatRatios: [JKImageFormatRatio.square], hasGallery: true, startPosition: .front, startFeature: .normal)
 }

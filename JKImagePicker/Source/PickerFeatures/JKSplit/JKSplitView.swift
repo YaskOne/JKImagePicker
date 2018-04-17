@@ -92,21 +92,21 @@ public class JKSplitView: UIView {
 		}
 	}
     
-    public static func drawSplit(context: CGContext, image1: CGImage?, image2: CGImage?, angle: CGFloat, center: CGPoint, frame: CGRect) {
+    public static func drawSplit(context: CGContext, image1: CGImage?, image2: CGImage?, angle: CGFloat, center: CGPoint, frame: CGRect, splitOverlayColor: CGColor? = nil) {
         let clipPath1 = splittedRectPath(frame, angle: angle, center: center, lineOnly: false, invert: false)
         let clipPath2 = splittedRectPath(frame, angle: angle, center: center, lineOnly: false, invert: true)
         
-        drawImage(frame, image1, clipPath: clipPath1, overlayIfNil: true, context: context)
-        drawImage(frame, image2, clipPath: clipPath2, overlayIfNil: true , context: context)
+        drawImage(frame, image1, clipPath: clipPath1, overlayIfNil: true, context: context, splitOverlayColor: splitOverlayColor)
+        drawImage(frame, image2, clipPath: clipPath2, overlayIfNil: true , context: context, splitOverlayColor: splitOverlayColor)
     }
     
-    public static func generateSplitImage(image1: CGImage?, image2: CGImage?, angle: CGFloat, center: CGPoint, frame: CGRect) -> UIImage? {
+    public static func generateSplitImage(image1: CGImage?, image2: CGImage?, angle: CGFloat, center: CGPoint, frame: CGRect, splitOverlayColor: CGColor? = nil) -> UIImage? {
         UIGraphicsBeginImageContext(frame.size)
 
         guard let context = UIGraphicsGetCurrentContext() else {
             return nil
         }
-        drawSplit(context: context, image1: image1, image2: image2, angle: angle, center: center, frame: frame)
+        drawSplit(context: context, image1: image1, image2: image2, angle: angle, center: center, frame: frame, splitOverlayColor: splitOverlayColor )
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -116,10 +116,10 @@ public class JKSplitView: UIView {
 	
 	public func drawImages(context: CGContext) {
         JKSplitView.drawImage(frame, getFirstImage?.cgImage, clipPath: clipPath(), overlayIfNil: false, context: context)
-        JKSplitView.drawImage(frame, getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage, context: context, splitAreaOverlayColor: settings.overlayColor)
+        JKSplitView.drawImage(frame, getSecondImage?.cgImage, clipPath: clipPath(invert: true), overlayIfNil: !gotOneImage, context: context, splitOverlayColor: settings.overlayColor)
 	}
 	
-	public static func drawImage(_ frame: CGRect, _ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext, splitAreaOverlayColor: CGColor? = nil ) {
+	public static func drawImage(_ frame: CGRect, _ image: CGImage?, clipPath: CGPath?, overlayIfNil: Bool = true, context: CGContext, splitOverlayColor: CGColor? = nil ) {
 		context.saveGState()
 		
 		if let clip = clipPath {
@@ -135,7 +135,7 @@ public class JKSplitView: UIView {
 			
 		}
 		else if overlayIfNil {
-			let color = splitAreaOverlayColor ?? UIColor.black.withAlphaComponent(overlayOpacity).cgColor
+			let color = splitOverlayColor ?? UIColor.black.withAlphaComponent(overlayOpacity).cgColor
 			context.setFillColor(color)
 			context.fill(frame)
 		}

@@ -405,6 +405,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
             setPicker(.camera)
             return
         }
+		
         if let cgImage = image.cgImage {
 			self.image = JKImage(cgImage, format: imageFormat)
 			previewVC.jkImage = self.image

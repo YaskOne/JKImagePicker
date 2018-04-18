@@ -135,6 +135,7 @@ extension CGRect {
 			return CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
 		}
 		// rotate if portrait
-		return CGRect(x: 0, y: 0, width: newHeight, height: newWidth)
+		//return CGRect(x: 0, y: 0, width: newHeight, height: newWidth)
+		return CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
 	}
 }

@@ -20,7 +20,7 @@ public enum PickerAction: Int {
         case .splitted:
             return "Capture-split"
         case .confirm:
-            return "Confirm"
+            return "Capture-split"
         }
     }
 }
@@ -47,7 +47,8 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
 		}
 	}
 	
-	public var actionButtons = [PickerAction: UIButton]()
+    public var actionButtons = [PickerAction: UIButton]()
+    public var actionConfirmLabel = [PickerAction: UILabel]()
 
 	public var delegate: PickerActionsDelegate? { didSet {
 		reloadButtons()
@@ -106,44 +107,68 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
         for action in actionButtons {
             action.value.removeFromSuperview()
         }
+        for label in actionConfirmLabel {
+            label.value.removeFromSuperview()
+        }
         actionButtons = [:]
+        actionConfirmLabel = [:]
 		for action in actions {
-			actionButtons[action] = makeButtonForAction(action)
+            actionButtons[action] = makeButtonForAction(action)
+            actionConfirmLabel[action] = makeLabelForAction(action, superView: actionButtons[action]!)
 		}
 		currentAction = actions.first ?? .normal
 	}
-	
-	public func makeButtonForAction(_ action: PickerAction) -> UIButton {
-		let button = UIButton()
-		let label = action.image
-		button.accessibilityLabel = label
-		button.accessibilityIdentifier = label
-		button.setImage(UIImage.init(named: action.image), for: .normal)
-		button.tag = action.rawValue
-		button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-		view.addSubview(button)
-		return button
-	}
+    
+    public func makeButtonForAction(_ action: PickerAction) -> UIButton {
+        let button = UIButton()
+        let label = action.image
+        button.accessibilityLabel = label
+        button.accessibilityIdentifier = label
+        button.setImage(UIImage.init(named: action.image), for: .normal)
+        button.tag = action.rawValue
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        view.addSubview(button)
+        return button
+    }
+    
+    public func makeLabelForAction(_ action: PickerAction, superView: UIView) -> UILabel {
+        let label = UILabel(frame: insetedFrame(superView))
+        label.text = JackImagePickerFont.icon_checkmark
+        label.font = UIFont(name: "JackFont", size: label.frame.height)
+        superView.addSubview(label)
+        return label
+    }
 
+    func insetedFrame(_ container: UIView) -> CGRect {
+        let containerFrame = CGRect.init(origin: CGPoint.zero, size: container.frame.size)
+        return containerFrame.insetBy(dx: containerFrame.height / 4, dy: containerFrame.height / 4)
+    }
+    
 	//MARK: - Layout
 	
 	public func updateActions() {
 		for action in actions {
-			if let button = actionButtons[action] {
-				button.tag = action.rawValue
-				button.setImage(UIImage(named: action.image), for: .normal)
-			}
+            if let button = actionButtons[action] {
+                button.tag = action.rawValue
+                button.setImage(UIImage(named: action.image), for: .normal)
+            }
+            if let label = actionConfirmLabel[action] {
+                label.isHidden = !needsConfirm
+            }
 		}
-		guard let mainButton = actionButtons[currentAction], needsConfirm else { return }
-		mainButton.tag = PickerAction.confirm.rawValue
-		mainButton.setImage(UIImage(named: PickerAction.confirm.image), for: .normal)
+//        guard let mainButton = actionButtons[currentAction], needsConfirm else { return }
+//        mainButton.tag = PickerAction.confirm.rawValue
+//        mainButton.setImage(UIImage(named: PickerAction.confirm.image), for: .normal)
 	}
 	
 	public func updateLayout() {
 		for action in actions {
-			if let button = actionButtons[action] {
-				button.frame = buttonFrameForAction(action)
-			}
+            if let button = actionButtons[action] {
+                button.frame = buttonFrameForAction(action)
+                if let label = actionConfirmLabel[action] {
+                    label.frame = insetedFrame(button)
+                }
+            }
 		}
 	}
 	
@@ -165,17 +190,16 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
     @objc func buttonTapped(_ sender: UIButton) {
 		guard let action = PickerAction(rawValue:sender.tag) else { return }
 		
-		if action != currentAction && action != .confirm {
+		if action != currentAction {
 			UIView.animate(withDuration: 0.5) {
-				self.needsConfirm = false
 				self.currentAction = action
 			}
 			return
 		}
-		if needsConfirm {
-			delegate?.pickerAction(action: PickerAction.confirm)
-			return
-		}
+        if needsConfirm {
+            delegate?.pickerAction(action: PickerAction.confirm)
+            return
+        }
 		delegate?.pickerAction(action: currentAction)
 
     }

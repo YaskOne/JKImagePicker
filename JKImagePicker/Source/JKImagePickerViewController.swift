@@ -66,6 +66,8 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 			_settings = newValue
 		}
 	}
+    
+    var hasInitiator: Bool = false
 	
 	public var userInfo: JsonDict? {
 		didSet {
@@ -84,6 +86,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 					feature.allowsInviteFriends = false
 					feature.allowsChangeAngle = false
 					feature.splitView.settings = JKSplitSettings(angle: composition.angle, center: composition.center)
+                    hasInitiator = true
 				}
 			}
 			else {
@@ -155,6 +158,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
     
 	public var currentFeature: PickerFeature = .normal {
 		didSet {
+            previewVC.view.isHidden = currentFeature == .split
 			switch currentFeature {
 			case .normal:
 				removeFeature(animated: true)
@@ -204,9 +208,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
             feature.image2 = nil
         }
         else if let feature = featureVC as? JKSplitViewController {
-            feature.image1 = nil
-            feature.image2 = nil
-            feature.image = nil
+            resetPicker()
         }
         
         setPicker(.camera)
@@ -295,6 +297,10 @@ public class JKImagePickerViewController: JKOrientatedViewController {
         if type == .camera {
             cameraVC.cameraPreview?.startCamera()
         }
+//        if currentPicker == .still, type != .still, let feature = featureVC as? JKSplitViewController {
+//            feature.image2 = nil
+//            feature.image1 = nil
+//        }
         
 		if type == self.currentPicker && currentPickerController != nil { return }
         
@@ -415,13 +421,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
         
         if let cgImage = image.cgImage {
             self.image = JKImage(cgImage, format: imageFormat)
-
-            if featureVC == nil {
-                previewVC.jkImage = self.image
-            }
-        }
-        else if featureVC == nil {
-            previewVC.image = image
+            previewVC.jkImage = self.image
         }
 
         if !settings.hasConfirmation && currentPickerController is JKCameraViewController {
@@ -471,6 +471,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 			delegate?.imagePickerCancel()
 			
 		case JKCameraControlItem.camera.rawValue, JKCameraControlItem.back.rawValue:
+            resetPicker()
 			setPicker(.camera)
 			
 		case JKCameraControlItem.gallery.rawValue:
@@ -479,6 +480,7 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
                 print("Not authorized for gallery access")
             }, success: {
                 DispatchQueue.main.async {
+                    self.resetPicker()
                     self.setPicker(.gallery)
                 }
             })
@@ -489,6 +491,17 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 			break
 		}
 	}
+    
+    func resetPicker() {
+        if let feature = featureVC as? JKSplitViewController {
+            if !hasInitiator {
+                feature.image1 = nil
+            }
+            feature.image2 = nil
+            feature.image = nil
+            previewVC.jkImage = nil
+        }
+    }
 
 	public func iconForControlItem(_ item:JKCameraControlItem) -> String {
 		if let vc = featureVC, let icon = vc.iconForControlItem(item) {
@@ -621,21 +634,21 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 		switch action {
 		case .normal:
 			currentFeature = .normal
-			self.image = nil
-			if let feature = featureVC as? JKSplitViewController {
-				feature.image2 = nil
-				feature.image1 = nil
-			}
-			setPicker(.camera)
+//            self.image = nil
+//            if let feature = featureVC as? JKSplitViewController {
+//                feature.image2 = nil
+//                feature.image1 = nil
+//            }
+//            setPicker(.camera)
 		case .splitted:
-			if let feature = featureVC as? JKSplitViewController {
-				feature.image2 = nil
-				feature.image1 = nil
-			}
-			else {
+//            if let feature = featureVC as? JKSplitViewController {
+//                feature.image2 = nil
+//                feature.image1 = nil
+//            }
+//            else {
 				currentFeature = .split
-			}
-			setPicker(.camera)
+//            }
+//            setPicker(.camera)
 			break
 		case .confirm:
 			break

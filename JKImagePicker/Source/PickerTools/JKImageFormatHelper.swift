@@ -127,14 +127,11 @@ extension CGRect {
 		let ratio = format.ratio.ratio
 
 		if format.orientation == .landscape {
-			newWidth = self.height * ratio
+            newHeight = self.width / ratio
 		} else {
-			newHeight = self.width * ratio
-		}
-		if format.orientation == .landscape {
-			return CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
+            newWidth = self.height / ratio
 		}
 		// rotate if portrait
-		return CGRect(x: 0, y: 0, width: newHeight, height: newWidth)
+		return CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
 	}
 }

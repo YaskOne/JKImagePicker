@@ -13,6 +13,21 @@ import CoreLocation
 public class JKGallery {
     
     public var albums = [JKAlbumAsset]()
+    
+    public var validAlbums: [JKAlbumAsset] {
+        return albums.filter{$0.photoAssets.count > 0}
+    }
+    
+    public var sortedAlbums: [JKAlbumAsset] {
+        get {
+            return albums.sorted(by: { (lhs, rhs) -> Bool in
+                if let date1 = lhs.date, let date2 = rhs.date {
+                    return date1.compare(date2).rawValue > 0
+                }
+                return false
+            })
+        }
+    }
 	
 	public var photos = [JKPhotoAsset]()
     
@@ -48,16 +63,18 @@ public class JKGallery {
 	}
 	
     public func fetchAlbums() {
+        print("FOUND")
         let options = PHFetchOptions()
         let userAlbums = PHAssetCollection.fetchAssetCollections(with: PHAssetCollectionType.smartAlbum, subtype: PHAssetCollectionSubtype.any, options: options)
 
         userAlbums.enumerateObjects{ (object: AnyObject, count: Int, stop: UnsafeMutablePointer) in
-            if let collection  = object as? PHAssetCollection {
-
+            if let collection = object as? PHAssetCollection {
+//PHAssetCollectionType.smartAlbum
                 let fetchOptions = PHFetchOptions()
                 fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
                 fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
 
+                print("FOUND \(collection.assetCollectionType.rawValue) : \(collection.estimatedAssetCount)")
 				let newAlbum = JKAlbumAsset(collection: collection)
                 self.albums.append(newAlbum)
             }
@@ -105,7 +122,7 @@ public class JKGallery {
 		})
 	}
 	
-	public static func loadThumbnailForAsset(asset: JKPhotoAsset, imageSize: CGSize) {
+    public static func loadThumbnailForAsset(asset: JKPhotoAsset, imageSize: CGSize, imageView: UIImageView? = nil) {
 		let imageManager = PHImageManager.default()
 		
 		/* For faster performance, and maybe degraded image */
@@ -120,9 +137,16 @@ public class JKGallery {
 								  resultHandler: {
 									(image, info) -> Void in
 									
-									if let photo = image {
-										asset.thumbnail = photo
-									}
+                                    guard let photo = image else {
+                                        return
+                                    }
+                                    if photo.size.height > photo.size.width {
+                                        asset.thumbnail = photo
+                                    }
+                                    else {
+                                        asset.thumbnail = photo.rotatedBy(angle: CGFloat.pi / 2)
+                                    }
+                                    imageView?.image = asset.thumbnail
 		})
 	}
 

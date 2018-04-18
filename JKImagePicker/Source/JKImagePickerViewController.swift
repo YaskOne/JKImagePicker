@@ -145,8 +145,14 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 		}
 	}
 	
-	public var currentPicker: PickerType = .camera
-	
+    @IBOutlet weak var controlsContainer: UIView!
+    
+    public var currentPicker: PickerType = .camera {
+        didSet {
+            controlsContainer.isHidden = currentPicker == .gallery
+        }
+    }
+    
 	public var currentFeature: PickerFeature = .normal {
 		didSet {
 			switch currentFeature {
@@ -405,14 +411,18 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
             setPicker(.camera)
             return
         }
-        if let cgImage = image.cgImage {
-			self.image = JKImage(cgImage, format: imageFormat)
-			previewVC.jkImage = self.image
-		}
-		else {
-			previewVC.image = image
-		}
         self.metaData = metaData
+        
+        if let cgImage = image.cgImage {
+            self.image = JKImage(cgImage, format: imageFormat)
+
+            if featureVC == nil {
+                previewVC.jkImage = self.image
+            }
+        }
+        else if featureVC == nil {
+            previewVC.image = image
+        }
 
         if !settings.hasConfirmation && currentPickerController is JKCameraViewController {
             if featureVC == nil || (featureVC as? JKSplitViewController)?.image2 != nil || !settings.allowSoloSplit {

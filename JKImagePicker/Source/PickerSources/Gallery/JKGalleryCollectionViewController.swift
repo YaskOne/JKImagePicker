@@ -38,7 +38,7 @@ class JKGalleryCollectionViewController: UICollectionViewController {
 	var numberOfColumns = 3
 	
 	var cellRatio: CGFloat = 16 / 9
-	var cellsSpacing: CGFloat =  10
+	var cellsSpacing: CGFloat =  2
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

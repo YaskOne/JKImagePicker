@@ -51,6 +51,8 @@
 		BC86E7FA203C37710084708F /* JKSplitFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7F9203C37710084708F /* JKSplitFeatureView.swift */; };
 		BC86E7FE203C37B80084708F /* JKHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7FC203C37B80084708F /* JKHandleView.swift */; };
 		BC86E7FF203C37B80084708F /* JKCenterAngleControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86E7FD203C37B80084708F /* JKCenterAngleControlView.swift */; };
+		D71ABEC62082944E00B10730 /* JKAlbumsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71ABEC52082944E00B10730 /* JKAlbumsCollectionViewController.swift */; };
+		D71ABEC82082A20300B10730 /* JKAlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71ABEC72082A20300B10730 /* JKAlbumViewCell.swift */; };
 		D795AE01204FE4AD0025AA90 /* JKDevTeamCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D795AE00204FE4AD0025AA90 /* JKDevTeamCameraViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +114,8 @@
 		BC86E7F9203C37710084708F /* JKSplitFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKSplitFeatureView.swift; sourceTree = "<group>"; };
 		BC86E7FC203C37B80084708F /* JKHandleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKHandleView.swift; sourceTree = "<group>"; };
 		BC86E7FD203C37B80084708F /* JKCenterAngleControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKCenterAngleControlView.swift; sourceTree = "<group>"; };
+		D71ABEC52082944E00B10730 /* JKAlbumsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKAlbumsCollectionViewController.swift; sourceTree = "<group>"; };
+		D71ABEC72082A20300B10730 /* JKAlbumViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKAlbumViewCell.swift; sourceTree = "<group>"; };
 		D795AE00204FE4AD0025AA90 /* JKDevTeamCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JKDevTeamCameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,6 +232,8 @@
 				BC25D271203C2156009729CC /* JKGalleryPhotoCollectionViewCell.swift */,
 				BC25D272203C2156009729CC /* JKGalleryViewController.swift */,
 				BC25D273203C2156009729CC /* JKGalleryCollectionViewController.swift */,
+				D71ABEC72082A20300B10730 /* JKAlbumViewCell.swift */,
+				D71ABEC52082944E00B10730 /* JKAlbumsCollectionViewController.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 				D795AE01204FE4AD0025AA90 /* JKDevTeamCameraViewController.swift in Sources */,
 				BC25D295203C2156009729CC /* JKCameraControlView.swift in Sources */,
 				BC25D2AA203C2156009729CC /* JKImagePickerViewController.swift in Sources */,
+				D71ABEC82082A20300B10730 /* JKAlbumViewCell.swift in Sources */,
 				BC25D2A6203C2156009729CC /* JKAsset.swift in Sources */,
 				BC25D2A0203C2156009729CC /* JKSystemImageSourceViewController.swift in Sources */,
 				BC86E7FE203C37B80084708F /* JKHandleView.swift in Sources */,
@@ -458,6 +465,7 @@
 				BC86E7FF203C37B80084708F /* JKCenterAngleControlView.swift in Sources */,
 				BC25D289203C2156009729CC /* JKImagePickerUtils.swift in Sources */,
 				BC25D2A4203C2156009729CC /* JKPickerSettings.swift in Sources */,
+				D71ABEC62082944E00B10730 /* JKAlbumsCollectionViewController.swift in Sources */,
 				BC25D287203C2156009729CC /* JKOrientatedViewController.swift in Sources */,
 				BC25D285203C2156009729CC /* JKRatioCropper.swift in Sources */,
 				BC25D293203C2156009729CC /* JKFeatureViewController.swift in Sources */,

@@ -22,7 +22,7 @@ class JKGalleryPhotoCollectionViewCell: UICollectionViewCell {
 			return
 		}
 
-		JKGallery.loadThumbnailForAsset(asset: item.asset, imageSize: bounds.size)
+        JKGallery.loadThumbnailForAsset(asset: item.asset, imageSize: bounds.size, imageView: imageView)
 		imageView.image = item.asset.thumbnail
 	}
 }

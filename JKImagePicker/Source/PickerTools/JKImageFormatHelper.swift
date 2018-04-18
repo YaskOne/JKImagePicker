@@ -127,9 +127,9 @@ extension CGRect {
 		let ratio = format.ratio.ratio
 
 		if format.orientation == .landscape {
-			newWidth = self.height * ratio
+			newHeight = self.height * ratio
 		} else {
-			newHeight = self.width * ratio
+			newWidth = self.width * ratio
 		}
 		if format.orientation == .landscape {
 			return CGRect(x: 0, y: 0, width: newWidth, height: newHeight)

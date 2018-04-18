@@ -77,7 +77,6 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 			{
 				self.image = JKImage.init(cgImage)
 				
-				pickerActions?.actions = [.splitted]
 				currentFeature = .split
 
 				if let feature = featureVC as? JKSplitViewController {
@@ -88,15 +87,22 @@ public class JKImagePickerViewController: JKOrientatedViewController {
 					feature.splitView.settings = JKSplitSettings(angle: composition.angle, center: composition.center)
                     hasInitiator = true
 				}
+				
+				pickerActions?.reloadButtons()
+
 			}
-			else {
-				if settings.startFeature == .split {
-					currentFeature = .split
-					//self.pickerAction(action: .splitted)
-					//self.actionSelected(action: .splitted)
-					self.pickerActions?.currentAction = (currentFeature == .split) ? .splitted : .normal
-					
+			else if settings.startFeature == .split {
+				currentFeature = .split
+				if let feature = featureVC as? JKSplitViewController {
+					feature.image2 = nil
+					feature.image1 = nil
+					feature.allowsInviteFriends = false
+					feature.allowsChangeAngle = true
+					hasInitiator = false
 				}
+
+				pickerActions?.reloadButtons()
+				self.pickerActions?.currentAction = (currentFeature == .split) ? .splitted : .normal
 			}
 		}
 	}
@@ -470,17 +476,18 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 	public func commandButtonTapped(command: JKCameraCommand) {
 		switch command {
 		case JKCameraControlItem.close.rawValue:
-            print("CLOSING")
+            print("[JKImagePickerViewController] - Closing")
 			delegate?.imagePickerCancel()
 			
 		case JKCameraControlItem.camera.rawValue, JKCameraControlItem.back.rawValue:
+			print("[JKImagePickerViewController] - Back")
             resetPicker()
 			setPicker(.camera)
 			
 		case JKCameraControlItem.gallery.rawValue:
             
             JKImagePicker.checkGalleryAuthorization(error: {
-                print("Not authorized for gallery access")
+                print("[JKImagePickerViewController] - Not authorized for gallery access")
             }, success: {
                 DispatchQueue.main.async {
                     self.resetPicker()
@@ -550,6 +557,9 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 	
 	public func availablePickerActions() -> [PickerAction]{
 		if settings.hasSplitFeature {
+			if hasInitiator {
+				return [.splitted]
+			}
 			return [.normal,.splitted]
 		}
 		return [.normal]
@@ -637,21 +647,8 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 		switch action {
 		case .normal:
 			currentFeature = .normal
-//            self.image = nil
-//            if let feature = featureVC as? JKSplitViewController {
-//                feature.image2 = nil
-//                feature.image1 = nil
-//            }
-//            setPicker(.camera)
 		case .splitted:
-//            if let feature = featureVC as? JKSplitViewController {
-//                feature.image2 = nil
-//                feature.image1 = nil
-//            }
-//            else {
-				currentFeature = .split
-//            }
-//            setPicker(.camera)
+			currentFeature = .split
 			break
 		case .confirm:
 			break

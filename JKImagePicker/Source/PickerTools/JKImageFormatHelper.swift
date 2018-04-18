@@ -122,16 +122,15 @@ public class JKImageFormatHelper {
 extension CGRect {
 	//return a null origin based rectangle by applying ratio and orientation to target rectangle
 	func apply(format:JKImageFormat) -> CGRect {
-		var newHeight = height
-		var newWidth = width
 		let ratio = format.ratio.ratio
 
-		if format.orientation == .landscape {
-            newHeight = self.width / ratio
-		} else {
-            newWidth = self.height / ratio
-		}
-		// rotate if portrait
-		return CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
+        let orientatedRatio = (height < width ? ratio : 1 / ratio)
+        let reduceWidth = (height / width) < orientatedRatio
+        
+        let newWidth = reduceWidth ? height * (1 / orientatedRatio) : width
+        let newHeight = !reduceWidth ? width * orientatedRatio : height
+        
+ 		// rotate if portrait
+        return CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
 	}
 }

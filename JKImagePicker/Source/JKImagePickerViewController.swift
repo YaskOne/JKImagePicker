@@ -525,6 +525,20 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
 
 extension JKImagePickerViewController: PickerActionsDelegate {
 	
+	public func selectedAction() -> PickerAction {
+		if settings.hasSplitFeature && settings.startFeature == .split {
+			return .splitted
+		}
+		return .normal
+	}
+	
+	public func availablePickerActions() -> [PickerAction]{
+		if settings.hasSplitFeature {
+			return [.normal,.splitted]
+		}
+		return [.normal]
+	}
+	
     func completionHandler() {
         cameraVC.cameraPreview?.stopCamera()
     }
@@ -575,7 +589,8 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 				let splitComposition = JKSplitComposition(angle: settings.angle, center: settings.center)
 				splitComposition.image1 = jkImage1
 				splitComposition.image2 = feature.jkImage2
-				delegate?.imagePickerSuccess(image: splitComposition, metaData: self.metaData)
+				splitComposition.splitOverlayColor = (settings.overlayColor ?? UIColor.black.cgColor)
+				done(image: splitComposition, metaData: self.metaData)
 			}
 			return
 		}
@@ -593,9 +608,13 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 		case .still:
 			
 			if let jkImage = self.image {
-				delegate?.imagePickerSuccess(image: jkImage, metaData: self.metaData)
+				done(image: jkImage, metaData: self.metaData)
 			}
 		}
+	}
+	
+	func done(image: JKImageRepresentable, metaData: JsonDict?) {
+		delegate?.imagePickerSuccess(image: image, metaData: self.metaData)
 	}
 	
 	public func actionSelected(action: PickerAction) {

@@ -106,8 +106,10 @@ public class JKSplitViewController: JKFeatureViewController {
 	}
 	
 	public func updateSplit() {
+		let color = splitView.settings.overlayColor
 		var settings = mode.settingsForFrame(frame: self.view.frame)
 		settings.angle += swapped ? CGFloat.pi : 0
+		settings.overlayColor = color	
 		splitView?.settings = settings
 		modeButton?.setTitle(mode.label, for: .normal)
 		splitView.setNeedsDisplay()

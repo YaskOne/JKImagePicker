@@ -27,7 +27,7 @@ public class JKImage: JKImageRepresentable {
 		if let format = self.format {
 			let rect = sourceImage.frame
             //TO: Check
-			let cropRect = CGRect(x: 0, y: 0, width: rect.height * format.ratio.ratio, height: rect.height)//.filling(rect: image.frame)
+			let cropRect = rect.apply(format: format)
 			return cropRect
 		} else {
 			return sourceImage.frame
@@ -54,27 +54,25 @@ public class JKImage: JKImageRepresentable {
 	}
 	
 	public var image : UIImage? {
-		//if let format = self.format {
-			let ow = CGFloat(sourceImage.width)
-			let oh = CGFloat(sourceImage.height)
-			
-			let outputRect = frame
-			let w = outputRect.width
-			let h = outputRect.height
-			
-			let offset = CGPoint(x: (ow - w)/2, y: (oh - h)/2)
-			let drawRect = CGRect(x: -offset.x, y: -offset.y, width: ow, height: oh)
-			UIGraphicsBeginImageContextWithOptions(outputRect.size, false, self.scale)
-			let ctx = UIGraphicsGetCurrentContext()
-			ctx?.scaleBy(x: 1, y: -1)
-			ctx?.translateBy(x: 0, y: -h)
-			ctx?.draw(sourceImage, in: drawRect)
+		let sourceImageWidth = CGFloat(sourceImage.width)
+		let sourceImageHeight = CGFloat(sourceImage.height)
+	
+		let outputRect = frame
 		
-			let outImage = UIGraphicsGetImageFromCurrentImageContext()
-			UIGraphicsEndImageContext()
-			return outImage ?? UIImage(cgImage: sourceImage, scale: scale, orientation: UIImageOrientation.up)
-		//}
-		//return UIImage(cgImage: sourceImage, scale: scale, orientation: UIImageOrientation.up)
+		let outputWidth = outputRect.width
+		let outputHeight = outputRect.height
+		
+		let offset = CGPoint(x: (sourceImageWidth - outputWidth)/2, y: (sourceImageHeight - outputHeight)/2)
+		let drawRect = CGRect(x: -offset.x, y: -offset.y, width: sourceImageWidth, height: sourceImageHeight)
+		UIGraphicsBeginImageContextWithOptions(outputRect.size, false, self.scale)
+		let ctx = UIGraphicsGetCurrentContext()
+		ctx?.scaleBy(x: 1, y: -1)
+		ctx?.translateBy(x: 0, y: -outputHeight)
+		ctx?.draw(sourceImage, in: drawRect)
+	
+		let outImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		return outImage ?? UIImage(cgImage: sourceImage, scale: scale, orientation: UIImageOrientation.up)
 	}
 }
 

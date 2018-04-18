@@ -417,12 +417,15 @@ extension JKImagePickerViewController: JKImagePickerSourceDelegate {
             setPicker(.camera)
             return
         }
-        self.metaData = metaData
-        
+		
         if let cgImage = image.cgImage {
-            self.image = JKImage(cgImage, format: imageFormat)
-            previewVC.jkImage = self.image
-        }
+			self.image = JKImage(cgImage, format: imageFormat)
+			previewVC.jkImage = self.image
+		}
+		else {
+			previewVC.image = image
+		}
+        self.metaData = metaData
 
         if !settings.hasConfirmation && currentPickerController is JKCameraViewController {
             if featureVC == nil || (featureVC as? JKSplitViewController)?.image2 != nil || !settings.allowSoloSplit {

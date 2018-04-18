@@ -76,7 +76,9 @@ public class JKGallery {
 
                 print("FOUND \(collection.assetCollectionType.rawValue) : \(collection.estimatedAssetCount)")
 				let newAlbum = JKAlbumAsset(collection: collection)
-                self.albums.append(newAlbum)
+                if collection.assetCollectionSubtype != .smartAlbumScreenshots {
+                    self.albums.append(newAlbum)
+                }
             }
         }
     }
@@ -115,10 +117,16 @@ public class JKGallery {
 								  options: options,
 								  resultHandler: {
 									(image, info) -> Void in
-									
-									if let photo = image {
-										asset.fullSize = photo
-									}
+                                    
+                                    guard let photo = image else {
+                                        return
+                                    }
+                                    if photo.size.height > photo.size.width {
+                                        asset.fullSize = photo
+                                    }
+                                    else {
+                                        asset.fullSize = photo.rotatedBy(angle: CGFloat.pi / 2)
+                                    }
 		})
 	}
 	

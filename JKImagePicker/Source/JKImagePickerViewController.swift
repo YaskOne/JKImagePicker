@@ -207,7 +207,7 @@ public class JKImagePickerViewController: JKOrientatedViewController {
             let feature = featureVC as? JKSplitViewController {
             feature.image2 = nil
         }
-        else if let feature = featureVC as? JKSplitViewController {
+        else if let _ = featureVC as? JKSplitViewController {
             resetPicker()
         }
         
@@ -637,21 +637,8 @@ extension JKImagePickerViewController: PickerActionsDelegate {
 		switch action {
 		case .normal:
 			currentFeature = .normal
-//            self.image = nil
-//            if let feature = featureVC as? JKSplitViewController {
-//                feature.image2 = nil
-//                feature.image1 = nil
-//            }
-//            setPicker(.camera)
 		case .splitted:
-//            if let feature = featureVC as? JKSplitViewController {
-//                feature.image2 = nil
-//                feature.image1 = nil
-//            }
-//            else {
-				currentFeature = .split
-//            }
-//            setPicker(.camera)
+            currentFeature = .split
 			break
 		case .confirm:
 			break

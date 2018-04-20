@@ -58,7 +58,7 @@ public class JKCameraViewController: JKImagePickerSourceViewController {
     public var hasGallery: Bool = true
 
 	public var hasFlash: Bool { get {
-		let flashModes = self.capturePhotoOutput?.supportedFlashModes
+//        let flashModes = self.capturePhotoOutput?.supportedFlashModes
 		
 		if let flash = cameraPreview?.currentDevice?.hasFlash {
 			return flash

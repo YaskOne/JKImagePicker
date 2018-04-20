@@ -39,10 +39,10 @@ public class JKPickerActionsViewController: JKOrientatedViewController {
 	
 	public var actions: [PickerAction] {
 		get {
-			return delegate?.availablePickerActions() ?? _actions
+            return _actions.isEmpty ? delegate?.availablePickerActions() ?? [] : _actions
 		}
 		set {
-			_actions = actions
+			_actions = newValue
 			reloadButtons()
 		}
 	}

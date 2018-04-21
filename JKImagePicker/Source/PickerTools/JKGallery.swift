@@ -38,6 +38,8 @@ public class JKGallery {
                     return date1.compare(date2).rawValue > 0
                 }
                 return false
+            }).filter({ asset in
+                return asset.asset.mediaSubtypes != .photoScreenshot
             })
         }
     }

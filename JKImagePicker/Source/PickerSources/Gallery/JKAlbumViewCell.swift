@@ -22,7 +22,7 @@ class JKAlbumViewCell: UITableViewCell {
         guard let item = self.item else { return }
         
         titleLabel.text = item.asset.name
-        countLabel.text = String(item.asset.photoAssets.count)
+        countLabel.text = String(item.sortedPhotos.count)
         if let asset = item.asset.photoAssets.first {
             JKGallery.loadThumbnailForAsset(asset: asset, imageSize: bounds.size, imageView: thumbImage)
         }

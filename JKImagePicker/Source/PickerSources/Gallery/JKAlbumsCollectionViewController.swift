@@ -23,7 +23,7 @@ struct JKAlbumsItem {
                 }
                 return false
             }).filter({ asset in
-                return asset.asset.mediaSubtypes != .photoScreenshot
+                return asset.asset.mediaSubtypes != .photoScreenshot && asset.asset.location != nil
             })
         }
     }

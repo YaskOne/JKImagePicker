@@ -15,7 +15,9 @@ public class JKGallery {
     public var albums = [JKAlbumAsset]()
     
     public var validAlbums: [JKAlbumAsset] {
-        return albums.filter{$0.photoAssets.count > 0}
+        return albums.filter{$0.photoAssets.filter({ asset in
+            return asset.asset.mediaSubtypes != .photoScreenshot && asset.asset.location != nil
+        }).count > 0}
     }
     
     public var sortedAlbums: [JKAlbumAsset] {
@@ -39,7 +41,7 @@ public class JKGallery {
                 }
                 return false
             }).filter({ asset in
-                return asset.asset.mediaSubtypes != .photoScreenshot
+                return asset.asset.mediaSubtypes != .photoScreenshot && asset.asset.location != nil
             })
         }
     }

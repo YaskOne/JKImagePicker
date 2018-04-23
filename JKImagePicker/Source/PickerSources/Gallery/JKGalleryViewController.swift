@@ -81,7 +81,7 @@ extension JKGalleryViewController : JKGalleryViewControllerDelegate {
         if let image = asset.fullSize {
             var dict: JsonDict? = nil
             
-            if let location = asset.location {
+            if let location = asset.asset.location {
                 dict = ["location": location]
             }
             

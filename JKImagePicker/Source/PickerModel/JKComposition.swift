@@ -42,7 +42,7 @@ public class JKComposition: JKImageRepresentable {
 	public var format: JKImageFormat? { get {
 		return _format ?? image1?.format
 		} set {
-			_format = format
+			_format = newValue
 		}}
 	
 	public var image1: JKImage?
